@@ -1,0 +1,55 @@
+<?php
+// Created by: Juan Sebastián Pérez Salazar
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
+
+class Company extends Model
+{
+    //attributes id, name, contact_info, created_at, updated_at
+    protected $fillable = ['name', 'contact_info'];
+
+    public function getId()
+    {
+        return $this->attributes['id'];
+    }
+
+    public function setId($id)
+    {
+        $this->attributes['id'] = $id;
+    }
+
+    public function getName()
+    {
+        return $this->attributes['name'];
+    }
+
+    public function setName($name)
+    {
+        $this->attributes['name'] = $name;
+    }
+
+    public function getContactInfo()
+    {
+        return $this->attributes['contact_info'];
+    }
+
+    public function setContactInfo($contact_info)
+    {
+        $this->attributes['contact_info'] = $contact_info;
+    }
+
+    // hasMany - admin_users method
+
+    // hasMany - warehouses method
+
+    public static function validate(Request $request)
+    {
+        $request->validate([
+            "name" => ['required', 'string', 'min:1', 'max:255'],
+            "contact_info" => ['required', 'string', 'min:1', 'max:255'],
+        ]);
+    }
+}
