@@ -14,9 +14,9 @@ class AddAttributesToUsers extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->integer('id_card_number');
-            $table->boolean('is_active');
-            $table->enum('role', ['SuperAdmin', 'CompanyAdmin', 'WarehouseAdmin', 'Courier']);
+            $table->bigInteger('id_card_number');
+            $table->tinyInteger('is_active')->default('1');
+            $table->enum('role', ['super_admin', 'company_admin', 'warehouse_admin', 'courier']);
             // Llave foranea de la tabla companies
         });
     }

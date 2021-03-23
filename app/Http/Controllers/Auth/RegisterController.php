@@ -74,7 +74,6 @@ class RegisterController extends Controller
             'role' => $data['role'],
         ]);
 
-        $user->setIsActive("True");
         $user->save();
 
         return $user;

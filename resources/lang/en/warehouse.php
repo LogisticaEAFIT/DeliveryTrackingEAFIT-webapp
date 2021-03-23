@@ -16,7 +16,9 @@ return [
     'title_create' => 'Create warehouse',
     'title_update' => 'Update warehouse',
     'title_list' => 'Warehouses',
+    'title_list2' => 'Warehouses list',
     'navbar_title' => 'Warehouse',
+    'create_company' => 'You must create a company first',
     'input' => [
         'description' => 'Enter description',
         'address' => 'Enter address',
@@ -24,6 +26,7 @@ return [
         'longitude' => 'Enter longitude',
         'create' => 'Create',
         'update' => 'Update',
+        'delete' => 'Delete',
     ],
     'label' => [
         'description' => 'Description',
@@ -31,6 +34,8 @@ return [
         'latitude' => 'Latitude',
         'longitude' => 'Longitude',
         'id' => 'ID',
+        'about' => 'About',
+        'info' => 'More info about ',
     ],
     'succesful_create' => 'Warehouse created successfully!',
     'succesful_update' => 'Warehouse updated successfully!',

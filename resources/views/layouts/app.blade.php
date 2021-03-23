@@ -6,7 +6,7 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>@yield('title','Home Page')</title>
-        <link href="css/styles.css" rel="stylesheet" />
+        <link href="{{ asset('/css/styles.css') }}" rel="stylesheet" />
         <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
         <link href="{{ asset('/css/custom-styles.css') }}" rel="stylesheet" />
@@ -50,11 +50,45 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 {{ __('Register') }}
                             </a>
+                            
                             @else
+                            <li class="nav-link dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <div class="sb-nav-link-icon"><i class="fa fa-list-ul"></i></div>
+                                    {{ __('company.title_list') }}
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <a class="" href="{{ route('company.create') }}">
+                                        <div class="sb-nav-link-icon"><i class="fa fa-plus"></i></div>
+                                        {{ __('company.title_create') }}
+                                    </a>
+                                    <a class="" href="{{ route('company.list') }}">
+                                        <div class="sb-nav-link-icon"><i class="fa fa-list-ul"></i></div>
+                                        {{ __('company.title_list2') }}
+                                    </a> 
+                                </div>
+                            </li>
+                            <li class="nav-link dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <div class="sb-nav-link-icon"><i class="fa fa-list-ul"></i></div>
+                                    {{ __('warehouse.title_list') }}
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <a class="" href="{{ route('warehouse.create') }}">
+                                        <div class="sb-nav-link-icon"><i class="fa fa-plus"></i></div>
+                                        {{ __('warehouse.title_create') }}
+                                    </a>
+                                    <a class="" href="{{ route('warehouse.list') }}">
+                                        <div class="sb-nav-link-icon"><i class="fa fa-list-ul"></i></div>
+                                        {{ __('warehouse.title_list2') }}
+                                    </a> 
+                                </div>
+                            </li>
                             <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 {{ __('Logout') }}
                             </a>
+                            
 
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                 @csrf

@@ -61,7 +61,19 @@ class Warehouse extends Model
         $this->attributes['longitude'] = $longitude;
     }
 
-    // belongsTo - company method
+    public function getCompanyId()
+    {
+        return $this->attributes['company_id'];
+    }
+
+    public function setCompanyId($company_id)
+    {
+        $this->attributes['company_id'] = $company_id;
+    }
+
+    public function company(){
+        return $this->belongsTo(Company::class);
+    }
 
     public static function validate(Request $request)
     {

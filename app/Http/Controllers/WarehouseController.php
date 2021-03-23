@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use App\Models\Warehouse;
+use App\Models\Company;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 Use Exception;
@@ -17,7 +18,7 @@ class WarehouseController extends Controller
     {
         $this->middleware('auth');
         $this->middleware(function ($request, $next) {
-            if(Auth::user()->getRole()=="Courier"){
+            if(Auth::user()->getRole()=="courier"){
                 return redirect()->route('home.index');
             }
             return $next($request);
@@ -34,7 +35,6 @@ class WarehouseController extends Controller
             return redirect()->route('home.index');
         }
 
-        $data["title"] = $warehouse->getName();
         $data["warehouse"] = $warehouse;
         return view('warehouse.show')->with("data",$data);
     }
@@ -53,7 +53,10 @@ class WarehouseController extends Controller
     {
         $data = []; //to be sent to the view
         $data["title"] = __('warehouse_create.title');
-
+        $data["companies"] = Company::all();
+        if (empty($data["companies"]->toArray())) {
+            return redirect()->route('company.create')->withErrors(__('warehouse.create_company'));;
+        }
         return view('warehouse.create')->with("data",$data);
 
     }
@@ -104,9 +107,10 @@ class WarehouseController extends Controller
         $warehouse->setAddress($request->input('address'));
         $warehouse->setLatitude($request->input('latitude'));
         $warehouse->setLongitude($request->input('longitude'));
+        $warehouse->setCompanyId($request->input('company_id'));
         $warehouse->save();
 
-        return back()->with('success', __('warehouse_create.succesful'));
+        return redirect()->route('warehouse.list')->with('success', __('warehouse_create.succesful'));
     }
 
     public function delete(Request $request){

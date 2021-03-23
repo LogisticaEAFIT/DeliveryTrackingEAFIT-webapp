@@ -18,7 +18,7 @@ class CompanyController extends Controller
     {
         $this->middleware('auth');
         $this->middleware(function ($request, $next) {
-            if(Auth::user()->getRole()=="SuperAdmin"){
+            if(Auth::user()->getRole()=="super_admin"){
                 return $next($request);
             }
             return redirect()->route('home.index');
@@ -87,8 +87,8 @@ class CompanyController extends Controller
 
         $company->save();
 
-        return back()->with('success', __('company_update.succesful'));
-
+        //return back()->with('success', __('company_update.succesful'));
+        return redirect()->route('company.list');
     }
     
     public function save(Request $request)
