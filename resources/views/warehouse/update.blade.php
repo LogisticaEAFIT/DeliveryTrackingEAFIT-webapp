@@ -30,7 +30,7 @@
                             <div class="col-2"></div>
                             <div class="col-8">
                                 <label for="description"><strong>{{ __('warehouse.label.description') }}</strong></label><br />
-                                <textarea type="text" class="form-control" name="description" value="{{ $data['warehouse']->getDescription() }}" required></textarea>
+                                <textarea type="text" class="form-control" name="description" required>{{ $data['warehouse']->getDescription() }}</textarea>
                             </div>
                         </div><br />
                         <div class="form-row col-12">
