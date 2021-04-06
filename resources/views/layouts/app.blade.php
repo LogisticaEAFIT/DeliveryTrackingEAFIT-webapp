@@ -59,17 +59,16 @@
                                     {{ __('company.title_list') }}
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                    <a class="" href="{{ route('company.create') }}">
-                                        <div class="sb-nav-link-icon"><i class="fa fa-plus"></i></div>
-                                        {{ __('company.title_create') }}
+                                    <a class="dropdown-item" href="{{ route('company.create') }}">
+                                        <div class="sb-nav-link-icon"><i class="fa fa-plus"></i> {{ __('company.title_create') }}</div>
+
                                     </a>
-                                    <a class="" href="{{ route('company.list') }}">
-                                        <div class="sb-nav-link-icon"><i class="fa fa-list-ul"></i></div>
-                                        {{ __('company.title_list2') }}
+                                    <a class="dropdown-item" href="{{ route('company.list') }}">
+                                        <div class="sb-nav-link-icon"><i class="fa fa-list-ul"></i> {{ __('company.title_list2') }}</div>
                                     </a> 
                                 </div>
                             </li>
-                            <li class="nav-link dropdown">
+                            <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <div class="sb-nav-link-icon"><i class="fa fa-list-ul"></i></div>
                                     {{ __('warehouse.title_list') }}
