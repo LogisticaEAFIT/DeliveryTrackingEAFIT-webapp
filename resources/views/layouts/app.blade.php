@@ -46,12 +46,13 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 {{ __('Login') }}
                             </a>
+                            @else
+                            @if(Auth::user()->getRole()=="super_admin")
                             <a class="nav-link" href="{{ route('register') }}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 {{ __('Register') }}
                             </a>
-                            
-                            @else
+                            @endif
                             <li class="nav-link dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <div class="sb-nav-link-icon"><i class="fa fa-list-ul"></i></div>
