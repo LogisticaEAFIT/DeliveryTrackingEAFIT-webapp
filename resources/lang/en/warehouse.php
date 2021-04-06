@@ -16,7 +16,7 @@ return [
     'title_create' => 'Create warehouse',
     'title_update' => 'Update warehouse',
     'title_list' => 'Warehouses',
-    'title_list2' => 'Warehouses list',
+    'title_list2' => 'List warehouses',
     'navbar_title' => 'Warehouse',
     'create_company' => 'You must create a company first',
     'input' => [
@@ -33,6 +33,7 @@ return [
         'address' => 'Address',
         'latitude' => 'Latitude',
         'longitude' => 'Longitude',
+        'company_id' => 'Company Id',
         'id' => 'ID',
         'about' => 'About',
         'info' => 'More info about ',

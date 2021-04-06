@@ -8,8 +8,8 @@ use Illuminate\Http\Request;
 
 class Warehouse extends Model
 {
-    //attributes id, description, address, latitude, longitude, created_at, updated_at
-    protected $fillable = ['description', 'address', 'latitude', 'longitude'];
+    //attributes id, description, address, latitude, longitude, company_id, created_at, updated_at
+    protected $fillable = ['description', 'address', 'latitude', 'longitude', 'company_id'];
 
     public function getId()
     {
@@ -59,6 +59,15 @@ class Warehouse extends Model
     public function setLongitude($longitude)
     {
         $this->attributes['longitude'] = $longitude;
+    }
+
+    public function getIsActive(){
+        return $this->attributes['is_active'];
+    }
+
+    public function setIsActive($is_active)
+    {
+        $this->attributes['is_active'] = $is_active;
     }
 
     public function getCompanyId()

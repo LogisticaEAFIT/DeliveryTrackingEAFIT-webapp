@@ -27,11 +27,14 @@
                         </div>
                     </div><hr/>
                     <div class="row" align="center">
-                        <div class="col-6">
+                        <div class="col-4">
                             <b>{{ __('warehouse.label.latitude') }}</b><br /> {{ $data["warehouse"]->getLatitude() }}<br />
                         </div>
-                        <div class="col-6">
+                        <div class="col-4">
                             <b>{{ __('warehouse.label.longitude') }}</b><br /> {{ $data["warehouse"]->getLongitude() }}<br />
+                        </div>
+                        <div class="col-4">
+                            <b>{{ __('warehouse.label.company_id') }}</b><br /> {{ $data["warehouse"]->getCompanyId() }}<br />
                         </div>
                     </div><hr/>
                     <div class="row" align="center">
@@ -45,7 +48,7 @@
                     </div><br/>
                     <div class="row" align="center">
                         <div class="col-12">
-                            <form method="POST" action="#">
+                            <form method="POST" action="{{ route('warehouse.delete') }}">
                                 @csrf
                                 <input type="hidden" name="id" value="{{ $data['warehouse']->getId() }}" />
                                 <button type="submit" class="btn btn-danger"><i class="fa fa-trash-alt"></i> {{ __('warehouse.input.delete') }}</button>

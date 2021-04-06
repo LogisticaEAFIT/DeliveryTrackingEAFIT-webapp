@@ -41,6 +41,15 @@ class Company extends Model
         $this->attributes['contact_info'] = $contact_info;
     }
 
+    public function getIsActive(){
+        return $this->attributes['is_active'];
+    }
+
+    public function setIsActive($is_active)
+    {
+        $this->attributes['is_active'] = $is_active;
+    }
+
     // hasMany - admin_users method
 
     // hasMany - warehouses method

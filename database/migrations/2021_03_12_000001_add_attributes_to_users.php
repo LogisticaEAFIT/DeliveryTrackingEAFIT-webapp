@@ -17,7 +17,8 @@ class AddAttributesToUsers extends Migration
             $table->bigInteger('id_card_number');
             $table->tinyInteger('is_active')->default('1');
             $table->enum('role', ['super_admin', 'company_admin', 'warehouse_admin', 'courier']);
-            // Llave foranea de la tabla companies
+            $table->bigInteger('company_id')->unsigned()->nullable();
+            $table->foreign('company_id')->references('id')->on('companies');
         });
     }
 
@@ -29,9 +30,7 @@ class AddAttributesToUsers extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn(['id_card_number']);
-            $table->dropColumn(['is_active']); 
-            $table->dropColumn(['role']); 
+            
         });
     }
 }
