@@ -21,6 +21,7 @@ class CreateCompaniesTable extends Migration
             $table->bigIncrements('id');
             $table->text('name');
             $table->text('contact_info');
+            $table->tinyInteger('is_active')->default('1');
             $table->timestamps();
         });
     }

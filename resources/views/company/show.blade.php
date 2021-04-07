@@ -22,8 +22,11 @@
                         </div>
                     </div><hr/>
                     <div class="row" align="center">
-                        <div class="col-12">
+                        <div class="col-6">
                             <b>{{ __('company.label.contact_info') }}</b><br /> {{ $data["company"]->getContactInfo() }}<br />
+                        </div>
+                        <div class="col-6">
+                            <b>{{ __('company.label.is_active') }}</b><br /> {{ $data["company"]->getIsActive() }}<br />
                         </div>
                     </div><hr/>
                     <div class="row" align="center">
@@ -37,7 +40,7 @@
                     </div><br/>
                     <div class="row" align="center">
                         <div class="col-12">
-                            <form method="POST" action="#">
+                            <form method="POST" action="{{ route('company.delete') }}">
                                 @csrf
                                 <input type="hidden" name="id" value="{{ $data['company']->getId() }}" />
                                 <button type="submit" class="btn btn-danger"><i class="fa fa-trash-alt"></i> {{ __('company.input.delete') }}</button>

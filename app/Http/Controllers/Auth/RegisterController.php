@@ -5,9 +5,14 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use App\Models\Company;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
+
 
 class RegisterController extends Controller
 {
@@ -38,7 +43,33 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        //$this->middleware('guest');
+    }
+
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+
+        event(new Registered($user = $this->create($request->all())));
+
+        //$this->guard()->login($user);
+
+        if ($response = $this->registered($request, $user)) {
+            return $response;
+        }
+
+        return $request->wantsJson()
+                    ? new JsonResponse([], 201)
+                    : redirect($this->redirectPath());
+    }
+
+    public function showRegistrationForm()
+    {
+        $data["companies"] = Company::all();
+        if (empty($data["companies"]->toArray())) {
+            return redirect()->route('company.create')->withErrors(__('user.create_company'));;
+        }
+        return view('auth.register')->with("data", $data);
     }
 
     /**
@@ -66,12 +97,16 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        if($data['company_id'] == "null"){
+            $data['company_id'] = null;
+        }
         $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'id_card_number' => $data['id_card_number'],
             'role' => $data['role'],
+            'company_id' => $data['company_id'],
         ]);
 
         $user->save();

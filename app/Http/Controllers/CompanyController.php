@@ -76,16 +76,12 @@ class CompanyController extends Controller
     }
 
     public function updateSave(Request $request){
-        $company = Company::findOrFail($request->input('id'));
+        //$company = Company::findOrFail($request->input('id'));
 
-        if($company->getName() != $request->input('name')){
-            $company->setName($request->input('name'));
-        }
-        if($company->getContactInfo() != $request->input('contact_info')){
-            $company->setContactInfo($request->input('contact_info'));
-        }
-
-        $company->save();
+        Company::where('id', $request->input('id'))->update([
+            'name' => $request->input('name'),
+            'contact_info' => $request->input('contact_info'),
+        ]);
 
         //return back()->with('success', __('company_update.succesful'));
         return redirect()->route('company.list');
@@ -95,17 +91,19 @@ class CompanyController extends Controller
     {
         Company::validate($request);
 
-        $company = new Company();
-        $company->setName($request->input('name'));
-        $company->setContactInfo($request->input('contact_info'));
-        $company->save();
+        Company::create([
+            'name' => $request->input('name'),
+            'contact_info' => $request->input('contact_info')
+        ]);
 
-        return back()->with('success', __('company_create.succesful'));
+        return redirect()->route('company.list');
+        //return back()->with('success', __('company_create.succesful'));
     }
 
     public function delete(Request $request){
         $company = Company::find($request['id']);
-        $company->delete();
+        $company->setIsActive('0');
+        $company->save();
         return redirect()->route('company.list');
     }
 

@@ -13,26 +13,27 @@ return [
     |
     */
 
-    'title_create' => 'Create company',
-    'title_update' => 'Update company',
-    'title_list' => 'Companies',
-    'title_list2' => 'List companies',
-    'navbar_title' => 'Company',
+    'title_update' => 'Update user',
+    'title_list' => 'Users',
+    'title_list2' => 'List users',
+    'navbar_title' => 'User',
     'input' => [
         'name' => 'Enter name',
-        'contact_info' => 'Enter contact info',
-        'create' => 'Create',
+        'email' => 'Enter email',
+        'id_card_number' => 'Enter id card number',
+        'role' => 'Enter role',
         'update' => 'Update',
         'delete' => 'Delete',
     ],
     'label' => [
         'name' => 'Name',
-        'contact_info' => 'Contact info',
-        'is_active' => 'Is active?',
+        'email' => 'Email',
+        'id_card_number' => 'Id Card Number',
+        'role' => 'Role',
+        'company_id' => 'Company Id',
         'id' => 'ID',
         'about' => 'About',
         'info' => 'More info about ',
     ],
-    'succesful_create' => 'Company created successfully!',
-    'succesful_update' => 'Company updated successfully!',
+    'succesful_update' => 'User updated successfully!',
 ];

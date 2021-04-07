@@ -13,7 +13,7 @@
     </head>
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-            <a class="navbar-brand" href="index.html">DeliveryApp</a>
+            <a class="navbar-brand" href="{{ route('home') }}">DeliveryApp</a>
             <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button>
             <!-- Navbar Search-->
             <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
@@ -47,13 +47,24 @@
                                 {{ __('Login') }}
                             </a>
                             @else
-                            @if(Auth::user()->getRole()=="super_admin")
-                            <a class="nav-link" href="{{ route('register') }}">
-                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                                {{ __('Register') }}
-                            </a>
+                            @if(Auth::user()->getRole()=="super_admin" || Auth::user()->getRole()=="company_admin")
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <div class="sb-nav-link-icon"><i class="fa fa-list-ul"></i></div>
+                                    {{ __('user.title_list') }}
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <a class="dropdown-item" href="{{ route('register') }}">
+                                        <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i> {{ __('Register') }}</div>
+                                    </a> 
+                                    <a class="dropdown-item" href="{{ route('user.list') }}">
+                                        <div class="sb-nav-link-icon"><i class="fa fa-list-ul"></i> {{ __('user.title_list2') }}</div>
+                                    </a>
+                                </div>
+                            </li>
                             @endif
-                            <li class="nav-link dropdown">
+                            @if(Auth::user()->getRole()=="super_admin")
+                            <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <div class="sb-nav-link-icon"><i class="fa fa-list-ul"></i></div>
                                     {{ __('company.title_list') }}
@@ -68,22 +79,23 @@
                                     </a> 
                                 </div>
                             </li>
+                            @endif
+                            @if(Auth::user()->getRole() != "courier")
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <div class="sb-nav-link-icon"><i class="fa fa-list-ul"></i></div>
                                     {{ __('warehouse.title_list') }}
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                    <a class="" href="{{ route('warehouse.create') }}">
-                                        <div class="sb-nav-link-icon"><i class="fa fa-plus"></i></div>
-                                        {{ __('warehouse.title_create') }}
+                                    <a class="dropdown-item" href="{{ route('warehouse.create') }}">
+                                        <div class="sb-nav-link-icon"><i class="fa fa-plus"></i> {{ __('warehouse.title_create') }}</div>
                                     </a>
-                                    <a class="" href="{{ route('warehouse.list') }}">
-                                        <div class="sb-nav-link-icon"><i class="fa fa-list-ul"></i></div>
-                                        {{ __('warehouse.title_list2') }}
+                                    <a class="dropdown-item" href="{{ route('warehouse.list') }}">
+                                        <div class="sb-nav-link-icon"><i class="fa fa-list-ul"></i> {{ __('warehouse.title_list2') }}</div>
                                     </a> 
                                 </div>
                             </li>
+                            @endif
                             <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 {{ __('Logout') }}

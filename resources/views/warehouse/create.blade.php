@@ -16,7 +16,7 @@
                         @csrf
 
                         <div class="form-group row">
-                            <label for="description" class="col-md-4 col-form-label text-md-right">{{ __('warehouse.label.description') }}</label>
+                            <label for="description" class="col-md-4 col-form-label text-md-right">{{ __('warehouse.label.description') }} <b class="red-asterisk">*</b></label>
 
                             <div class="col-md-6">
                                 <textarea id="description" type="text" class="form-control @error('description') is-invalid @enderror" name="description" value="{{ old('description') }}" required autocomplete="description" autofocus></textarea>
@@ -30,7 +30,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="address" class="col-md-4 col-form-label text-md-right">{{ __('warehouse.label.address') }}</label>
+                            <label for="address" class="col-md-4 col-form-label text-md-right">{{ __('warehouse.label.address') }} <b class="red-asterisk">*</b></label>
 
                             <div class="col-md-6">
                                 <input id="address" type="text" class="form-control @error('address') is-invalid @enderror" name="address" value="{{ old('address') }}" required autocomplete="address">
@@ -44,7 +44,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="latitude" class="col-md-4 col-form-label text-md-right">{{ __('warehouse.label.latitude') }}</label>
+                            <label for="latitude" class="col-md-4 col-form-label text-md-right">{{ __('warehouse.label.latitude') }} <b class="red-asterisk">*</b></label>
 
                             <div class="col-md-6">
                                 <input id="latitude" type="text" class="form-control @error('latitude') is-invalid @enderror" name="latitude" value="{{ old('latitude') }}" required autocomplete="latitude">
@@ -58,7 +58,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="longitude" class="col-md-4 col-form-label text-md-right">{{ __('warehouse.label.longitude') }}</label>
+                            <label for="longitude" class="col-md-4 col-form-label text-md-right">{{ __('warehouse.label.longitude') }} <b class="red-asterisk">*</b></label>
 
                             <div class="col-md-6">
                                 <input id="longitude" type="text" class="form-control @error('longitude') is-invalid @enderror" name="longitude" value="{{ old('longitude') }}" required autocomplete="longitude">
@@ -72,14 +72,16 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="company_id" class="col-md-4 col-form-label text-md-right">{{ __('warehouse.label.company_id') }}</label>
+                            <label for="company_id" class="col-md-4 col-form-label text-md-right">{{ __('warehouse.label.company_id') }} <b class="red-asterisk">*</b></label>
 
                             <div class="col-md-6">
                                 <select class="form-control @error('company_id') is-invalid @enderror" name="company_id" id="company_id" required>
                                     @foreach($data["companies"] as $company)
-                                        <option  value="{{$company->getId()}}"  selected> {{ $company->getId() }}
-                                            <option disabled><b>{{ __('company.label.name') }}</b> {{ $company->getName() }}  </option>
+                                        @if($company->getIsActive() == '1')
+                                        <option  value="{{$company->getId()}}"  selected> {{ $company->getId() }} ->
+                                            <b>{{ __('company.label.name') }}:</b> {{ $company->getName() }}
                                         </option>
+                                        @endif
                                     @endforeach
                                 </select>
 

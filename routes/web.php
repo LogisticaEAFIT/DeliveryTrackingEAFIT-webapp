@@ -18,6 +18,13 @@ Auth::routes();
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name("home.index");
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+// User routes
+Route::get('/user/show/{id}', [App\Http\Controllers\UserController::class, 'show'])->name('user.show');
+Route::get('/user/list', [App\Http\Controllers\UserController::class, 'list'])->name('user.list');
+Route::get('/user/update', [App\Http\Controllers\UserController::class, 'update'])->name('user.update');
+Route::post('/user/update_save', [App\Http\Controllers\UserController::class, 'updateSave'])->name('user.update_save');
+Route::post('/user/delete', [App\Http\Controllers\UserController::class, 'delete'])->name('user.delete');
+
 // Company routes
 Route::get('/company/show/{id}', [App\Http\Controllers\CompanyController::class, 'show'])->name('company.show');
 Route::get('/company/list', [App\Http\Controllers\CompanyController::class, 'list'])->name('company.list');

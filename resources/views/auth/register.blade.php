@@ -16,7 +16,7 @@
                         @csrf
 
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
+                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }} <b class="red-asterisk">*</b></label>
 
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
@@ -30,7 +30,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }} <b class="red-asterisk">*</b></label>
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
@@ -44,7 +44,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="id_card_number" class="col-md-4 col-form-label text-md-right">{{ __('Id Card Number') }}</label>
+                            <label for="id_card_number" class="col-md-4 col-form-label text-md-right">{{ __('Id Card Number') }} <b class="red-asterisk">*</b></label>
 
                             <div class="col-md-6">
                                 <input id="id_card_number" type="text" class="form-control @error('id_card_number') is-invalid @enderror" name="id_card_number" value="{{ old('id_card_number') }}" required autocomplete="id_card_number">
@@ -58,11 +58,13 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="role" class="col-md-4 col-form-label text-md-right">{{ __('Role') }}</label>
+                            <label for="role" class="col-md-4 col-form-label text-md-right">{{ __('Role') }} <b class="red-asterisk">*</b></label>
 
                             <div class="col-md-6">
                                 <select id="role" name="role" class="form-control @error('role') is-invalid @enderror" required autocomplete="role">
+                                    @if(Auth::user()->getRole()=="super_admin")
                                     <option value="super_admin" selected>{{ __('Super Admin') }}</option>
+                                    @endif
                                     <option value="company_admin">{{ __('Company Admin') }}</option>
                                     <option value="warehouse_admin">{{ __('Warehouse Admin') }}</option>
                                     <option value="courier">{{ __('Courier') }}</option>
@@ -75,9 +77,35 @@
                                 @enderror
                             </div>
                         </div>
+                        @if(Auth::user()->getRole()=="super_admin")
+                        <div class="form-group row">
+                            <label for="company_id" class="col-md-4 col-form-label text-md-right">{{ __('user.label.company_id') }} <b class="red-asterisk">*</b></label>
+                            
+                            <div class="col-md-6">
+                                <select class="form-control @error('company_id') is-invalid @enderror" name="company_id" id="company_id" required>
+                                    <option value="null">N/A</option>
+                                    @foreach($data["companies"] as $company)
+                                        @if($company->getIsActive() == '1')
+                                        <option  value="{{$company->getId()}}"  selected> {{ $company->getId() }} ->
+                                            <b>{{ __('company.label.name') }}:</b> {{ $company->getName() }}
+                                        </option>
+                                        @endif
+                                    @endforeach
+                                </select>
+
+                                @error('company_id')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        @else
+                        <input type="hidden" name="company_id" value="{{ Auth::user()->getCompanyId() }}" />
+                        @endif
 
                         <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }} <b class="red-asterisk">*</b></label>
 
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
@@ -91,7 +119,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
+                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }} <b class="red-asterisk">*</b></label>
 
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">

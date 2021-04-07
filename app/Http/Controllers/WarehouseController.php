@@ -43,7 +43,12 @@ class WarehouseController extends Controller
     {
         $data = []; //to be sent to the view
         $data["title"] = __('warehouse_list.title');
-        $data["warehouses"] = Warehouse::orderBy('id')->get();
+
+        if(Auth::user()->getRole()=="super_admin"){
+            $data["warehouses"] = Warehouse::orderBy('id')->get();
+        }else{
+            $data["warehouses"] = Warehouse::where('company_id', Auth::user()->getCompanyId())->orderBy('id')->get();
+        }
 
         return view('warehouse.list')->with("data",$data);
 
@@ -57,7 +62,7 @@ class WarehouseController extends Controller
         if (empty($data["companies"]->toArray())) {
             return redirect()->route('company.create')->withErrors(__('warehouse.create_company'));;
         }
-        return view('warehouse.create')->with("data",$data);
+        return view('warehouse.create')->with("data", $data);
 
     }
     
@@ -78,23 +83,15 @@ class WarehouseController extends Controller
     }
 
     public function updateSave(Request $request){
-        $warehouse = Warehouse::findOrFail($request->input('id'));
 
-        if($warehouse->getDescription() != $request->input('description')){
-            $warehouse->setDescription($request->input('description'));
-        }
-        if($warehouse->getAddress() != $request->input('address')){
-            $warehouse->setAddress($request->input('address'));
-        }if($warehouse->getLatitude() != $request->input('latitude')){
-            $warehouse->setLatitude($request->input('latitude'));
-        }
-        if($warehouse->getLongitude() != $request->input('longitude')){
-            $warehouse->setLongitude($request->input('longitude'));
-        }
+        Warehouse::where('id', $request->input('id'))->update([
+            'description' => $request->input('description'),
+            'address' => $request->input('address'),
+            'latitude' => $request->input('latitude'),
+            'longitude' => $request->input('longitude'),
+        ]);
 
-        $warehouse->save();
-
-        return back()->with('success', __('warehouse_update.succesful'));
+        return redirect()->route('warehouse.list');
 
     }
     
@@ -102,20 +99,21 @@ class WarehouseController extends Controller
     {
         Warehouse::validate($request);
 
-        $warehouse = new Warehouse();
-        $warehouse->setDescription($request->input('description'));
-        $warehouse->setAddress($request->input('address'));
-        $warehouse->setLatitude($request->input('latitude'));
-        $warehouse->setLongitude($request->input('longitude'));
-        $warehouse->setCompanyId($request->input('company_id'));
-        $warehouse->save();
+        Warehouse::create([
+            'description' => $request->input('description'),
+            'address' => $request->input('address'),
+            'latitude' => $request->input('latitude'),
+            'longitude' => $request->input('longitude'),
+            'company_id' => $request->input('company_id'),
+        ]);
 
         return redirect()->route('warehouse.list')->with('success', __('warehouse_create.succesful'));
     }
 
     public function delete(Request $request){
         $warehouse = Warehouse::find($request['id']);
-        $warehouse->delete();
+        $warehouse->setIsActive('0');
+        $warehouse->save();
         return redirect()->route('warehouse.list');
     }
 
