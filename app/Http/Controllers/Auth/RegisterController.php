@@ -66,9 +66,6 @@ class RegisterController extends Controller
     public function showRegistrationForm()
     {
         $data["companies"] = Company::all();
-        if (empty($data["companies"]->toArray())) {
-            return redirect()->route('company.create')->withErrors(__('user.create_company'));;
-        }
         return view('auth.register')->with("data", $data);
     }
 

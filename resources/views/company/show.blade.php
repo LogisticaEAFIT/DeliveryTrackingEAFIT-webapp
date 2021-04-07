@@ -13,7 +13,7 @@
                 <div class="card-header"><i class="fa fa-info-circle"></i> {{ $data["company"]->getName() }}</div>
 
                 <div class="card-body">
-                    <div class="row" align="center">
+                    <div class="row center-info">
                         <div class="col-6">
                             <b>{{ __('company.label.id') }}</b><br /> {{ $data["company"]->getId() }}<br />
                         </div>
@@ -21,7 +21,7 @@
                             <b>{{ __('company.label.name') }}</b><br /> {{ $data["company"]->getName() }}<br />
                         </div>
                     </div><hr/>
-                    <div class="row" align="center">
+                    <div class="row center-info">
                         <div class="col-6">
                             <b>{{ __('company.label.contact_info') }}</b><br /> {{ $data["company"]->getContactInfo() }}<br />
                         </div>
@@ -29,7 +29,7 @@
                             <b>{{ __('company.label.is_active') }}</b><br /> {{ $data["company"]->getIsActive() }}<br />
                         </div>
                     </div><hr/>
-                    <div class="row" align="center">
+                    <div class="row center-info">
                         <div class="col-12">
                             <form method="GET" action="{{ route('company.update') }}">
                                 @csrf
@@ -38,7 +38,7 @@
                             </form>
                         </div>
                     </div><br/>
-                    <div class="row" align="center">
+                    <div class="row center-info">
                         <div class="col-12">
                             <form method="POST" action="{{ route('company.delete') }}">
                                 @csrf
