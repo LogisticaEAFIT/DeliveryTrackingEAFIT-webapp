@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class Warehouse extends Model
 {
-    //attributes id, description, address, latitude, longitude, company_id, created_at, updated_at
+    //attributes id, description, address, latitude, longitude, is_active, company_id, created_at, updated_at
     protected $fillable = ['description', 'address', 'latitude', 'longitude', 'company_id'];
 
     public function getId()

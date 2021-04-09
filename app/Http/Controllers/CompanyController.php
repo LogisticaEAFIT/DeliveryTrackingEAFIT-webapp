@@ -20,6 +20,15 @@ class CompanyController extends Controller
         $this->middleware(function ($request, $next) {
             if(Auth::user()->getRole()=="super_admin"){
                 return $next($request);
+            }else if(Auth::user()->getRole()=="company_admin" &&
+                $request->route('id') == Auth::user()->getCompanyId())
+            {
+                return $next($request);
+            }
+            else if(Auth::user()->getRole()=="company_admin" &&
+                $request->input('id') == Auth::user()->getCompanyId())
+            {
+                return $next($request);
             }
             return redirect()->route('home.index');
         });
@@ -37,7 +46,7 @@ class CompanyController extends Controller
 
         $data["title"] = $company->getName();
         $data["company"] = $company;
-        return view('company.show')->with("data",$data);
+        return view('company.show')->with("data", $data); 
     }
     
     public function list()
@@ -47,7 +56,6 @@ class CompanyController extends Controller
         $data["companies"] = Company::orderBy('id')->get();
 
         return view('company.list')->with("data",$data);
-
     }
 
     public function create()
@@ -56,7 +64,6 @@ class CompanyController extends Controller
         $data["title"] = __('company_create.title');
 
         return view('company.create')->with("data",$data);
-
     }
     
     public function update(Request $request)
@@ -76,14 +83,11 @@ class CompanyController extends Controller
     }
 
     public function updateSave(Request $request){
-        //$company = Company::findOrFail($request->input('id'));
-
         Company::where('id', $request->input('id'))->update([
             'name' => $request->input('name'),
             'contact_info' => $request->input('contact_info'),
         ]);
 
-        //return back()->with('success', __('company_update.succesful'));
         return redirect()->route('company.list');
     }
     
@@ -97,7 +101,6 @@ class CompanyController extends Controller
         ]);
 
         return redirect()->route('company.list');
-        //return back()->with('success', __('company_create.succesful'));
     }
 
     public function delete(Request $request){
@@ -106,5 +109,4 @@ class CompanyController extends Controller
         $company->save();
         return redirect()->route('company.list');
     }
-
 }

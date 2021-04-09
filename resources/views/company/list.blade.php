@@ -8,11 +8,11 @@
     </ol>
     <div class="row">
         <div class="col-md-12">
-            <div class="card" align="center">
+            <div class="card center-info">
                 <div class="card-header">{{ __('company.title_list') }}</div>
 
                 <table class="table table-striped">
-                    <thead  align="center">
+                    <thead class="center-info">
                         <tr>
                             <th scope="col">{{ __('company.label.id') }}</th>
                             <th scope="col">{{ __('company.label.name') }}</th>
@@ -20,7 +20,7 @@
                             <th scope="col">{{ __('company.label.about') }} <i class="fa fa-info-circle"></i></th>
                         </tr>
                     </thead>
-                    <tbody  align="center">
+                    <tbody class="center-info">
                         @foreach($data["companies"] as $company)
                         <tr>
                             @if($company->getIsActive() == '0')

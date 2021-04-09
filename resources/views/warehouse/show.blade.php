@@ -4,7 +4,7 @@
 <div class="container-fluid padding-20">
     <ol class="breadcrumb mb-4">
         <li class="breadcrumb-item"><a href="{{ route('home.index') }}">Home</a></li>
-        <li class="breadcrumb-item"><a href="{{ route('company.list') }}">{{ __('warehouse.title_list') }}</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('warehouse.list') }}">{{ __('warehouse.title_list') }}</a></li>
         <li class="breadcrumb-item active">{{ $data["warehouse"]->getId() }}</li>
     </ol>
     <div class="row">
