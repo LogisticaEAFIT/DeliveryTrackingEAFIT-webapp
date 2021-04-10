@@ -25,6 +25,7 @@ class User extends Authenticatable
         'id_card_number',
         'role',
         'company_id',
+        'warehouse_id',
     ];
 
     /**
@@ -106,7 +107,21 @@ class User extends Authenticatable
         $this->attributes['company_id'] = $company_id;
     }
 
+    public function getWarehouseId()
+    {
+        return $this->attributes['warehouse_id'];
+    }
+
+    public function setWarehouseId($warehouse_id)
+    {
+        $this->attributes['warehouse_id'] = $warehouse_id;
+    }
+
     public function company(){
         return $this->belongsTo(Company::class);
+    }
+
+    public function warehouse(){
+        return $this->belongsTo(Warehouse::class);
     }
 }

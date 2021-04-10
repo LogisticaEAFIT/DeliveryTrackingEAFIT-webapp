@@ -13,3 +13,7 @@
 .center-info{
     text-align: center;
 }
+
+.display-block-none{
+    display: none;
+}

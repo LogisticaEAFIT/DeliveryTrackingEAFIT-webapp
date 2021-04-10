@@ -17,6 +17,7 @@ return [
     'title_list' => 'Users',
     'title_list2' => 'List users',
     'navbar_title' => 'User',
+    'red_info' => 'Users in red color are disabled',
     'input' => [
         'name' => 'Enter name',
         'email' => 'Enter email',
@@ -31,6 +32,7 @@ return [
         'id_card_number' => 'Id Card Number',
         'role' => 'Role',
         'company_id' => 'Company Id',
+        'warehouse_id' => 'Warehouse Id',
         'id' => 'ID',
         'about' => 'About',
         'info' => 'More info about ',

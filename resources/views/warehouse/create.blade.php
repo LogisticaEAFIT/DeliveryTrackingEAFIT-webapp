@@ -70,7 +70,7 @@
                                 @enderror
                             </div>
                         </div>
-
+                        @if(Auth::user()->getRole()=="super_admin")
                         <div class="form-group row">
                             <label for="company_id" class="col-md-4 col-form-label text-md-right">{{ __('warehouse.label.company_id') }} <b class="red-asterisk">*</b></label>
 
@@ -92,7 +92,21 @@
                                 @enderror
                             </div>
                         </div>
+                        @else
+                        <div class="form-group row">
+                            <label for="id_card_number" class="col-md-4 col-form-label text-md-right">{{ __('user.label.company_id') }} <b class="red-asterisk">*</b></label>
 
+                            <div class="col-md-6">
+                                <input type="text" name="company_id" value="{{ Auth::user()->getCompanyId() }}" disabled/>
+
+                                @error('company_id')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        @endif
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">

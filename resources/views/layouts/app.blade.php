@@ -25,18 +25,23 @@
                 </div>
             </form>
             <!-- Navbar-->
+            @guest
+            @else
             <ul class="navbar-nav ml-auto ml-md-0">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                        <a class="dropdown-item" href="#">Edit Profile</a>
-                        <a class="dropdown-item" href="#">Edit Company Info</a> <!-- solo para company admin -->
+                        <a class="dropdown-item" href="{{ route('user.show', ['id'=>Auth::user()->getId()]) }}">Edit Profile</a>
+                        @if(Auth::user()->getRole()=="company_admin")
+                        <a class="dropdown-item" href="{{ route('company.show', ['id'=>Auth::user()->getCompanyId()]) }}">Edit Company Info</a> <!-- solo para company admin -->
+                        @endif
                         <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                             <i class="fas fa-tachometer-alt"></i> {{ __('Logout') }}
                         </a>
                     </div>
                 </li>
             </ul>
+            @endguest
         </nav>
         <div id="layoutSidenav">
             <div id="layoutSidenav_nav">
@@ -99,11 +104,6 @@
                                 </div>
                             </li>
                             @endif
-                            <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                                {{ __('Logout') }}
-                            </a>
-                            
 
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                 @csrf

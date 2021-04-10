@@ -18,6 +18,7 @@ return [
     'title_list' => 'Companies',
     'title_list2' => 'List companies',
     'navbar_title' => 'Company',
+    'red_info' => 'Companies in red color are disabled',
     'input' => [
         'name' => 'Enter name',
         'contact_info' => 'Enter contact info',

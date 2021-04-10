@@ -13,7 +13,7 @@
                 <div class="card-header"><i class="fa fa-info-circle"></i> {{ $data["warehouse"]->getId() }}</div>
 
                 <div class="card-body">
-                    <div class="row" align="center">
+                    <div class="row center-info">
                         <div class="col-6">
                             <b>{{ __('warehouse.label.id') }}</b><br /> {{ $data["warehouse"]->getId() }}<br />
                         </div>
@@ -21,12 +21,12 @@
                             <b>{{ __('warehouse.label.address') }}</b><br /> {{ $data["warehouse"]->getAddress() }}<br />
                         </div>
                     </div><hr/>
-                    <div class="row" align="center">
+                    <div class="row center-info">
                         <div class="col-12">
                             <b>{{ __('warehouse.label.description') }}</b><br /> {{ $data["warehouse"]->getDescription() }}<br />
                         </div>
                     </div><hr/>
-                    <div class="row" align="center">
+                    <div class="row center-info">
                         <div class="col-4">
                             <b>{{ __('warehouse.label.latitude') }}</b><br /> {{ $data["warehouse"]->getLatitude() }}<br />
                         </div>
@@ -37,7 +37,7 @@
                             <b>{{ __('warehouse.label.company_id') }}</b><br /> {{ $data["warehouse"]->getCompanyId() }}<br />
                         </div>
                     </div><hr/>
-                    <div class="row" align="center">
+                    <div class="row center-info">
                         <div class="col-12">
                             <form method="GET" action="{{ route('warehouse.update') }}">
                                 @csrf
@@ -46,7 +46,7 @@
                             </form>
                         </div>
                     </div><br/>
-                    <div class="row" align="center">
+                    <div class="row center-info">
                         <div class="col-12">
                             <form method="POST" action="{{ route('warehouse.delete') }}">
                                 @csrf

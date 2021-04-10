@@ -1,6 +1,32 @@
 @extends('layouts.app')
 
 @section('content')
+<head>
+    <script type="text/javascript">
+
+        function roleSelected(){
+            var role = document.getElementById("role").value;
+            if(role == "super_admin"){
+                document.getElementById("company_id_block").style.display = 'none';
+                document.getElementById("warehouse_id_block").style.display = 'none';
+
+                document.getElementById("company_id").value = 'null';
+                document.getElementById("warehouse_id").value = 'null';
+            }else if(role == "company_admin"){
+                document.getElementById("company_id_block").style.display = 'flex';
+                document.getElementById("warehouse_id_block").style.display = 'none';
+
+                document.getElementById("warehouse_id").value = 'null';
+            }else if(role == "warehouse_admin"){
+                document.getElementById("company_id_block").style.display = 'flex';
+                document.getElementById("warehouse_id_block").style.display = 'flex';
+            }else{
+                document.getElementById("company_id_block").style.display = 'flex';
+                document.getElementById("warehouse_id_block").style.display = 'flex';
+            }
+        }
+    </script>
+</head>
 <div class="container-fluid padding-20">
     <ol class="breadcrumb mb-4">
         <li class="breadcrumb-item"><a href="{{ route('home.index') }}">Home</a></li>
@@ -16,7 +42,7 @@
                         @csrf
 
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }} <b class="red-asterisk">*</b></label>
+                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('user.label.name') }} <b class="red-asterisk">*</b></label>
 
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
@@ -30,7 +56,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }} <b class="red-asterisk">*</b></label>
+                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('user.label.email') }} <b class="red-asterisk">*</b></label>
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
@@ -44,7 +70,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="id_card_number" class="col-md-4 col-form-label text-md-right">{{ __('Id Card Number') }} <b class="red-asterisk">*</b></label>
+                            <label for="id_card_number" class="col-md-4 col-form-label text-md-right">{{ __('user.label.id_card_number') }} <b class="red-asterisk">*</b></label>
 
                             <div class="col-md-6">
                                 <input id="id_card_number" type="text" class="form-control @error('id_card_number') is-invalid @enderror" name="id_card_number" value="{{ old('id_card_number') }}" required autocomplete="id_card_number">
@@ -61,7 +87,7 @@
                             <label for="role" class="col-md-4 col-form-label text-md-right">{{ __('Role') }} <b class="red-asterisk">*</b></label>
 
                             <div class="col-md-6">
-                                <select id="role" name="role" class="form-control @error('role') is-invalid @enderror" required autocomplete="role">
+                                <select id="role" name="role" class="form-control @error('role') is-invalid @enderror" required autocomplete="role" onchange="roleSelected()">
                                     @if(Auth::user()->getRole()=="super_admin")
                                     <option value="super_admin" selected>{{ __('Super Admin') }}</option>
                                     @endif
@@ -78,7 +104,7 @@
                             </div>
                         </div>
                         @if(Auth::user()->getRole()=="super_admin")
-                        <div class="form-group row">
+                        <div class="form-group row display-block-none" id="company_id_block">
                             <label for="company_id" class="col-md-4 col-form-label text-md-right">{{ __('user.label.company_id') }} <b class="red-asterisk">*</b></label>
                             
                             <div class="col-md-6">
@@ -101,8 +127,43 @@
                             </div>
                         </div>
                         @else
-                        <input type="hidden" name="company_id" value="{{ Auth::user()->getCompanyId() }}" />
+                        <div class="form-group row">
+                            <label for="id_card_number" class="col-md-4 col-form-label text-md-right">{{ __('user.label.company_id') }} <b class="red-asterisk">*</b></label>
+
+                            <div class="col-md-6">
+                                <input type="text" name="company_id" value="{{ Auth::user()->getCompanyId() }}" disabled/>
+
+                                @error('company_id')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        
                         @endif
+
+                        <div class="form-group row display-block-none" id="warehouse_id_block">
+                            <label for="warehouse_id" class="col-md-4 col-form-label text-md-right">{{ __('user.label.warehouse_id') }} <b class="red-asterisk">*</b></label>
+                            
+                            <div class="col-md-6">
+                                <select class="form-control @error('warehouse_id') is-invalid @enderror" name="warehouse_id" id="warehouse_id" required>
+                                    <option value="null">N/A</option>
+                                    @foreach($data["warehouses"] as $warehouse)
+                                        @if($warehouse->getIsActive() == '1')
+                                        <option  value="{{$warehouse->getId()}}"  selected> {{ $warehouse->getId() }}
+                                        </option>
+                                        @endif
+                                    @endforeach
+                                </select>
+
+                                @error('warehouse_id')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
 
                         <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }} <b class="red-asterisk">*</b></label>
