@@ -52,7 +52,8 @@ class User extends Authenticatable
         return $this->attributes['id'];
     }
 
-    public function getName(){
+    public function getName()
+    {
         return $this->attributes['name'];
     }
 
@@ -61,7 +62,8 @@ class User extends Authenticatable
         $this->attributes['name'] = $name;
     }
 
-    public function getEmail(){
+    public function getEmail()
+    {
         return $this->attributes['email'];
     }
 
@@ -70,7 +72,8 @@ class User extends Authenticatable
         $this->attributes['email'] = $email;
     }
 
-    public function getIdCardNumber(){
+    public function getIdCardNumber()
+    {
         return $this->attributes['id_card_number'];
     }
 
@@ -79,7 +82,8 @@ class User extends Authenticatable
         $this->attributes['id_card_number'] = $id_card_number;
     }
 
-    public function getIsActive(){
+    public function getIsActive()
+    {
         return $this->attributes['is_active'];
     }
 
@@ -88,7 +92,8 @@ class User extends Authenticatable
         $this->attributes['is_active'] = $is_active;
     }
 
-    public function getRole(){
+    public function getRole()
+    {
         return $this->attributes['role'];
     }
 
@@ -117,11 +122,13 @@ class User extends Authenticatable
         $this->attributes['warehouse_id'] = $warehouse_id;
     }
 
-    public function company(){
+    public function company()
+    {
         return $this->belongsTo(Company::class);
     }
 
-    public function warehouse(){
+    public function warehouse()
+    {
         return $this->belongsTo(Warehouse::class);
     }
 }

@@ -1,0 +1,24 @@
+name: Unit test
+
+on: [push]
+
+jobs:
+  tests:
+    name: Run tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Run composer install
+        run: composer install -n --prefer-dist
+
+      - name: Prepare Laravel Application
+        run: |
+          cp .env.example .env
+          php artisan key:generate
+
+      - name: Run lint tests
+        run: ./vendor/bin/phpcs
+
+      - name: Run tests
+        run: ./vendor/bin/phpunit
