@@ -20,5 +20,5 @@ jobs:
       - name: Run lint tests
         run: ./vendor/bin/phpcs
 
-      - name: Run tests
-        run: ./vendor/bin/phpunit
+      - name: Run unit tests
+        run: php artisan test
