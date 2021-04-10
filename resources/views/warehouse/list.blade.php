@@ -8,11 +8,14 @@
     </ol>
     <div class="row">
         <div class="col-md-12">
-            <div class="card" align="center">
+            <div>
+                <span class="badge rounded-pill bg-info text-dark">{{ __('warehouse.red_info') }}</span>
+            </div><br/>
+            <div class="card center-info">
                 <div class="card-header">{{ __('warehouse.title_list') }}</div>
 
                 <table class="table table-striped">
-                    <thead  align="center">
+                    <thead class="center-info">
                         <tr>
                             <th scope="col">{{ __('warehouse.label.id') }}</th>
                             <th scope="col">{{ __('warehouse.label.description') }}</th>
@@ -23,7 +26,7 @@
                             <th scope="col">{{ __('warehouse.label.about') }} <i class="fa fa-info-circle"></i></th>
                         </tr>
                     </thead>
-                    <tbody  align="center">
+                    <tbody class="center-info">
                         @foreach($data["warehouses"] as $warehouse)
                         <tr>
                             @if($warehouse->getIsActive() == '0')

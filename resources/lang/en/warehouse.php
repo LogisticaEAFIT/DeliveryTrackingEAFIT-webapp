@@ -19,6 +19,7 @@ return [
     'title_list2' => 'List warehouses',
     'navbar_title' => 'Warehouse',
     'create_company' => 'You must create a company first',
+    'red_info' => 'Warehouses in red color are disabled',
     'input' => [
         'description' => 'Enter description',
         'address' => 'Enter address',

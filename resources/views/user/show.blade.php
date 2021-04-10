@@ -13,22 +13,29 @@
                 <div class="card-header"><i class="fa fa-info-circle"></i> {{ $data["user"]->getName() }}</div>
 
                 <div class="card-body">
-                    <div class="row" align="center">
-                        <div class="col-4">
+                    <div class="row center-info">
+                        <div class="col-3">
                             <b>{{ __('user.label.id') }}</b><br /> {{ $data["user"]->getId() }}<br />
                         </div>
-                        <div class="col-4">
+                        <div class="col-3">
                             <b>{{ __('user.label.name') }}</b><br /> {{ $data["user"]->getName() }}<br />
                         </div>
-                        <div class="col-4">
+                        <div class="col-3">
                             @if($data["user"]->getCompanyId() != '')
                             <b>{{ __('user.label.company_id') }}</b><br /> {{ $data["user"]->getCompanyId() }}<br />
                             @else
                             <b>{{ __('user.label.company_id') }}</b><br /> N/A<br />
                             @endif
                         </div>
+                        <div class="col-3">
+                            @if($data["user"]->getWarehouseId() != '')
+                            <b>{{ __('user.label.warehouse_id') }}</b><br /> {{ $data["user"]->getWarehouseId() }}<br />
+                            @else
+                            <b>{{ __('user.label.warehouse_id') }}</b><br /> N/A<br />
+                            @endif
+                        </div>
                     </div><hr/>
-                    <div class="row" align="center">
+                    <div class="row center-info">
                         <div class="col-4">
                             <b>{{ __('user.label.email') }}</b><br /> {{ $data["user"]->getEmail() }}<br />
                         </div>
@@ -39,7 +46,7 @@
                             <b>{{ __('user.label.role') }}</b><br /> {{ $data["user"]->getRole() }}<br />
                         </div>
                     </div><hr/>
-                    <div class="row" align="center">
+                    <div class="row center-info">
                         <div class="col-12">
                             <form method="GET" action="{{ route('user.update') }}">
                                 @csrf
@@ -48,7 +55,7 @@
                             </form>
                         </div>
                     </div><br/>
-                    <div class="row" align="center">
+                    <div class="row center-info">
                         <div class="col-12">
                             <form method="POST" action="{{ route('user.delete') }}">
                                 @csrf

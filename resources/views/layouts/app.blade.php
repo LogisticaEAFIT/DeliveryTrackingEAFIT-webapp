@@ -7,7 +7,8 @@
         <meta name="author" content="" />
         <title>@yield('title','Home Page')</title>
         <link href="{{ asset('/css/styles.css') }}" rel="stylesheet" />
-        <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
+        <link href="{{ asset('/css/dataTables.bootstrap4.min.css') }}" rel="stylesheet" crossorigin="anonymous" />
+        <!-- Este script de abajo no funciona cuando se importa de forma local-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
         <link href="{{ asset('/css/custom-styles.css') }}" rel="stylesheet" />
     </head>
@@ -25,18 +26,23 @@
                 </div>
             </form>
             <!-- Navbar-->
+            @guest
+            @else
             <ul class="navbar-nav ml-auto ml-md-0">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                        <a class="dropdown-item" href="#">Edit Profile</a>
-                        <a class="dropdown-item" href="#">Edit Company Info</a> <!-- solo para company admin -->
+                        <a class="dropdown-item" href="{{ route('user.show', ['id'=>Auth::user()->getId()]) }}">Edit Profile</a>
+                        @if(Auth::user()->getRole()=="company_admin")
+                        <a class="dropdown-item" href="{{ route('company.show', ['id'=>Auth::user()->getCompanyId()]) }}">Edit Company Info</a> <!-- solo para company admin -->
+                        @endif
                         <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                             <i class="fas fa-tachometer-alt"></i> {{ __('Logout') }}
                         </a>
                     </div>
                 </li>
             </ul>
+            @endguest
         </nav>
         <div id="layoutSidenav">
             <div id="layoutSidenav_nav">
@@ -99,11 +105,6 @@
                                 </div>
                             </li>
                             @endif
-                            <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                                {{ __('Logout') }}
-                            </a>
-                            
 
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                 @csrf
@@ -141,8 +142,8 @@
             </div>
         </div>
         <!-- Bootstrap core JS-->
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="{{ asset('/js/jquery-3.5.1.slim.min.js') }}"></script>
+        <script src="{{ asset('/js/bootstrap.bundle.min.js') }}"></script>
         <!-- Core theme JS-->
         <script src="{{ asset('/js/scripts.js') }}"></script>
     </body>

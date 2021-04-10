@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use App\Models\Company;
+use App\Models\Warehouse;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -66,6 +67,7 @@ class RegisterController extends Controller
     public function showRegistrationForm()
     {
         $data["companies"] = Company::all();
+        $data["warehouses"] = Warehouse::all();
         return view('auth.register')->with("data", $data);
     }
 
@@ -97,6 +99,11 @@ class RegisterController extends Controller
         if($data['company_id'] == "null"){
             $data['company_id'] = null;
         }
+
+        if($data['warehouse_id'] == "null"){
+            $data['warehouse_id'] = null;
+        }
+
         $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
@@ -104,6 +111,7 @@ class RegisterController extends Controller
             'id_card_number' => $data['id_card_number'],
             'role' => $data['role'],
             'company_id' => $data['company_id'],
+            'warehouse_id' => $data['warehouse_id'],
         ]);
 
         $user->save();

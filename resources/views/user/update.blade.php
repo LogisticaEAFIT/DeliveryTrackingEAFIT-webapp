@@ -10,7 +10,7 @@
     </ol>
     <div class="row">
         <div class="col-md-12">
-            <div class="card" align="center">
+            <div class="card center-info">
                 <div class="card-header">{{ __('user.title_update') }}</div>
 
                 <div class="card-body">
@@ -23,7 +23,7 @@
                         @endforeach
                     @endif
 
-                    <form method="POST" action="{{ route('user.update_save') }}" enctype="multipart/form-data" align="center">
+                    <form method="POST" action="{{ route('user.update_save') }}" enctype="multipart/form-data" class="center-info">
                         @csrf
                         <input type="hidden" name="id" value="{{ $data['user']->getId() }}" />
                         <div class="form-row col-12">
@@ -44,7 +44,7 @@
                             </div>
                         </div><br />
                         <div class="form-row justify-content-center">
-                            <div class="col" align="center">
+                            <div class="col center-info">
                                 <input type="submit" value="{{ __('user.input.update') }}" class="btn btn-primary"/>
                             </div>
                         </div>
