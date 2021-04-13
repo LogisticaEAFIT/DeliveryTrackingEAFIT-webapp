@@ -41,7 +41,8 @@ class Company extends Model
         $this->attributes['contact_info'] = $contact_info;
     }
 
-    public function getIsActive(){
+    public function getIsActive()
+    {
         return $this->attributes['is_active'];
     }
 
@@ -50,11 +51,13 @@ class Company extends Model
         $this->attributes['is_active'] = $is_active;
     }
 
-    public function adminUsers(){
+    public function adminUsers()
+    {
         return $this->hasMany(User::class);
     }
 
-    public function warehouses(){
+    public function warehouses()
+    {
         return $this->hasMany(Warehouse::class);
     }
 

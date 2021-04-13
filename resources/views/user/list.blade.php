@@ -8,8 +8,8 @@
     </ol>
     <div class="row">
         <div class="col-md-12">
-            <div>
-                <span class="badge rounded-pill bg-info text-dark">{{ __('user.red_info') }}</span>
+            <div class="align-right">
+                <span class="badge rounded-pill bg-danger font-white pad-10">{{ __('user.red_info') }}</span>
             </div><br/>
             <div class="card center-info">
                 <div class="card-header">{{ __('user.title_list') }}</div>

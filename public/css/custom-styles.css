@@ -17,3 +17,15 @@
 .display-block-none{
     display: none;
 }
+
+.align-right{
+    text-align: right;
+}
+
+.pad-10{
+    padding: 10px;
+}
+
+.font-white{
+    color: white;
+}

@@ -9,7 +9,7 @@ use App\Models\Warehouse;
 use App\Models\Company;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-Use Exception;
+use Exception;
 
 class WarehouseController extends Controller
 {
@@ -18,6 +18,7 @@ class WarehouseController extends Controller
     {
         $this->middleware('auth');
         $this->middleware(function ($request, $next) {
+
             if(Auth::user()->getRole()=="super_admin" || Auth::user()->getRole()=="company_admin"){
                 return $next($request);
             }else if(Auth::user()->getRole()=="warehouse_admin" &&
@@ -38,14 +39,14 @@ class WarehouseController extends Controller
     {
         $data = []; //to be sent to the view
         
-        try{
+        try {
             $warehouse = Warehouse::findOrFail($id);
-        }catch(Exception $e){
+        } catch (Exception $e) {
             return redirect()->route('home.index');
         }
 
         $data["warehouse"] = $warehouse;
-        return view('warehouse.show')->with("data",$data);
+        return view('warehouse.show')->with("data", $data);
     }
     
     public function list()
@@ -53,14 +54,13 @@ class WarehouseController extends Controller
         $data = []; //to be sent to the view
         $data["title"] = __('warehouse_list.title');
 
-        if(Auth::user()->getRole()=="super_admin"){
+        if (Auth::user()->getRole()=="super_admin") {
             $data["warehouses"] = Warehouse::orderBy('id')->get();
-        }else{
+        } else {
             $data["warehouses"] = Warehouse::where('company_id', Auth::user()->getCompanyId())->orderBy('id')->get();
         }
 
-        return view('warehouse.list')->with("data",$data);
-
+        return view('warehouse.list')->with("data", $data);
     }
 
     public function create()
@@ -69,10 +69,10 @@ class WarehouseController extends Controller
         $data["title"] = __('warehouse_create.title');
         $data["companies"] = Company::all();
         if (empty($data["companies"]->toArray())) {
-            return redirect()->route('company.create')->withErrors(__('warehouse.create_company'));;
+            return redirect()->route('company.create')->withErrors(__('warehouse.create_company'));
+            ;
         }
         return view('warehouse.create')->with("data", $data);
-
     }
     
     public function update(Request $request)
@@ -80,9 +80,9 @@ class WarehouseController extends Controller
         $data = [];
         $data["title"] = __('warehouse_update.title');
 
-        try{
+        try {
             $warehouse = Warehouse::findOrFail($request->input('id'));
-        }catch(Exception $e){
+        } catch (Exception $e) {
             return redirect()->route('warehouse.list');
         }
 
@@ -91,7 +91,8 @@ class WarehouseController extends Controller
         return view('warehouse.update')->with("data", $data);
     }
 
-    public function updateSave(Request $request){
+    public function updateSave(Request $request)
+    {
 
         Warehouse::where('id', $request->input('id'))->update([
             'description' => $request->input('description'),
@@ -101,7 +102,6 @@ class WarehouseController extends Controller
         ]);
 
         return redirect()->route('warehouse.list');
-
     }
     
     public function save(Request $request)
@@ -119,11 +119,11 @@ class WarehouseController extends Controller
         return redirect()->route('warehouse.list')->with('success', __('warehouse_create.succesful'));
     }
 
-    public function delete(Request $request){
+    public function delete(Request $request)
+    {
         $warehouse = Warehouse::find($request['id']);
         $warehouse->setIsActive('0');
         $warehouse->save();
         return redirect()->route('warehouse.list');
     }
-
 }

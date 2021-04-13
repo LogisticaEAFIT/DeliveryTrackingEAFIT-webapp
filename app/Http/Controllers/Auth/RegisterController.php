@@ -15,7 +15,6 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-
 class RegisterController extends Controller
 {
     /*
@@ -101,11 +100,11 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        if($data['company_id'] == "null"){
+        if ($data['company_id'] == "null") {
             $data['company_id'] = null;
         }
 
-        if($data['warehouse_id'] == "null"){
+        if ($data['warehouse_id'] == "null") {
             $data['warehouse_id'] = null;
         }
 

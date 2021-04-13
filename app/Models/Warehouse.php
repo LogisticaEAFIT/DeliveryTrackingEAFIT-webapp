@@ -61,7 +61,8 @@ class Warehouse extends Model
         $this->attributes['longitude'] = $longitude;
     }
 
-    public function getIsActive(){
+    public function getIsActive()
+    {
         return $this->attributes['is_active'];
     }
 
@@ -80,7 +81,8 @@ class Warehouse extends Model
         $this->attributes['company_id'] = $company_id;
     }
 
-    public function company(){
+    public function company()
+    {
         return $this->belongsTo(Company::class);
     }
 

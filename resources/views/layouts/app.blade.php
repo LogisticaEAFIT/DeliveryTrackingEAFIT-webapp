@@ -7,9 +7,6 @@
         <meta name="author" content="" />
         <title>@yield('title','Home Page')</title>
         <link href="{{ asset('/css/styles.css') }}" rel="stylesheet" />
-        <link href="{{ asset('/css/dataTables.bootstrap4.min.css') }}" rel="stylesheet" crossorigin="anonymous" />
-        <!-- Este script de abajo no funciona cuando se importa de forma local-->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
         <link href="{{ asset('/css/custom-styles.css') }}" rel="stylesheet" />
     </head>
     <body class="sb-nav-fixed">
@@ -149,5 +146,6 @@
         <script src="{{ asset('/js/bootstrap.bundle.min.js') }}"></script>
         <!-- Core theme JS-->
         <script src="{{ asset('/js/scripts.js') }}"></script>
+        <script src="{{ asset('/js/all.min.js') }}" crossorigin="anonymous"></script>
     </body>
 </html>
