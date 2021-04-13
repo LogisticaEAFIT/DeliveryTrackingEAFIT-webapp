@@ -4,7 +4,9 @@
 <div class="container-fluid padding-20">
     <ol class="breadcrumb mb-4">
         <li class="breadcrumb-item"><a href="{{ route('home.index') }}">Home</a></li>
+        @if(Auth::user()->getRole()=="super_admin" || Auth::user()->getRole()=="company_admin")
         <li class="breadcrumb-item"><a href="{{ route('user.list') }}">{{ __('user.title_list') }}</a></li>
+        @endif
         <li class="breadcrumb-item active">{{ $data["user"]->getName() }}</li>
     </ol>
     <div class="row">
@@ -55,15 +57,17 @@
                             </form>
                         </div>
                     </div><br/>
+                    @if($data["user"]->getIsActive() == '1')
                     <div class="row center-info">
                         <div class="col-12">
                             <form method="POST" action="{{ route('user.delete') }}">
                                 @csrf
                                 <input type="hidden" name="id" value="{{ $data['user']->getId() }}" />
-                                <button type="submit" class="btn btn-danger"><i class="fa fa-trash-alt"></i> {{ __('user.input.delete') }}</button>
+                                <button type="submit" class="btn btn-danger"><i class="fa fa-trash-alt"></i> {{ __('user.input.deactivate') }}</button>
                             </form>
                         </div>
                     </div> 
+                    @endif
                 </div>
             </div>
         </div>

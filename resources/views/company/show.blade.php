@@ -40,15 +40,17 @@
                             </form>
                         </div>
                     </div><br/>
+                    @if($data["company"]->getIsActive() == '1')
                     <div class="row center-info">
                         <div class="col-12">
                             <form method="POST" action="{{ route('company.delete') }}">
                                 @csrf
                                 <input type="hidden" name="id" value="{{ $data['company']->getId() }}" />
-                                <button type="submit" class="btn btn-danger"><i class="fa fa-trash-alt"></i> {{ __('company.input.delete') }}</button>
+                                <button type="submit" class="btn btn-danger"><i class="fa fa-trash-alt"></i> {{ __('company.input.deactivate') }}</button>
                             </form>
                         </div>
-                    </div> 
+                    </div>
+                    @endif
                 </div>
             </div>
         </div>

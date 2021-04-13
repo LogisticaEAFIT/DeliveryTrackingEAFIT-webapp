@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 
 class RegisterController extends Controller
@@ -67,7 +68,11 @@ class RegisterController extends Controller
     public function showRegistrationForm()
     {
         $data["companies"] = Company::all();
-        $data["warehouses"] = Warehouse::all();
+        if(Auth::user()->getRole() == "company_admin"){
+            $data["warehouses"] = Warehouse::where('company_id', Auth::user()->getCompanyId())->orderBy('id')->get();
+        }else{
+            $data["warehouses"] = Warehouse::all();
+        }
         return view('auth.register')->with("data", $data);
     }
 
@@ -102,6 +107,12 @@ class RegisterController extends Controller
 
         if($data['warehouse_id'] == "null"){
             $data['warehouse_id'] = null;
+        }
+
+        if($data['role'] == 'warehouse_admin'){
+            $splited_info = explode('-', $data['warehouse_id']);
+            $data['company_id'] = $splited_info[0];
+            $data['warehouse_id'] = $splited_info[1];
         }
 
         $user = User::create([

@@ -18,10 +18,19 @@ class WarehouseController extends Controller
     {
         $this->middleware('auth');
         $this->middleware(function ($request, $next) {
-            if(Auth::user()->getRole()=="courier"){
-                return redirect()->route('home.index');
+            if(Auth::user()->getRole()=="super_admin" || Auth::user()->getRole()=="company_admin"){
+                return $next($request);
+            }else if(Auth::user()->getRole()=="warehouse_admin" &&
+                $request->route('id') == Auth::user()->getWarehouseId())
+            {
+                return $next($request);
             }
-            return $next($request);
+            else if(Auth::user()->getRole()=="warehouse_admin" &&
+                $request->input('id') == Auth::user()->getWarehouseId())
+            {
+                return $next($request);
+            }
+            return redirect()->route('home.index');
         });
     }
 

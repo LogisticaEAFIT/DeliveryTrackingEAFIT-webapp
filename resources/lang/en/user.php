@@ -24,7 +24,7 @@ return [
         'id_card_number' => 'Enter id card number',
         'role' => 'Enter role',
         'update' => 'Update',
-        'delete' => 'Delete',
+        'deactivate' => 'Deactivate',
     ],
     'label' => [
         'name' => 'Name',
