@@ -19,14 +19,11 @@ class UserController extends Controller
         $this->middleware(function ($request, $next) {
             if (Auth::user()->getRole()=="super_admin" || Auth::user()->getRole()=="company_admin") {
                 return $next($request);
-            }else if((Auth::user()->getRole()=="warehouse_admin" || Auth::user()->getRole()=="courier") &&
-                $request->route('id') == Auth::user()->getId())
-            {
+            } elseif ((Auth::user()->getRole()=="warehouse_admin" || Auth::user()->getRole()=="courier") &&
+                $request->route('id') == Auth::user()->getId()) {
                 return $next($request);
-            }
-            else if((Auth::user()->getRole()=="warehouse_admin" || Auth::user()->getRole()=="courier") &&
-                $request->input('id') == Auth::user()->getId())
-            {
+            } elseif ((Auth::user()->getRole()=="warehouse_admin" || Auth::user()->getRole()=="courier") &&
+                $request->input('id') == Auth::user()->getId()) {
                 return $next($request);
             }
             return redirect()->route('home.index');
@@ -54,7 +51,7 @@ class UserController extends Controller
         $data["title"] = __('user.title');
         if (Auth::user()->getRole()=="super_admin") {
             $data["users"] = User::orderBy('id')->get();
-        }else if(Auth::user()->getRole()=="company_admin"){
+        } elseif (Auth::user()->getRole()=="company_admin") {
             $data["users"] = User::where('company_id', Auth::user()->getCompanyId())->orderBy('id')->get();
         }
         
