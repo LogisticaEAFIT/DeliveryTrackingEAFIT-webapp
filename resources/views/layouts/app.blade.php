@@ -33,6 +33,9 @@
                         @if(Auth::user()->getRole()=="company_admin")
                         <a class="dropdown-item" href="{{ route('company.show', ['id'=>Auth::user()->getCompanyId()]) }}">Edit Company Info</a> <!-- solo para company admin -->
                         @endif
+                        @if(Auth::user()->getRole()=="warehouse_admin")
+                        <a class="dropdown-item" href="{{ route('warehouse.show', ['id'=>Auth::user()->getWarehouseId()]) }}">Edit Warehouse Info</a> <!-- solo para warehouse admin -->
+                        @endif
                         <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                             <i class="fas fa-tachometer-alt"></i> {{ __('Logout') }}
                         </a>
@@ -86,7 +89,7 @@
                                 </div>
                             </li>
                             @endif
-                            @if(Auth::user()->getRole() != "courier")
+                            @if(Auth::user()->getRole()=="super_admin" || Auth::user()->getRole()=="company_admin")
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <div class="sb-nav-link-icon"><i class="fa fa-list-ul"></i></div>
@@ -115,7 +118,7 @@
                     @else
                     <div class="sb-sidenav-footer">
                         <div class="small">Logged in as:</div>
-                        Start Bootstrap
+                        {{ Auth::user()->getName() }}
                     </div>
                     @endguest
                 </nav>

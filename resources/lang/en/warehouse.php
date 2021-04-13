@@ -27,7 +27,7 @@ return [
         'longitude' => 'Enter longitude',
         'create' => 'Create',
         'update' => 'Update',
-        'delete' => 'Delete',
+        'deactivate' => 'Deactivate',
     ],
     'label' => [
         'description' => 'Description',

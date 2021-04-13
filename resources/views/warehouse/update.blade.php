@@ -4,7 +4,9 @@
 <div class="container-fluid padding-20">
     <ol class="breadcrumb mb-4">
         <li class="breadcrumb-item"><a href="{{ route('home.index') }}">Home</a></li>
+        @if(Auth::user()->getRole()=="super_admin" || Auth::user()->getRole()=="company_admin")
         <li class="breadcrumb-item"><a href="{{ route('warehouse.list') }}">{{ __('warehouse.title_list') }}</a></li>
+        @endif
         <li class="breadcrumb-item"><a href="{{ route('warehouse.show', ['id'=>$data['warehouse']->getId()]) }}">{{ $data['warehouse']->getId() }}</a></li>
         <li class="breadcrumb-item active">{{ __('warehouse.title_update') }}</li>
     </ol>

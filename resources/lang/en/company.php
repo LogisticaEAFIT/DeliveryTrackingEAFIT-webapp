@@ -24,7 +24,7 @@ return [
         'contact_info' => 'Enter contact info',
         'create' => 'Create',
         'update' => 'Update',
-        'delete' => 'Delete',
+        'deactivate' => 'Deactivate',
     ],
     'label' => [
         'name' => 'Name',
