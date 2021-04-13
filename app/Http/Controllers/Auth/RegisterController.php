@@ -67,9 +67,9 @@ class RegisterController extends Controller
     public function showRegistrationForm()
     {
         $data["companies"] = Company::all();
-        if(Auth::user()->getRole() == "company_admin"){
+        if (Auth::user()->getRole() == "company_admin") {
             $data["warehouses"] = Warehouse::where('company_id', Auth::user()->getCompanyId())->orderBy('id')->get();
-        }else{
+        } else {
             $data["warehouses"] = Warehouse::all();
         }
         return view('auth.register')->with("data", $data);
@@ -108,7 +108,7 @@ class RegisterController extends Controller
             $data['warehouse_id'] = null;
         }
 
-        if($data['role'] == 'warehouse_admin'){
+        if ($data['role'] == 'warehouse_admin') {
             $splited_info = explode('-', $data['warehouse_id']);
             $data['company_id'] = $splited_info[0];
             $data['warehouse_id'] = $splited_info[1];
