@@ -21,10 +21,8 @@
                 document.getElementById("company_id_block").style.display = 'none';
                 document.getElementById("warehouse_id_block").style.display = 'flex';
             }else{
-                document.getElementById("company_id_block").style.display = 'flex';
-                document.getElementById("warehouse_id_block").style.display = 'none';
-
-                document.getElementById("warehouse_id").value = 'null';
+                document.getElementById("company_id_block").style.display = 'none';
+                document.getElementById("warehouse_id_block").style.display = 'flex';
             }
         }
     </script>
@@ -93,8 +91,10 @@
                                     @if(Auth::user()->getRole()=="super_admin")
                                     <option value="super_admin" selected>{{ __('Super Admin') }}</option>
                                     @endif
+                                    @if(Auth::user()->getRole()=="super_admin" || Auth::user()->getRole()=="company_admin")
                                     <option value="company_admin">{{ __('Company Admin') }}</option>
                                     <option value="warehouse_admin">{{ __('Warehouse Admin') }}</option>
+                                    @endif
                                     <option value="courier">{{ __('Courier') }}</option>
                                 </select><br />
 
@@ -192,7 +192,20 @@
                             </div>
                         </div>
                         @else
-                        
+                        <div class="form-group row" id="warehouse_id_block">
+                            <label for="warehouse_id" class="col-md-4 col-form-label text-md-right">{{ __('user.label.warehouse_id') }} <b class="red-asterisk">*</b></label>
+
+                            <div class="col-md-6">
+                                <input type="text" class="form-control @error('warehouse_id') is-invalid @enderror" value="{{ Auth::user()->getCompanyId() }} - {{ Auth::user()->company->getName() }} - {{ Auth::user()->getWarehouseId() }} - {{ Auth::user()->warehouse->getAddress() }}" disabled/>
+                                <input type="hidden" class="form-control @error('warehouse_id') is-invalid @enderror" name="warehouse_id" id="warehouse_id" value="{{ Auth::user()->getCompanyId() }}-{{ Auth::user()->getWarehouseId() }}"/>
+
+                                @error('warehouse_id')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
                         @endif
                         <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }} <b class="red-asterisk">*</b></label>

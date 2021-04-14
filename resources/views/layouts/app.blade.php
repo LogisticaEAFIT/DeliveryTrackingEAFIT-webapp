@@ -56,7 +56,7 @@
                                 {{ __('Login') }}
                             </a>
                             @else
-                            @if(Auth::user()->getRole()=="super_admin" || Auth::user()->getRole()=="company_admin")
+                            @if(Auth::user()->getRole()=="super_admin" || Auth::user()->getRole()=="company_admin" || Auth::user()->getRole()=="warehouse_admin")
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <div class="sb-nav-link-icon"><i class="fa fa-list-ul"></i></div>
