@@ -97,7 +97,8 @@
                             <label for="id_card_number" class="col-md-4 col-form-label text-md-right">{{ __('user.label.company_id') }} <b class="red-asterisk">*</b></label>
 
                             <div class="col-md-6">
-                                <input type="text" name="company_id" value="{{ Auth::user()->getCompanyId() }}" disabled/>
+                                <input type="text" value="{{ Auth::user()->getCompanyId() }}" disabled/>
+                                <input type="hidden" class="form-control @error('company_id') is-invalid @enderror" name="company_id" id="company_id" value="{{ Auth::user()->getCompanyId() }}"/>
 
                                 @error('company_id')
                                     <span class="invalid-feedback" role="alert">
