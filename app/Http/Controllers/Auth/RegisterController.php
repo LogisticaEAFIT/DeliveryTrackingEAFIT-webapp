@@ -108,7 +108,7 @@ class RegisterController extends Controller
             $data['warehouse_id'] = null;
         }
 
-        if ($data['role'] == 'warehouse_admin') {
+        if ($data['role'] == 'warehouse_admin' || $data['role'] == 'courier') {
             $splited_info = explode('-', $data['warehouse_id']);
             $data['company_id'] = $splited_info[0];
             $data['warehouse_id'] = $splited_info[1];
