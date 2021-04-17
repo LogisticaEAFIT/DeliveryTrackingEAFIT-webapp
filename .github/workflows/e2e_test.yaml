@@ -23,5 +23,5 @@ jobs:
       - name: Run Laravel Server
         run: php artisan serve > /dev/null 2>&1 &
 
-      - name: Run Laravel Server
+      - name: Run Cypress
         run: ./node_modules/.bin/cypress run
