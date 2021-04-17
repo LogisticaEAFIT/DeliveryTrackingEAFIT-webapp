@@ -16,15 +16,12 @@ jobs:
         run: |
           cp .env.example .env
           php artisan key:generate
-          npm install
 
-      - name: Use Node.js
-        uses: actions/setup-node@v1
-        with:
-          node-version: '12.x'
+      - name: Update npm
+        run: npm install
 
-      - name: Cypress run
-        uses: cypress-io/github-action@v1
-        with:
-          start: npm start
-          wait-on: http://localhost:8000
+      - name: Run Laravel Server
+        run: php artisan serve > /dev/null 2>&1 &
+
+      - name: Run Laravel Server
+        run: ./node_modules/.bin/cypress run
