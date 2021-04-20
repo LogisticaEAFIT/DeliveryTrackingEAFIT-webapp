@@ -24,7 +24,9 @@
                             <th scope="col">{{ __('delivery_route.label.state') }}</th>
                             <th scope="col">{{ __('delivery_route.label.warehouse_id') }}</th>
                             <th scope="col">{{ __('delivery_route.label.courier_id') }}</th>
+                            @if(Auth::user()->getRole()!="courier")
                             <th scope="col">{{ __('delivery_route.label.about') }} <i class="fa fa-info-circle"></i></th>
+                            @endif
                         </tr>
                     </thead>
                     <tbody class="center-info">
@@ -47,7 +49,9 @@
                             <td>{{ $delivery_route->getWarehouseId() }}</td>
                             <td>{{ $delivery_route->getCourierId() }}</td>
                             @endif
+                            @if(Auth::user()->getRole()!="courier")
                             <td><a href="{{ route('delivery_route.show', ['id'=>$delivery_route->getId()]) }}"> {{ __('delivery_route.label.info') }} <strong>{{ $delivery_route->getId() }}</strong></a></td>
+                            @endif
                         </tr>
                         @endforeach
                     </tbody>

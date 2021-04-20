@@ -8,9 +8,6 @@
         <title>@yield('title','Home Page')</title>
         <link href="{{ asset('/css/styles.css') }}" rel="stylesheet" />
         <link href="{{ asset('/css/custom-styles.css') }}" rel="stylesheet" />
-        <!-- Datepicker files -->
-        <link rel="stylesheet" href="{{asset('datePicker/css/bootstrap-datepicker3.css')}}">
-        <link rel="stylesheet" href="{{asset('datePicker/css/bootstrap-datepicker3.standalone.css')}}">
 
     </head>
     <body class="sb-nav-fixed">
@@ -109,22 +106,23 @@
                                 </div>
                             </li>
                             @endif
-                            @if(Auth::user()->getRole()=="super_admin" || Auth::user()->getRole()=="company_admin" || Auth::user()->getRole()=="warehouse_admin")
+                            
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <div class="sb-nav-link-icon"><i class="fa fa-list-ul"></i></div>
                                     {{ __('delivery_route.title_list') }}
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                @if(Auth::user()->getRole()=="super_admin" || Auth::user()->getRole()=="company_admin" || Auth::user()->getRole()=="warehouse_admin")
                                     <a class="dropdown-item" href="{{ route('delivery_route.create') }}">
                                         <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i> {{ __('delivery_route.title_create') }}</div>
                                     </a> 
+                                @endif
                                     <a class="dropdown-item" href="{{ route('delivery_route.list') }}">
                                         <div class="sb-nav-link-icon"><i class="fa fa-list-ul"></i> {{ __('delivery_route.title_list2') }}</div>
                                     </a>
                                 </div>
                             </li>
-                            @endif
 
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                 @csrf
@@ -168,9 +166,5 @@
         <!-- Core theme JS-->
         <script src="{{ asset('/js/scripts.js') }}"></script>
         <script src="{{ asset('/js/all.min.js') }}" crossorigin="anonymous"></script>
-        <!-- Datepicker js-->
-        <script src="{{asset('datePicker/js/bootstrap-datepicker.js')}}"></script>
-        <!-- Languaje -->
-        <script src="{{asset('datePicker/locales/bootstrap-datepicker.es.min.js')}}"></script>
     </body>
 </html>
