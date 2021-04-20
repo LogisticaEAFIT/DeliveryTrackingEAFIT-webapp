@@ -1,0 +1,27 @@
+name: E2E test
+
+on: [push]
+
+jobs:
+  tests:
+    name: Run tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Run composer install
+        run: composer install -n --prefer-dist
+
+      - name: Prepare Laravel Application
+        run: |
+          cp .env.example .env
+          php artisan key:generate
+
+      - name: Update npm
+        run: npm install
+
+      - name: Run Laravel Server
+        run: php artisan serve > /dev/null 2>&1 &
+
+      - name: Run Cypress
+        run: ./node_modules/.bin/cypress run
