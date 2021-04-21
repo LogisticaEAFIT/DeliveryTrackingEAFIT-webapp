@@ -21,7 +21,8 @@ class DeliveryRouteController extends Controller
         $this->middleware(function ($request, $next) {
 
             if (Auth::user()->getRole()=="super_admin" || Auth::user()->getRole()=="company_admin" ||
-            Auth::user()->getRole()=="warehouse_admin") {
+            Auth::user()->getRole()=="warehouse_admin" ||
+            Auth::user()->getRole()=="courier") {
                 return $next($request);
             }
             return redirect()->route('home.index');
@@ -57,6 +58,9 @@ class DeliveryRouteController extends Controller
             $data["delivery_routes"] = DeliveryRoute::whereIn('warehouse_id', $ids)->orderBy('id')->get();
         } elseif (Auth::user()->getRole()=="warehouse_admin") {
             $data["delivery_routes"] = DeliveryRoute::where('warehouse_id', Auth::user()->getWarehouseId())
+                                        ->orderBy('id')->get();
+        } elseif (Auth::user()->getRole()=="courier") {
+            $data["delivery_routes"] = DeliveryRoute::where('courier_id', Auth::user()->getId())
                                         ->orderBy('id')->get();
         }
 
