@@ -3,7 +3,7 @@
 @section('content')
 <div class="container-fluid padding-20">
     <ol class="breadcrumb mb-4">
-        <li class="breadcrumb-item"><a href="{{ route('home.index') }}">Home</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('home.index') }}">{{ __('pagination.home') }}</a></li>
         @if(Auth::user()->getRole()=="super_admin" || Auth::user()->getRole()=="company_admin")
         <li class="breadcrumb-item"><a href="{{ route('user.list') }}">{{ __('user.title_list') }}</a></li>
         @endif
@@ -24,14 +24,18 @@
                         </div>
                         <div class="col-3">
                             @if($data["user"]->getCompanyId() != '')
-                            <b>{{ __('user.label.company_id') }}</b><br /> {{ $data["user"]->getCompanyId() }}<br />
+                            <b>{{ __('user.label.company_id') }}</b><br /> {{ $data["user"]->company->getName() }}<br />
                             @else
                             <b>{{ __('user.label.company_id') }}</b><br /> N/A<br />
                             @endif
                         </div>
                         <div class="col-3">
                             @if($data["user"]->getWarehouseId() != '')
+                            @if($data["user"]->warehouse->getName() != '')
+                            <b>{{ __('user.label.warehouse_id') }}</b><br /> {{ $data["user"]->warehouse->getName() }}<br />
+                            @else
                             <b>{{ __('user.label.warehouse_id') }}</b><br /> {{ $data["user"]->getWarehouseId() }}<br />
+                            @endif
                             @else
                             <b>{{ __('user.label.warehouse_id') }}</b><br /> N/A<br />
                             @endif

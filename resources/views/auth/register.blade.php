@@ -29,8 +29,8 @@
 </head>
 <div class="container-fluid padding-20">
     <ol class="breadcrumb mb-4">
-        <li class="breadcrumb-item"><a href="{{ route('home.index') }}">Home</a></li>
-        <li class="breadcrumb-item active">Register</li>
+        <li class="breadcrumb-item"><a href="{{ route('home.index') }}">{{ __('pagination.home') }}</a></li>
+        <li class="breadcrumb-item active">{{ __('Register') }}</li>
     </ol>
     <div class="row">
         <div class="col-md-12">
@@ -155,7 +155,7 @@
                                     @foreach($data["warehouses"] as $warehouse)
                                         @if($warehouse->getIsActive() == '1')
                                         <option  value="{{$warehouse->getCompanyId()}}-{{$warehouse->getId()}}">
-                                        {{ $warehouse->getCompanyId() }} - {{ $warehouse->company->getName() }} - {{ $warehouse->getId() }} - {{ $warehouse->getAddress() }}
+                                        {{ $warehouse->getCompanyId() }} - {{ $warehouse->company->getName() }} - {{ $warehouse->getId() }} - {{ $warehouse->getName() }}
                                         </option>
                                         @endif
                                     @endforeach
@@ -178,7 +178,7 @@
                                     @foreach($data["warehouses"] as $warehouse)
                                         @if($warehouse->getIsActive() == '1')
                                         <option  value="{{$warehouse->getCompanyId()}}-{{$warehouse->getId()}}"  selected>
-                                        {{ $warehouse->getCompanyId() }} - {{ $warehouse->company->getName() }} - {{ $warehouse->getId() }} - {{ $warehouse->getAddress() }}
+                                        {{ $warehouse->getCompanyId() }} - {{ $warehouse->company->getName() }} - {{ $warehouse->getId() }} - {{ $warehouse->getName() }}
                                         </option>
                                         @endif
                                     @endforeach
@@ -196,7 +196,7 @@
                             <label for="warehouse_id" class="col-md-4 col-form-label text-md-right">{{ __('user.label.warehouse_id') }} <b class="red-asterisk">*</b></label>
 
                             <div class="col-md-6">
-                                <input type="text" class="form-control @error('warehouse_id') is-invalid @enderror" value="{{ Auth::user()->getCompanyId() }} - {{ Auth::user()->company->getName() }} - {{ Auth::user()->getWarehouseId() }} - {{ Auth::user()->warehouse->getAddress() }}" disabled/>
+                                <input type="text" class="form-control @error('warehouse_id') is-invalid @enderror" value="{{ Auth::user()->getCompanyId() }} - {{ Auth::user()->company->getName() }} - {{ Auth::user()->getWarehouseId() }} - {{ Auth::user()->warehouse->getName() }}" disabled/>
                                 <input type="hidden" class="form-control @error('warehouse_id') is-invalid @enderror" name="warehouse_id" id="warehouse_id" value="{{ Auth::user()->getCompanyId() }}-{{ Auth::user()->getWarehouseId() }}"/>
 
                                 @error('warehouse_id')

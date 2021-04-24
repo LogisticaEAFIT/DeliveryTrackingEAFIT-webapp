@@ -3,7 +3,7 @@
 @section('content')
 <div class="container-fluid padding-20">
     <ol class="breadcrumb mb-4">
-        <li class="breadcrumb-item"><a href="{{ route('home.index') }}">Home</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('home.index') }}">{{ __('pagination.home') }}</a></li>
         <li class="breadcrumb-item active">{{ __('warehouse.title_create') }}</li>
     </ol>
     <div class="row">
@@ -14,6 +14,20 @@
                 <div class="card-body">
                     <form method="POST" action="{{ route('warehouse.save') }}">
                         @csrf
+
+                        <div class="form-group row">
+                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('warehouse.label.name') }} <b class="red-asterisk">*</b></label>
+
+                            <div class="col-md-6">
+                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name">
+
+                                @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
 
                         <div class="form-group row">
                             <label for="description" class="col-md-4 col-form-label text-md-right">{{ __('warehouse.label.description') }} <b class="red-asterisk">*</b></label>

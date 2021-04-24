@@ -51,3 +51,21 @@ Route::get('/delivery_route/update', 'App\Http\Controllers\DeliveryRouteControll
 Route::post('/delivery_route/update_save', 'App\Http\Controllers\DeliveryRouteController@updateSave')->name('delivery_route.update_save');
 Route::post('/delivery_route/save', 'App\Http\Controllers\DeliveryRouteController@save')->name('delivery_route.save');
 Route::post('/delivery_route/delete', 'App\Http\Controllers\DeliveryRouteController@delete')->name('delivery_route.delete');
+
+// Vehicle routes
+Route::get('/vehicle/show/{id}', 'App\Http\Controllers\VehicleController@show')->name('vehicle.show');
+Route::get('/vehicle/list', 'App\http\Controllers\VehicleController@list')->name('vehicle.list');
+Route::get('/vehicle/create', 'App\Http\Controllers\VehicleController@create')->name('vehicle.create');
+Route::get('/vehicle/update', 'App\Http\Controllers\VehicleController@update')->name('vehicle.update');
+Route::post('/vehicle/update_save', 'App\Http\Controllers\VehicleController@updateSave')->name('vehicle.update_save');
+Route::post('/vehicle/save', 'App\Http\Controllers\VehicleController@save')->name('vehicle.save');
+Route::post('/vehicle/delete', 'App\Http\Controllers\VehicleController@delete')->name('vehicle.delete');
+
+// VehicleType routes
+Route::get('/vehicle_type/show/{id}', 'App\Http\Controllers\VehicleTypeController@show')->name('vehicle_type.show');
+Route::get('/vehicle_type/list', 'App\http\Controllers\VehicleTypeController@list')->name('vehicle_type.list');
+Route::get('/vehicle_type/create', 'App\Http\Controllers\VehicleTypeController@create')->name('vehicle_type.create');
+Route::get('/vehicle_type/update', 'App\Http\Controllers\VehicleTypeController@update')->name('vehicle_type.update');
+Route::post('/vehicle_type/update_save', 'App\Http\Controllers\VehicleTypeController@updateSave')->name('vehicle_type.update_save');
+Route::post('/vehicle_type/save', 'App\Http\Controllers\VehicleTypeController@save')->name('vehicle_type.save');
+Route::post('/vehicle_type/delete', 'App\Http\Controllers\VehicleTypeController@delete')->name('vehicle_type.delete');

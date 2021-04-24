@@ -3,7 +3,7 @@
 @section('content')
 <div class="container-fluid padding-20">
     <ol class="breadcrumb mb-4">
-        <li class="breadcrumb-item"><a href="{{ route('home.index') }}">Home</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('home.index') }}">{{ __('pagination.home') }}</a></li>
         <li class="breadcrumb-item active">{{ __('delivery_route.title_list') }}</li>
     </ol>
     <div class="row">
@@ -24,6 +24,7 @@
                             <th scope="col">{{ __('delivery_route.label.state') }}</th>
                             <th scope="col">{{ __('delivery_route.label.warehouse_id') }}</th>
                             <th scope="col">{{ __('delivery_route.label.courier_id') }}</th>
+                            <th scope="col">{{ __('delivery_route.label.vehicle_id') }}</th>
                             @if(Auth::user()->getRole()!="courier")
                             <th scope="col">{{ __('delivery_route.label.about') }} <i class="fa fa-info-circle"></i></th>
                             @endif
@@ -38,16 +39,26 @@
                             <td class="green-option">{{ $delivery_route->getNumberOfDeliveries() }}</td>
                             <td class="green-option">{{ $delivery_route->getCompletedDeliveries() }}</td>
                             <td class="green-option">{{ $delivery_route->getState() }}</td>
+                            @if($delivery_route->warehouse->getName() != '')
+                            <td class="green-option">{{ $delivery_route->warehouse->getName() }}</td>
+                            @else
                             <td class="green-option">{{ $delivery_route->getWarehouseId() }}</td>
-                            <td class="green-option">{{ $delivery_route->getCourierId() }}</td>
+                            @endif
+                            <td class="green-option">{{ $delivery_route->courier->getName() }}</td>
+                            <td class="green-option">{{ $delivery_route->vehicle->getName() }}</td>
                             @else
                             <td>{{ $delivery_route->getId() }}</td>
                             <td>{{ $delivery_route->getDate() }}</td>
                             <td>{{ $delivery_route->getNumberOfDeliveries() }}</td>
                             <td>{{ $delivery_route->getCompletedDeliveries() }}</td>
                             <td>{{ $delivery_route->getState() }}</td>
+                            @if($delivery_route->warehouse->getName() != '')
+                            <td>{{ $delivery_route->warehouse->getName() }}</td>
+                            @else
                             <td>{{ $delivery_route->getWarehouseId() }}</td>
-                            <td>{{ $delivery_route->getCourierId() }}</td>
+                            @endif
+                            <td>{{ $delivery_route->courier->getName() }}</td>
+                            <td>{{ $delivery_route->vehicle->getName() }}</td>
                             @endif
                             @if(Auth::user()->getRole()!="courier")
                             <td><a href="{{ route('delivery_route.show', ['id'=>$delivery_route->getId()]) }}"> {{ __('delivery_route.label.info') }} <strong>{{ $delivery_route->getId() }}</strong></a></td>

@@ -9,9 +9,9 @@ use Illuminate\Http\Request;
 class DeliveryRoute extends Model
 {
     //attributes id, date, completed_deliveries, number_of_deliveries, state,
-    //warehouse_id, courier_id, created_at, updated_at
+    //warehouse_id, courier_id, vehicle_id, created_at, updated_at
     protected $fillable = ['date', 'completed_deliveries', 'number_of_deliveries', 'state',
-                            'warehouse_id', 'courier_id'];
+                            'warehouse_id', 'courier_id', 'vehicle_id'];
 
     public function getId()
     {
@@ -83,6 +83,16 @@ class DeliveryRoute extends Model
         $this->attributes['courier_id'] = $courier_id;
     }
 
+    public function getVehicleId()
+    {
+        return $this->attributes['vehicle_id'];
+    }
+
+    public function setVehicleId($vehicle_id)
+    {
+        $this->attributes['vehicle_id'] = $vehicle_id;
+    }
+
     public function warehouse()
     {
         return $this->belongsTo(Warehouse::class);
@@ -91,6 +101,11 @@ class DeliveryRoute extends Model
     public function courier()
     {
         return $this->belongsTo(User::class, 'courier_id');
+    }
+
+    public function vehicle()
+    {
+        return $this->belongsTo(Vehicle::class);
     }
 
     public static function validate(Request $request)

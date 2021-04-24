@@ -3,7 +3,7 @@
 @section('content')
 <div class="container-fluid padding-20">
     <ol class="breadcrumb mb-4">
-        <li class="breadcrumb-item"><a href="{{ route('home.index') }}">Home</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('home.index') }}">{{ __('pagination.home') }}</a></li>
         <li class="breadcrumb-item active">{{ __('delivery_route.title_create') }}</li>
     </ol>
     <div class="row">
@@ -18,11 +18,8 @@
                         <div class="form-group row">
                             <label for="date" class="col-md-4 col-form-label text-md-right">{{ __('delivery_route.label.date') }} <b class="red-asterisk">*</b></label>
                             <div class="col-md-6">
-                                <div class='input-group date datepicker'>
-                                    <input type='text' class="form-control @error('description') is-invalid @enderror" id="date" name="date" value="{{ old('date') }}" required autocomplete="date" autofocus/>
-                                    <span class="input-group-addon">
-                                    <span class="glyphicon glyphicon-calendar"></span>
-                                    </span>
+                                <div class='input-group'>
+                                    <input type='date' class="form-control @error('date') is-invalid @enderror" id="date" name="date" value="{{ old('date') }}" required autocomplete="date" autofocus/>
                                 </div>
                                 @error('date')
                                     <span class="invalid-feedback" role="alert">
@@ -69,7 +66,7 @@
                                         @foreach($data["couriers"] as $courier)
                                             @if($courier->getIsActive() == '1')
                                             <option  value="{{ $courier->getWarehouseId() }}-{{ $courier->getId() }}"  selected> 
-                                                {{ $courier->getWarehouseId() }} -> {{ $courier->warehouse->getAddress() }} --- {{ $courier->getId() }} -> {{ $courier->getName() }}
+                                                {{ $courier->getWarehouseId() }} -> {{ $courier->warehouse->getName() }} --- {{ $courier->getId() }} -> {{ $courier->getName() }}
                                             </option>
                                             @endif
                                         @endforeach
@@ -78,7 +75,7 @@
                                             @if($courier->getIsActive() == '1')
                                                 @if($courier->getCompanyId() == Auth::user()->getCompanyId())
                                             <option  value="{{ $courier->getWarehouseId() }}-{{ $courier->getId() }}"  selected> 
-                                                {{ $courier->getWarehouseId() }} -> {{ $courier->warehouse->getAddress() }} --- {{ $courier->getId() }} -> {{ $courier->getName() }}
+                                                {{ $courier->getWarehouseId() }} -> {{ $courier->warehouse->getName() }} --- {{ $courier->getId() }} -> {{ $courier->getName() }}
                                             </option>
                                                 @endif
                                             @endif
@@ -88,7 +85,7 @@
                                             @if($courier->getIsActive() == '1')
                                                 @if($courier->getWarehouseId() == Auth::user()->getWarehouseId())
                                             <option  value="{{ $courier->getWarehouseId() }}-{{ $courier->getId() }}"  selected> 
-                                                {{ $courier->getWarehouseId() }} -> {{ $courier->warehouse->getAddress() }} --- {{ $courier->getId() }} -> {{ $courier->getName() }}
+                                                {{ $courier->getWarehouseId() }} -> {{ $courier->warehouse->getName() }} --- {{ $courier->getId() }} -> {{ $courier->getName() }}
                                             </option>
                                                 @endif
                                             @endif
@@ -97,6 +94,50 @@
                                 </select>
 
                                 @error('courier_id')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="vehicle_id" class="col-md-4 col-form-label text-md-right">{{ __('delivery_route.label.vehicle_id') }} <b class="red-asterisk">*</b></label>
+
+                            <div class="col-md-6">
+                                <select class="form-control @error('vehicle_id') is-invalid @enderror" name="vehicle_id" id="vehicle_id" required>
+                                    @if(Auth::user()->getRole()=="super_admin")
+                                        @foreach($data["vehicles"] as $vehicle)
+                                            @if($vehicle->getIsActive() == '1')
+                                            <option  value="{{ $vehicle->getWarehouseId() }}-{{ $vehicle->getId() }}"  selected> 
+                                                {{ $vehicle->getWarehouseId() }} -> {{ $vehicle->warehouse->getName() }} --- {{ $vehicle->getId() }} -> {{ $vehicle->getName() }}
+                                            </option>
+                                            @endif
+                                        @endforeach
+                                    @elseif(Auth::user()->getRole()=="company_admin")
+                                        @foreach($data["vehicles"] as $vehicle)
+                                            @if($vehicle->getIsActive() == '1')
+                                                @if($vehicle->warehouse->getCompanyId() == Auth::user()->getCompanyId())
+                                            <option  value="{{ $vehicle->getWarehouseId() }}-{{ $vehicle->getId() }}"  selected> 
+                                                {{ $vehicle->getWarehouseId() }} -> {{ $vehicle->warehouse->getName() }} --- {{ $vehicle->getId() }} -> {{ $vehicle->getName() }}
+                                            </option>
+                                                @endif
+                                            @endif
+                                        @endforeach
+                                    @elseif(Auth::user()->getRole()=="warehouse_admin")
+                                        @foreach($data["vehicles"] as $vehicle)
+                                            @if($vehicle->getIsActive() == '1')
+                                                @if($vehicle->getWarehouseId() == Auth::user()->getWarehouseId())
+                                            <option  value="{{ $vehicle->getWarehouseId() }}-{{ $vehicle->getId() }}"  selected> 
+                                                {{ $vehicle->getWarehouseId() }} -> {{ $vehicle->warehouse->getName() }} --- {{ $vehicle->getId() }} -> {{ $vehicle->getName() }}
+                                            </option>
+                                                @endif
+                                            @endif
+                                        @endforeach
+                                    @endif
+                                </select>
+
+                                @error('vehicle_id')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
