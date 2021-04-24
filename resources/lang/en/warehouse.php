@@ -21,6 +21,7 @@ return [
     'create_company' => 'You must create a company first',
     'red_info' => 'Warehouses in red color are disabled',
     'input' => [
+        'name' => 'Enter name',
         'description' => 'Enter description',
         'address' => 'Enter address',
         'latitude' => 'Enter latitude',
@@ -30,6 +31,7 @@ return [
         'deactivate' => 'Deactivate',
     ],
     'label' => [
+        'name' => 'Name',
         'description' => 'Description',
         'address' => 'Address',
         'latitude' => 'Latitude',

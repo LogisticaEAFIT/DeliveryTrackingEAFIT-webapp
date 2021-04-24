@@ -3,7 +3,7 @@
 @section('content')
 <div class="container-fluid padding-20">
     <ol class="breadcrumb mb-4">
-        <li class="breadcrumb-item"><a href="{{ route('home.index') }}">Home</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('home.index') }}">{{ __('pagination.home') }}</a></li>
         <li class="breadcrumb-item active">{{ __('user.title_list') }}</li>
     </ol>
     <div class="row">
@@ -37,12 +37,16 @@
                             <td class="red-option">{{ $user->getIdCardNumber() }}</td>
                             <td class="red-option">{{ $user->getRole() }}</td>
                                 @if($user->getCompanyId() != '')
-                            <td class="red-option">{{ $user->getCompanyId() }}</td>
+                            <td class="red-option">{{ $user->company->getName() }}</td>
                                 @else
                             <td class="red-option">N/A</td>
                                 @endif
                                 @if($user->getWarehouseId() != '')
+                                @if($user->warehouse->getName() != '')
+                            <td class="red-option">{{ $user->warehouse->getName() }}</td>
+                                @else
                             <td class="red-option">{{ $user->getWarehouseId() }}</td>
+                                @endif
                                 @else
                             <td class="red-option">N/A</td>
                                 @endif
@@ -53,12 +57,16 @@
                             <td>{{ $user->getIdCardNumber() }}</td>
                             <td>{{ $user->getRole() }}</td>
                                 @if($user->getCompanyId() != '')
-                            <td>{{ $user->getCompanyId() }}</td>
+                            <td>{{ $user->company->getName() }}</td>
                                 @else
                             <td>N/A</td>
                                 @endif
                                 @if($user->getWarehouseId() != '')
+                                @if($user->warehouse->getName() != '')
+                            <td>{{ $user->warehouse->getName() }}</td>
+                                @else
                             <td>{{ $user->getWarehouseId() }}</td>
+                                @endif
                                 @else
                             <td>N/A</td>
                                 @endif

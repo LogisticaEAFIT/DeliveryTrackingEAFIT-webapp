@@ -3,23 +3,26 @@
 @section('content')
 <div class="container-fluid padding-20">
     <ol class="breadcrumb mb-4">
-        <li class="breadcrumb-item"><a href="{{ route('home.index') }}">Home</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('home.index') }}">{{ __('pagination.home') }}</a></li>
         @if(Auth::user()->getRole()=="super_admin" || Auth::user()->getRole()=="company_admin")
         <li class="breadcrumb-item"><a href="{{ route('warehouse.list') }}">{{ __('warehouse.title_list') }}</a></li>
         @endif
-        <li class="breadcrumb-item active">{{ $data["warehouse"]->getId() }}</li>
+        <li class="breadcrumb-item active">{{ $data["warehouse"]->getName() }}</li>
     </ol>
     <div class="row">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header"><i class="fa fa-info-circle"></i> {{ $data["warehouse"]->getId() }}</div>
+                <div class="card-header"><i class="fa fa-info-circle"></i> {{ $data["warehouse"]->getName() }}</div>
 
                 <div class="card-body">
                     <div class="row center-info">
-                        <div class="col-6">
+                        <div class="col-4">
                             <b>{{ __('warehouse.label.id') }}</b><br /> {{ $data["warehouse"]->getId() }}<br />
                         </div>
-                        <div class="col-6">
+                        <div class="col-4">
+                            <b>{{ __('warehouse.label.name') }}</b><br /> {{ $data["warehouse"]->getName() }}<br />
+                        </div>
+                        <div class="col-4">
                             <b>{{ __('warehouse.label.address') }}</b><br /> {{ $data["warehouse"]->getAddress() }}<br />
                         </div>
                     </div><hr/>
@@ -36,7 +39,7 @@
                             <b>{{ __('warehouse.label.longitude') }}</b><br /> {{ $data["warehouse"]->getLongitude() }}<br />
                         </div>
                         <div class="col-4">
-                            <b>{{ __('warehouse.label.company_id') }}</b><br /> {{ $data["warehouse"]->getCompanyId() }}<br />
+                            <b>{{ __('warehouse.label.company_id') }}</b><br /> {{ $data["warehouse"]->company->getName() }}<br />
                         </div>
                     </div><hr/>
                     <div class="row center-info">

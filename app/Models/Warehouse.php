@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class Warehouse extends Model
 {
     //attributes id, description, address, latitude, longitude, is_active, company_id, created_at, updated_at
-    protected $fillable = ['description', 'address', 'latitude', 'longitude', 'company_id'];
+    protected $fillable = ['name', 'description', 'address', 'latitude', 'longitude', 'company_id'];
 
     public function getId()
     {
@@ -19,6 +19,16 @@ class Warehouse extends Model
     public function setId($id)
     {
         $this->attributes['id'] = $id;
+    }
+
+    public function getName()
+    {
+        return $this->attributes['name'];
+    }
+
+    public function setName($name)
+    {
+        $this->attributes['name'] = $name;
     }
 
     public function getDescription()
@@ -89,6 +99,7 @@ class Warehouse extends Model
     public static function validate(Request $request)
     {
         $request->validate([
+            "name" => ['required', 'string', 'min:1', 'max:255'],
             "description" => ['required', 'string', 'min:1', 'max:255'],
             "address" => ['required', 'string', 'min:1', 'max:255'],
             "latitude" => ['required', 'numeric'],

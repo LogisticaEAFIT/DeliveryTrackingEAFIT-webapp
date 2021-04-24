@@ -92,6 +92,7 @@ class WarehouseController extends Controller
     {
 
         Warehouse::where('id', $request->input('id'))->update([
+            'name' => $request->input('name'),
             'description' => $request->input('description'),
             'address' => $request->input('address'),
             'latitude' => $request->input('latitude'),
@@ -106,6 +107,7 @@ class WarehouseController extends Controller
         Warehouse::validate($request);
 
         Warehouse::create([
+            'name' => $request->input('name'),
             'description' => $request->input('description'),
             'address' => $request->input('address'),
             'latitude' => $request->input('latitude'),

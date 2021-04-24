@@ -3,7 +3,7 @@
 @section('content')
 <div class="container-fluid padding-20">
     <ol class="breadcrumb mb-4">
-        <li class="breadcrumb-item"><a href="{{ route('home.index') }}">Home</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('home.index') }}">{{ __('pagination.home') }}</a></li>
         <li class="breadcrumb-item active">{{ __('warehouse.title_list') }}</li>
     </ol>
     <div class="row">
@@ -18,6 +18,7 @@
                     <thead class="center-info">
                         <tr>
                             <th scope="col">{{ __('warehouse.label.id') }}</th>
+                            <th scope="col">{{ __('warehouse.label.name') }}</th>
                             <th scope="col">{{ __('warehouse.label.description') }}</th>
                             <th scope="col">{{ __('warehouse.label.address') }}</th>
                             <th scope="col">{{ __('warehouse.label.latitude') }}</th>
@@ -31,18 +32,20 @@
                         <tr>
                             @if($warehouse->getIsActive() == '0')
                             <td class="red-option">{{ $warehouse->getId() }}</td>
+                            <td class="red-option">{{ $warehouse->getName() }}</td>
                             <td class="red-option">{{ $warehouse->getDescription() }}</td>
                             <td class="red-option">{{ $warehouse->getAddress() }}</td>
                             <td class="red-option">{{ $warehouse->getLatitude() }}</td>
                             <td class="red-option">{{ $warehouse->getLongitude() }}</td>
-                            <td class="red-option">{{ $warehouse->getCompanyId() }}</td>
+                            <td class="red-option">{{ $warehouse->company->getName() }}</td>
                             @else
                             <td>{{ $warehouse->getId() }}</td>
+                            <td>{{ $warehouse->getName() }}</td>
                             <td>{{ $warehouse->getDescription() }}</td>
                             <td>{{ $warehouse->getAddress() }}</td>
                             <td>{{ $warehouse->getLatitude() }}</td>
                             <td>{{ $warehouse->getLongitude() }}</td>
-                            <td>{{ $warehouse->getCompanyId() }}</td>
+                            <td>{{ $warehouse->company->getName() }}</td>
                             @endif
                             <td><a href="{{ route('warehouse.show', ['id'=>$warehouse->getId()]) }}"> {{ __('warehouse.label.info') }} <strong>{{ $warehouse->getId() }}</strong></a></td>
                         </tr>

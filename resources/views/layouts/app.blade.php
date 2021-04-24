@@ -30,12 +30,12 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                        <a class="dropdown-item" href="{{ route('user.show', ['id'=>Auth::user()->getId()]) }}">Edit Profile</a>
+                        <a class="dropdown-item" href="{{ route('user.show', ['id'=>Auth::user()->getId()]) }}">{{ __('pagination.edit_profile') }}</a>
                         @if(Auth::user()->getRole()=="company_admin")
-                        <a class="dropdown-item" href="{{ route('company.show', ['id'=>Auth::user()->getCompanyId()]) }}">Edit Company Info</a> <!-- solo para company admin -->
+                        <a class="dropdown-item" href="{{ route('company.show', ['id'=>Auth::user()->getCompanyId()]) }}">{{ __('pagination.edit_company_info') }}</a> <!-- solo para company admin -->
                         @endif
                         @if(Auth::user()->getRole()=="warehouse_admin")
-                        <a class="dropdown-item" href="{{ route('warehouse.show', ['id'=>Auth::user()->getWarehouseId()]) }}">Edit Warehouse Info</a> <!-- solo para warehouse admin -->
+                        <a class="dropdown-item" href="{{ route('warehouse.show', ['id'=>Auth::user()->getWarehouseId()]) }}">{{ __('pagination.edit_warehouse_info') }}</a> <!-- solo para warehouse admin -->
                         @endif
                         <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                             <i class="fas fa-tachometer-alt"></i> {{ __('Logout') }}
@@ -135,7 +135,7 @@
 
                     @else
                     <div class="sb-sidenav-footer">
-                        <div class="small">Logged in as:</div>
+                        <div class="small">{{ __('pagination.logged_in') }}</div>
                         {{ Auth::user()->getName() }}
                     </div>
                     @endguest
@@ -150,9 +150,9 @@
                         <div class="d-flex align-items-center justify-content-between small">
                             <div class="text-muted">Copyright &copy; 2021</div>
                             <div>
-                                <a href="#">Privacy Policy</a>
+                                <a href="#">{{ __('pagination.privacy_policy') }}</a>
                                 &middot;
-                                <a href="#">Terms &amp; Conditions</a>
+                                <a href="#">{{ __('pagination.terms_conditions') }}</a>
                             </div>
                         </div>
                     </div>
