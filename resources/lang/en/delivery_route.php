@@ -35,6 +35,7 @@ return [
         'state' => 'State',
         'warehouse_id' => 'Warehouse Id',
         'courier_id' => 'Courier Id',
+        'vehicle_id' => 'Vehicle Id',
         'id' => 'ID',
         'about' => 'About',
         'info' => 'More info about ',

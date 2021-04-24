@@ -106,6 +106,42 @@
                                 </div>
                             </li>
                             @endif
+
+                            @if(Auth::user()->getRole()=="super_admin" || Auth::user()->getRole()=="company_admin" || 
+                            Auth::user()->getRole()=="warehouse_admin")
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <div class="sb-nav-link-icon"><i class="fa fa-list-ul"></i></div>
+                                    {{ __('vehicle.title_list') }}
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <a class="dropdown-item" href="{{ route('vehicle.create') }}">
+                                        <div class="sb-nav-link-icon"><i class="fa fa-plus"></i> {{ __('vehicle.title_create') }}</div>
+                                    </a>
+                                    <a class="dropdown-item" href="{{ route('vehicle.list') }}">
+                                        <div class="sb-nav-link-icon"><i class="fa fa-list-ul"></i> {{ __('vehicle.title_list2') }}</div>
+                                    </a> 
+                                </div>
+                            </li>
+                            @endif
+
+                            @if(Auth::user()->getRole()=="super_admin" || Auth::user()->getRole()=="company_admin" || 
+                            Auth::user()->getRole()=="warehouse_admin")
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <div class="sb-nav-link-icon"><i class="fa fa-list-ul"></i></div>
+                                    {{ __('vehicle_type.title_list') }}
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <a class="dropdown-item" href="{{ route('vehicle_type.create') }}">
+                                        <div class="sb-nav-link-icon"><i class="fa fa-plus"></i> {{ __('vehicle_type.title_create') }}</div>
+                                    </a>
+                                    <a class="dropdown-item" href="{{ route('vehicle_type.list') }}">
+                                        <div class="sb-nav-link-icon"><i class="fa fa-list-ul"></i> {{ __('vehicle_type.title_list2') }}</div>
+                                    </a> 
+                                </div>
+                            </li>
+                            @endif
                             
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

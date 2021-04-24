@@ -24,6 +24,7 @@
                             <th scope="col">{{ __('delivery_route.label.state') }}</th>
                             <th scope="col">{{ __('delivery_route.label.warehouse_id') }}</th>
                             <th scope="col">{{ __('delivery_route.label.courier_id') }}</th>
+                            <th scope="col">{{ __('delivery_route.label.vehicle_id') }}</th>
                             @if(Auth::user()->getRole()!="courier")
                             <th scope="col">{{ __('delivery_route.label.about') }} <i class="fa fa-info-circle"></i></th>
                             @endif
@@ -44,6 +45,7 @@
                             <td class="green-option">{{ $delivery_route->getWarehouseId() }}</td>
                             @endif
                             <td class="green-option">{{ $delivery_route->courier->getName() }}</td>
+                            <td class="green-option">{{ $delivery_route->vehicle->getName() }}</td>
                             @else
                             <td>{{ $delivery_route->getId() }}</td>
                             <td>{{ $delivery_route->getDate() }}</td>
@@ -56,6 +58,7 @@
                             <td>{{ $delivery_route->getWarehouseId() }}</td>
                             @endif
                             <td>{{ $delivery_route->courier->getName() }}</td>
+                            <td>{{ $delivery_route->vehicle->getName() }}</td>
                             @endif
                             @if(Auth::user()->getRole()!="courier")
                             <td><a href="{{ route('delivery_route.show', ['id'=>$delivery_route->getId()]) }}"> {{ __('delivery_route.label.info') }} <strong>{{ $delivery_route->getId() }}</strong></a></td>

@@ -16,11 +16,14 @@
 
                 <div class="card-body">
                     <div class="row center-info">
-                        <div class="col-6">
+                        <div class="col-4">
                             <b>{{ __('delivery_route.label.id') }}</b><br /> {{ $data["delivery_route"]->getId() }}<br />
                         </div>
-                        <div class="col-6">
+                        <div class="col-4">
                             <b>{{ __('delivery_route.label.date') }}</b><br /> {{ $data["delivery_route"]->getDate() }}<br />
+                        </div>
+                        <div class="col-4">
+                            <b>{{ __('delivery_route.label.state') }}</b><br /> {{ $data["delivery_route"]->getState() }}<br />
                         </div>
                     </div><hr/>
                     <div class="row center-info">
@@ -33,9 +36,6 @@
                     </div><hr/>
                     <div class="row center-info">
                         <div class="col-4">
-                            <b>{{ __('delivery_route.label.state') }}</b><br /> {{ $data["delivery_route"]->getState() }}<br />
-                        </div>
-                        <div class="col-4">
                             @if($data["delivery_route"]->warehouse->getName() != '')
                             <b>{{ __('delivery_route.label.warehouse_id') }}</b><br /> {{ $data["delivery_route"]->warehouse->getName() }}<br />
                             @else
@@ -44,6 +44,9 @@
                         </div>
                         <div class="col-4">
                             <b>{{ __('delivery_route.label.courier_id') }}</b><br /> {{ $data["delivery_route"]->courier->getName() }}<br />
+                        </div>
+                        <div class="col-4">
+                            <b>{{ __('delivery_route.label.vehicle_id') }}</b><br /> {{ $data["delivery_route"]->vehicle->getName() }}<br />
                         </div>
                     </div><hr/>
                     <div class="row center-info">

@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use App\Models\Warehouse;
 use App\Models\DeliveryRoute;
 use App\Models\User;
+use App\Models\Vehicle;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Exception;
@@ -77,6 +78,11 @@ class DeliveryRouteController extends Controller
             return redirect()->route('user.create')->withErrors(__('user.create_courier'));
             ;
         }
+        $data["vehicles"] = Vehicle::orderBy('id')->get();
+        if (empty($data["vehicles"]->toArray())) {
+            return redirect()->route('vehicle.create')->withErrors(__('vehicle.create_vehicle'));
+            ;
+        }
         return view('delivery_route.create')->with("data", $data);
     }
     
@@ -118,12 +124,16 @@ class DeliveryRouteController extends Controller
         $data['warehouse_id'] = $splited_info[0];
         $data['courier_id'] = $splited_info[1];
 
+        $splited_info = explode('-', $request->input('vehicle_id'));
+        $data['vehicle_id'] = $splited_info[1];
+
         DeliveryRoute::create([
             'date' => $request->input('date'),
             'completed_deliveries' => $request->input('completed_deliveries'),
             'number_of_deliveries' => $request->input('number_of_deliveries'),
             'warehouse_id' => $data['warehouse_id'],
-            'courier_id' => $splited_info[1],
+            'courier_id' => $data['courier_id'],
+            'vehicle_id' => $data['vehicle_id'],
         ]);
 
         return redirect()->route('delivery_route.list')->with('success', __('delivery_route.succesful'));

@@ -9,7 +9,7 @@
     <div class="row">
         <div class="col-md-12">
         <div class="align-right">
-                <span class="badge rounded-pill bg-danger font-white pad-10">{{ __('user.red_info') }}</span>
+                <span class="badge rounded-pill bg-danger font-white pad-10">{{ __('warehouse.red_info') }}</span>
             </div><br/>
             <div class="card center-info">
                 <div class="card-header">{{ __('warehouse.title_list') }}</div>
