@@ -37,15 +37,15 @@
                             <td class="red-option">{{ $user->getIdCardNumber() }}</td>
                             <td class="red-option">{{ $user->getRole() }}</td>
                                 @if($user->getCompanyId() != '')
-                            <td class="red-option">{{ $user->company->getName() }}</td>
+                            <td class="red-option"><a href="{{ route('company.show', ['id'=>$user->getCompanyId()]) }}"> <strong>{{ $user->company->getName() }}</strong></a></td>
                                 @else
                             <td class="red-option">N/A</td>
                                 @endif
                                 @if($user->getWarehouseId() != '')
                                 @if($user->warehouse->getName() != '')
-                            <td class="red-option">{{ $user->warehouse->getName() }}</td>
+                            <td class="red-option"><a href="{{ route('warehouse.show', ['id'=>$user->getWarehouseId()]) }}"> <strong>{{ $user->warehouse->getName() }}</strong></a></td>
                                 @else
-                            <td class="red-option">{{ $user->getWarehouseId() }}</td>
+                            <td class="red-option"><a href="{{ route('warehouse.show', ['id'=>$user->getWarehouseId()]) }}"> <strong>{{ $user->getWarehouseId() }}</strong></a></td>
                                 @endif
                                 @else
                             <td class="red-option">N/A</td>
@@ -57,15 +57,15 @@
                             <td>{{ $user->getIdCardNumber() }}</td>
                             <td>{{ $user->getRole() }}</td>
                                 @if($user->getCompanyId() != '')
-                            <td>{{ $user->company->getName() }}</td>
+                            <td><a href="{{ route('company.show', ['id'=>$user->getCompanyId()]) }}"> <strong>{{ $user->company->getName() }}</strong></a></td>
                                 @else
                             <td>N/A</td>
                                 @endif
                                 @if($user->getWarehouseId() != '')
                                 @if($user->warehouse->getName() != '')
-                            <td>{{ $user->warehouse->getName() }}</td>
+                            <td><a href="{{ route('warehouse.show', ['id'=>$user->getWarehouseId()]) }}"> <strong>{{ $user->warehouse->getName() }}</strong></a></td>
                                 @else
-                            <td>{{ $user->getWarehouseId() }}</td>
+                            <td><a href="{{ route('warehouse.show', ['id'=>$user->getWarehouseId()]) }}"> <strong>{{ $user->getWarehouseId() }}</strong></a></td>
                                 @endif
                                 @else
                             <td>N/A</td>

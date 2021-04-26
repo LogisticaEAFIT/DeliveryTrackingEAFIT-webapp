@@ -40,12 +40,12 @@
                             <td class="green-option">{{ $delivery_route->getCompletedDeliveries() }}</td>
                             <td class="green-option">{{ $delivery_route->getState() }}</td>
                             @if($delivery_route->warehouse->getName() != '')
-                            <td class="green-option">{{ $delivery_route->warehouse->getName() }}</td>
+                            <td class="green-option"><a href="{{ route('warehouse.show', ['id'=>$delivery_route->getWarehouseId()]) }}"><strong>{{ $delivery_route->warehouse->getName() }}</strong></a></td>
                             @else
-                            <td class="green-option">{{ $delivery_route->getWarehouseId() }}</td>
+                            <td class="green-option"><a href="{{ route('warehouse.show', ['id'=>$delivery_route->getWarehouseId()]) }}"><strong>{{ $delivery_route->getWarehouseId() }}</strong></a></td>
                             @endif
-                            <td class="green-option">{{ $delivery_route->courier->getName() }}</td>
-                            <td class="green-option">{{ $delivery_route->vehicle->getName() }}</td>
+                            <td class="green-option"><a href="{{ route('user.show', ['id'=>$delivery_route->getCourierId()]) }}"><strong>{{ $delivery_route->courier->getName() }}</strong></a></td>
+                            <td class="green-option"><a href="{{ route('vehicle.show', ['id'=>$delivery_route->getVehicleId()]) }}"><strong>{{ $delivery_route->vehicle->getName() }}</strong></a></td>
                             @else
                             <td>{{ $delivery_route->getId() }}</td>
                             <td>{{ $delivery_route->getDate() }}</td>
@@ -53,12 +53,12 @@
                             <td>{{ $delivery_route->getCompletedDeliveries() }}</td>
                             <td>{{ $delivery_route->getState() }}</td>
                             @if($delivery_route->warehouse->getName() != '')
-                            <td>{{ $delivery_route->warehouse->getName() }}</td>
+                            <td><a href="{{ route('warehouse.show', ['id'=>$delivery_route->getWarehouseId()]) }}"><strong>{{ $delivery_route->warehouse->getName() }}</strong></a></td>
                             @else
-                            <td>{{ $delivery_route->getWarehouseId() }}</td>
+                            <td><a href="{{ route('warehouse.show', ['id'=>$delivery_route->getWarehouseId()]) }}"><strong>{{ $delivery_route->getWarehouseId() }}</strong></a></td>
                             @endif
-                            <td>{{ $delivery_route->courier->getName() }}</td>
-                            <td>{{ $delivery_route->vehicle->getName() }}</td>
+                            <td><a href="{{ route('user.show', ['id'=>$delivery_route->getCourierId()]) }}"><strong>{{ $delivery_route->courier->getName() }}</strong></a></td>
+                            <td><a href="{{ route('vehicle.show', ['id'=>$delivery_route->getVehicleId()]) }}"><strong>{{ $delivery_route->vehicle->getName() }}</strong></a></td>
                             @endif
                             @if(Auth::user()->getRole()!="courier")
                             <td><a href="{{ route('delivery_route.show', ['id'=>$delivery_route->getId()]) }}"> {{ __('delivery_route.label.info') }} <strong>{{ $delivery_route->getId() }}</strong></a></td>

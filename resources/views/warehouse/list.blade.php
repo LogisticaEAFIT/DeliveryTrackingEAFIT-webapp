@@ -37,7 +37,7 @@
                             <td class="red-option">{{ $warehouse->getAddress() }}</td>
                             <td class="red-option">{{ $warehouse->getLatitude() }}</td>
                             <td class="red-option">{{ $warehouse->getLongitude() }}</td>
-                            <td class="red-option">{{ $warehouse->company->getName() }}</td>
+                            <td class="red-option"><a href="{{ route('company.show', ['id'=>$warehouse->getCompanyId()]) }}"><strong>{{ $warehouse->company->getName() }}</strong></a></td>
                             @else
                             <td>{{ $warehouse->getId() }}</td>
                             <td>{{ $warehouse->getName() }}</td>
@@ -45,7 +45,7 @@
                             <td>{{ $warehouse->getAddress() }}</td>
                             <td>{{ $warehouse->getLatitude() }}</td>
                             <td>{{ $warehouse->getLongitude() }}</td>
-                            <td>{{ $warehouse->company->getName() }}</td>
+                            <td><a href="{{ route('company.show', ['id'=>$warehouse->getCompanyId()]) }}"><strong>{{ $warehouse->company->getName() }}</strong></a></td>
                             @endif
                             <td><a href="{{ route('warehouse.show', ['id'=>$warehouse->getId()]) }}"> {{ __('warehouse.label.info') }} <strong>{{ $warehouse->getId() }}</strong></a></td>
                         </tr>

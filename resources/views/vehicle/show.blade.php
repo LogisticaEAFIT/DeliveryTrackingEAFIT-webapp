@@ -30,10 +30,10 @@
                     </div><hr/>
                     <div class="row center-info">
                         <div class="col-6">
-                            <b>{{ __('vehicle.label.warehouse_id') }}</b><br /> {{ $data["vehicle"]->warehouse->getName() }}<br />
+                            <b>{{ __('vehicle.label.warehouse_id') }}</b><br /> <a href="{{ route('warehouse.show', ['id'=>$data['vehicle']->getWarehouseId()]) }}"><strong>{{ $data["vehicle"]->warehouse->getName() }}</strong></a><br />
                         </div>
                         <div class="col-6">
-                            <b>{{ __('vehicle.label.type_id') }}</b><br /> {{ $data["vehicle"]->getTypeId() }}<br />
+                            <b>{{ __('vehicle.label.type_id') }}</b><br /> <a href="{{ route('vehicle_type.show', ['id'=>$data['vehicle']->getTypeId()]) }}"><strong>{{ $data["vehicle"]->getTypeId() }}</strong></a><br />
                         </div>
                     </div><hr/>
                     <div class="row center-info">

@@ -32,14 +32,14 @@
                             <td class="red-option">{{ $vehicle->getId() }}</td>
                             <td class="red-option">{{ $vehicle->getName() }}</td>
                             <td class="red-option">{{ $vehicle->getObservations() }}</td>
-                            <td class="red-option">{{ $vehicle->warehouse->getName() }}</td>
-                            <td class="red-option">{{ $vehicle->getTypeId() }}</td>
+                            <td class="red-option"><a href="{{ route('warehouse.show', ['id'=>$vehicle->getWarehouseId()]) }}"><strong>{{ $vehicle->warehouse->getName() }}</strong></a></td>
+                            <td class="red-option"><a href="{{ route('vehicle_type.show', ['id'=>$vehicle->getTypeId()]) }}"><strong>{{ $vehicle->getTypeId() }}</strong></a></td>
                             @else
                             <td>{{ $vehicle->getId() }}</td>
                             <td>{{ $vehicle->getName() }}</td>
                             <td>{{ $vehicle->getObservations() }}</td>
-                            <td>{{ $vehicle->warehouse->getName() }}</td>
-                            <td>{{ $vehicle->getTypeId() }}</td>
+                            <td><a href="{{ route('warehouse.show', ['id'=>$vehicle->getWarehouseId()]) }}"><strong>{{ $vehicle->warehouse->getName() }}</strong></a></td>
+                            <td><a href="{{ route('vehicle_type.show', ['id'=>$vehicle->getTypeId()]) }}"><strong>{{ $vehicle->getTypeId() }}</strong></a></td>
                             @endif
                             <td><a href="{{ route('vehicle.show', ['id'=>$vehicle->getId()]) }}"> {{ __('vehicle.label.info') }} <strong>{{ $vehicle->getName() }}</strong></a></td>
                         </tr>
