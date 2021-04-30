@@ -134,17 +134,17 @@ class VehicleController extends Controller
 
     public function importExport()
     {
-       return view('vehicle.import_export');
+        return view('vehicle.import_export');
     }
 
-    public function importFile(Request $request) 
+    public function importFile(Request $request)
     {
         Excel::import(new VehiclesImport, $request->file('file')->store('temp'));
         return back();
     }
 
-    public function exportFile() 
+    public function exportFile()
     {
         return Excel::download(new VehiclesExport, 'vehicles-list.xlsx');
-    }  
+    }
 }
