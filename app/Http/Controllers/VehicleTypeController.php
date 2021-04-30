@@ -55,6 +55,10 @@ class VehicleTypeController extends Controller
     {
         $data = []; //to be sent to the view
         $data["title"] = __('vehicle_type.title');
+        $breadlist = array();
+        $breadlist[0] = array(__('pagination.home'), "home.index", null, "0");
+        $breadlist[1] = array(__('vehicle_type.title_create'), "", null, "1");
+        $data['breadlist'] = $breadlist;
         
         return view('vehicle_type.create')->with("data", $data);
     }

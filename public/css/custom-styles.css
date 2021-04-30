@@ -2,6 +2,14 @@
     padding: 20px;
 }
 
+.padding-top-20{
+    padding-top: 20px;
+}
+
+.margin-0{
+    margin: 0px;
+}
+
 .red-asterisk{
     color: red;
 }

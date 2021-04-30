@@ -182,6 +182,34 @@
             </div>
             <div id="layoutSidenav_content">
                 <main>
+                    <!-- display breadcrumb -->
+                    @if(!empty($data["breadlist"]))
+                        <div class="container-fluid padding-top-20">
+                            <ol class="breadcrumb">
+                                @foreach ($data["breadlist"] as $bread)
+                                    @if ($bread[3] == "1")
+                                        <li class="breadcrumb-item active" aria-current="page">{{$bread[0]}}</li>
+                                    @else
+                                        <li class="breadcrumb-item"><a href="{{route($bread[1],$bread[2])}}">{{$bread[0]}}</a></li>
+                                    @endif
+                            @endforeach
+                            </ol>
+                        </div>
+                    @endif
+
+                    <!-- display errors -->
+                    @if($errors->any())
+                        <div class="container-fluid">
+                            @foreach($errors->all() as $error)
+                                <div class="alert alert-danger alert-block margin-0">
+                                    <button type="button" class="close" data-dismiss="alert">x</button>
+                                    <strong>{{ $error }}</strong>
+                                </div>
+                            @endforeach
+                        </div>
+                    @endif
+
+                    <!-- display main content -->
                     @yield('content')
                 </main>
                 <footer class="py-4 bg-light mt-auto">
