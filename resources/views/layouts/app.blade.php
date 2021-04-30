@@ -121,6 +121,9 @@
                                     <a class="dropdown-item" href="{{ route('vehicle.list') }}">
                                         <div class="sb-nav-link-icon"><i class="fa fa-list-ul"></i> {{ __('vehicle.title_list2') }}</div>
                                     </a> 
+                                    <a class="dropdown-item" href="{{ route('vehicle.import_export') }}">
+                                        <div class="sb-nav-link-icon"><i class="fa fa-list-ul"></i> {{ __('vehicle.title_import_export') }}</div>
+                                    </a>
                                 </div>
                             </li>
                             @endif

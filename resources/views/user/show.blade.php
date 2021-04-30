@@ -24,7 +24,7 @@
                         </div>
                         <div class="col-3">
                             @if($data["user"]->getCompanyId() != '')
-                            <b>{{ __('user.label.company_id') }}</b><br /> {{ $data["user"]->company->getName() }}<br />
+                            <b>{{ __('user.label.company_id') }}</b><br /> <a href="{{ route('company.show', ['id'=>$data['user']->getCompanyId()]) }}"> <strong>{{ $data["user"]->company->getName() }}</strong></a><br />
                             @else
                             <b>{{ __('user.label.company_id') }}</b><br /> N/A<br />
                             @endif
@@ -32,9 +32,9 @@
                         <div class="col-3">
                             @if($data["user"]->getWarehouseId() != '')
                             @if($data["user"]->warehouse->getName() != '')
-                            <b>{{ __('user.label.warehouse_id') }}</b><br /> {{ $data["user"]->warehouse->getName() }}<br />
+                            <b>{{ __('user.label.warehouse_id') }}</b><br /> <a href="{{ route('warehouse.show', ['id'=>$data['user']->getWarehouseId()]) }}"> <strong>{{ $data["user"]->warehouse->getName() }}</strong></a><br />
                             @else
-                            <b>{{ __('user.label.warehouse_id') }}</b><br /> {{ $data["user"]->getWarehouseId() }}<br />
+                            <b>{{ __('user.label.warehouse_id') }}</b><br /> <a href="{{ route('warehouse.show', ['id'=>$data['user']->getWarehouseId()]) }}"> <strong>{{ $data["user"]->getWarehouseId() }}</strong></a><br />
                             @endif
                             @else
                             <b>{{ __('user.label.warehouse_id') }}</b><br /> N/A<br />

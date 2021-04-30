@@ -39,7 +39,7 @@
                             <b>{{ __('warehouse.label.longitude') }}</b><br /> {{ $data["warehouse"]->getLongitude() }}<br />
                         </div>
                         <div class="col-4">
-                            <b>{{ __('warehouse.label.company_id') }}</b><br /> {{ $data["warehouse"]->company->getName() }}<br />
+                            <b>{{ __('warehouse.label.company_id') }}</b><br /> <a href="{{ route('company.show', ['id'=>$data['warehouse']->getCompanyId()]) }}"><strong>{{ $data["warehouse"]->company->getName() }}</strong></a><br />
                         </div>
                     </div><hr/>
                     <div class="row center-info">
