@@ -63,13 +63,13 @@ class UserController extends Controller
         $data = []; //to be sent to the view
         $data["title"] = __('user.title');
         if (Auth::user()->getRole()=="super_admin") {
-            $data["users"] = User::orderBy('id')->with('company')->with('warehouse')->get();
+            $data["users"] = User::orderBy('id')->with('company')->with('warehouse')->paginate(5);
         } elseif (Auth::user()->getRole()=="company_admin") {
             $data["users"] = User::where('company_id', Auth::user()->getCompanyId())->orderBy('id')
-                                ->with('company')->with('warehouse')->get();
+                                ->with('company')->with('warehouse')->paginate(5);
         } elseif (Auth::user()->getRole()=="warehouse_admin") {
             $data["users"] = User::where('warehouse_id', Auth::user()->getWarehouseId())->orderBy('id')
-                                ->with('company')->with('warehouse')->get();
+                                ->with('company')->with('warehouse')->paginate(5);
         }
         
         $breadlist = array();

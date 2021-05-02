@@ -62,7 +62,7 @@ class CompanyController extends Controller
     {
         $data = []; //to be sent to the view
         $data["title"] = __('company_list.title');
-        $data["companies"] = Company::orderBy('id')->get();
+        $data["companies"] = Company::orderBy('id')->paginate(5);
 
         $breadlist = array();
         $breadlist[0] = array(__('pagination.home'), "home.index", null, "0");

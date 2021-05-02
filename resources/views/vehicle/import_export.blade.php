@@ -27,11 +27,11 @@
                             <div class="col-3"></div>
                             <div class="col-3">
                                 <button type="submit" class="btn btn-primary">
-                                    {{ __('vehicle.input.click_import') }}
+                                    <i class="fa fa-upload"></i> {{ __('vehicle.input.click_import') }}
                                 </button>
                             </div>
                             <div class="col-3">
-                                <a class="btn btn-primary" href="{{ route('vehicle.export_file') }}">{{ __('vehicle.input.click_export') }}</a>
+                                <a class="btn btn-primary" href="{{ route('vehicle.export_file') }}"><i class="fa fa-download"></i> {{ __('vehicle.input.click_export') }}</a>
                             </div>
                         </div><br/>
 

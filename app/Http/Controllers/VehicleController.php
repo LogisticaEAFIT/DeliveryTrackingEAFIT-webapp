@@ -63,17 +63,17 @@ class VehicleController extends Controller
         $data["title"] = __('vehicle.title');
 
         if (Auth::user()->getRole()=="super_admin") {
-            $data["vehicles"] = Vehicle::orderBy('id')->with('warehouse')->with('type')->get();
+            $data["vehicles"] = Vehicle::orderBy('id')->with('warehouse')->with('type')->paginate(5);
         } elseif (Auth::user()->getRole()=="company_admin") {
             $ids = [];
             foreach (Auth::user()->company->warehouses as $warehouse) {
                 array_push($ids, $warehouse->getId());
             }
             $data["vehicles"] = Vehicle::whereIn('warehouse_id', $ids)->orderBy('id')
-                                ->with('warehouse')->with('type')->get();
+                                ->with('warehouse')->with('type')->paginate(5);
         } elseif (Auth::user()->getRole()=="warehouse_admin") {
             $data["vehicles"] = Vehicle::where('warehouse_id', Auth::user()->getWarehouseId())
-                                        ->orderBy('id')->with('warehouse')->with('type')->get();
+                                        ->orderBy('id')->with('warehouse')->with('type')->paginate(5);
         }
 
         $breadlist = array();

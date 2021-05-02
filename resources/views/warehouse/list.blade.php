@@ -48,7 +48,10 @@
                         @endforeach
                     </tbody>
                 </table>
-            </div>
+            </div><br/>
+            <nav class="center-info" aria-label="Page navigation example">
+                {{$data["warehouses"]->links()}}
+            </nav>
         </div>
     </div>
 </div>

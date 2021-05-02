@@ -39,7 +39,10 @@
                         @endforeach
                     </tbody>
                 </table>
-            </div>
+            </div><br/>
+            <nav class="center-info" aria-label="Page navigation example">
+                {{$data["vehicle_types"]->links()}}
+            </nav>
         </div>
     </div>
 </div>

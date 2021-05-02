@@ -53,7 +53,7 @@ class VehicleTypeController extends Controller
     {
         $data = []; //to be sent to the view
         $data["title"] = __('vehicle_type.title');
-        $data["vehicle_types"] = VehicleType::orderBy('id')->get();
+        $data["vehicle_types"] = VehicleType::orderBy('id')->paginate(5);
 
         $breadlist = array();
         $breadlist[0] = array(__('pagination.home'), "home.index", null, "0");

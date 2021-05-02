@@ -63,20 +63,23 @@ class DeliveryRouteController extends Controller
 
         if (Auth::user()->getRole()=="super_admin") {
             $data["delivery_routes"] = DeliveryRoute::orderBy('id')->with('warehouse')
-                                        ->with('courier')->with('vehicle')->get();
+                                        ->with('courier')->with('vehicle')->paginate(5);
         } elseif (Auth::user()->getRole()=="company_admin") {
             $ids = [];
             foreach (Auth::user()->company->warehouses as $warehouse) {
                 array_push($ids, $warehouse->getId());
             }
             $data["delivery_routes"] = DeliveryRoute::whereIn('warehouse_id', $ids)
-                                        ->orderBy('id')->with('warehouse')->with('courier')->with('vehicle')->get();
+                                        ->orderBy('id')->with('warehouse')->with('courier')
+                                        ->with('vehicle')->paginate(5);
         } elseif (Auth::user()->getRole()=="warehouse_admin") {
             $data["delivery_routes"] = DeliveryRoute::where('warehouse_id', Auth::user()->getWarehouseId())
-                                        ->orderBy('id')->with('warehouse')->with('courier')->with('vehicle')->get();
+                                        ->orderBy('id')->with('warehouse')->with('courier')
+                                        ->with('vehicle')->paginate(5);
         } elseif (Auth::user()->getRole()=="courier") {
             $data["delivery_routes"] = DeliveryRoute::where('courier_id', Auth::user()->getId())
-                                        ->orderBy('id')->with('warehouse')->with('courier')->with('vehicle')->get();
+                                        ->orderBy('id')->with('warehouse')->with('courier')
+                                        ->with('vehicle')->paginate(5);
         }
 
         $breadlist = array();

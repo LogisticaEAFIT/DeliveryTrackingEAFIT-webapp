@@ -63,10 +63,10 @@ class WarehouseController extends Controller
         $data["title"] = __('warehouse_list.title');
 
         if (Auth::user()->getRole()=="super_admin") {
-            $data["warehouses"] = Warehouse::orderBy('id')->with('company')->get();
+            $data["warehouses"] = Warehouse::orderBy('id')->with('company')->paginate(5);
         } else {
             $data["warehouses"] = Warehouse::where('company_id', Auth::user()->getCompanyId())
-                                    ->orderBy('id')->with('company')->get();
+                                    ->orderBy('id')->with('company')->paginate(5);
         }
 
         $breadlist = array();
