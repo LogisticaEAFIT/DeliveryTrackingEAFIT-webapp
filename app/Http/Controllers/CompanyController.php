@@ -3,12 +3,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\CompaniesExport;
 use App\Http\Controllers\Controller;
+use App\Imports\CompaniesImport;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use App\Models\Company;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
+use Maatwebsite\Excel\Facades\Excel;
 use Exception;
 
 class CompanyController extends Controller
@@ -141,5 +144,26 @@ class CompanyController extends Controller
         $company->setIsActive('0');
         $company->save();
         return redirect()->route('company.list');
+    }
+
+    public function importExport()
+    {
+        $breadlist = array();
+        $breadlist[0] = array(__('pagination.home'), "home.index", null, "0");
+        $breadlist[1] = array(__('company.title_import_export'), "", null, "1");
+        $data['breadlist'] = $breadlist;
+
+        return view('company.import_export')->with("data", $data);
+    }
+
+    public function importFile(Request $request)
+    {
+        Excel::import(new CompaniesImport, $request->file('file')->store('temp'));
+        return back();
+    }
+
+    public function exportFile()
+    {
+        return Excel::download(new CompaniesExport, 'companies-list.xlsx');
     }
 }

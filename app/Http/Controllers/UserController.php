@@ -3,11 +3,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\UsersExport;
 use App\Http\Controllers\Controller;
+use App\Imports\UsersImport;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 use Exception;
 
 class UserController extends Controller
@@ -127,5 +130,26 @@ class UserController extends Controller
         $user->setIsActive('0');
         $user->save();
         return redirect()->route('user.list');
+    }
+
+    public function importExport()
+    {
+        $breadlist = array();
+        $breadlist[0] = array(__('pagination.home'), "home.index", null, "0");
+        $breadlist[1] = array(__('user.title_import_export'), "", null, "1");
+        $data['breadlist'] = $breadlist;
+
+        return view('user.import_export')->with("data", $data);
+    }
+
+    public function importFile(Request $request)
+    {
+        Excel::import(new UsersImport, $request->file('file')->store('temp'));
+        return back();
+    }
+
+    public function exportFile()
+    {
+        return Excel::download(new UsersExport, 'users-list.xlsx');
     }
 }

@@ -70,6 +70,9 @@
                                     <a class="dropdown-item" href="{{ route('user.list') }}">
                                         <div class="sb-nav-link-icon"><i class="fa fa-list-ul"></i> {{ __('user.title_list2') }}</div>
                                     </a>
+                                    <a class="dropdown-item" href="{{ route('user.import_export') }}">
+                                        <div class="sb-nav-link-icon"><i class="fa fa-cloud"></i> {{ __('user.title_import_export') }}</div>
+                                    </a>
                                 </div>
                             </li>
                             @endif
@@ -87,6 +90,9 @@
                                     <a class="dropdown-item" href="{{ route('company.list') }}">
                                         <div class="sb-nav-link-icon"><i class="fa fa-list-ul"></i> {{ __('company.title_list2') }}</div>
                                     </a> 
+                                    <a class="dropdown-item" href="{{ route('company.import_export') }}">
+                                        <div class="sb-nav-link-icon"><i class="fa fa-cloud"></i> {{ __('company.title_import_export') }}</div>
+                                    </a>
                                 </div>
                             </li>
                             @endif
@@ -103,6 +109,9 @@
                                     <a class="dropdown-item" href="{{ route('warehouse.list') }}">
                                         <div class="sb-nav-link-icon"><i class="fa fa-list-ul"></i> {{ __('warehouse.title_list2') }}</div>
                                     </a> 
+                                    <a class="dropdown-item" href="{{ route('warehouse.import_export') }}">
+                                        <div class="sb-nav-link-icon"><i class="fa fa-cloud"></i> {{ __('warehouse.title_import_export') }}</div>
+                                    </a>
                                 </div>
                             </li>
                             @endif
@@ -142,6 +151,9 @@
                                     <a class="dropdown-item" href="{{ route('vehicle_type.list') }}">
                                         <div class="sb-nav-link-icon"><i class="fa fa-list-ul"></i> {{ __('vehicle_type.title_list2') }}</div>
                                     </a> 
+                                    <a class="dropdown-item" href="{{ route('vehicle_type.import_export') }}">
+                                        <div class="sb-nav-link-icon"><i class="fa fa-cloud"></i> {{ __('vehicle_type.title_import_export') }}</div>
+                                    </a>
                                 </div>
                             </li>
                             @endif
@@ -159,6 +171,9 @@
                                 @endif
                                     <a class="dropdown-item" href="{{ route('delivery_route.list') }}">
                                         <div class="sb-nav-link-icon"><i class="fa fa-list-ul"></i> {{ __('delivery_route.title_list2') }}</div>
+                                    </a>
+                                    <a class="dropdown-item" href="{{ route('delivery_route.import_export') }}">
+                                        <div class="sb-nav-link-icon"><i class="fa fa-cloud"></i> {{ __('delivery_route.title_import_export') }}</div>
                                     </a>
                                 </div>
                             </li>

@@ -3,12 +3,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\WarehousesExport;
 use App\Http\Controllers\Controller;
+use App\Imports\WarehousesImport;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use App\Models\Warehouse;
 use App\Models\Company;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 use Exception;
 
 class WarehouseController extends Controller
@@ -160,5 +163,26 @@ class WarehouseController extends Controller
         $warehouse->setIsActive('0');
         $warehouse->save();
         return redirect()->route('warehouse.list');
+    }
+
+    public function importExport()
+    {
+        $breadlist = array();
+        $breadlist[0] = array(__('pagination.home'), "home.index", null, "0");
+        $breadlist[1] = array(__('warehouse.title_import_export'), "", null, "1");
+        $data['breadlist'] = $breadlist;
+
+        return view('warehouse.import_export')->with("data", $data);
+    }
+
+    public function importFile(Request $request)
+    {
+        Excel::import(new WarehousesImport, $request->file('file')->store('temp'));
+        return back();
+    }
+
+    public function exportFile()
+    {
+        return Excel::download(new WarehousesExport, 'warehouses-list.xlsx');
     }
 }

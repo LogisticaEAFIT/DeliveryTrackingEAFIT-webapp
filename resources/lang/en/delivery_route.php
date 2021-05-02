@@ -18,6 +18,7 @@ return [
     'title_list' => 'Delivery routes',
     'title_list2' => 'List delivery routes',
     'navbar_title' => 'Delivery Route',
+    'title_import_export' => 'Import - Export delivery routes',
     'create_courier' => 'You must create a courier first',
     'green_info' => 'Delivery routes in green color are finished',
     'input' => [
@@ -27,6 +28,8 @@ return [
         'create' => 'Create',
         'update' => 'Update',
         'finish_it' => 'Finish it',
+        'click_import' => 'Click to import',
+        'click_export' => 'Click to export',
     ],
     'label' => [
         'date' => 'Date',
@@ -39,6 +42,7 @@ return [
         'id' => 'ID',
         'about' => 'About',
         'info' => 'More info about ',
+        'browse_file' => 'Browse file',
     ],
     'succesful_create' => 'Delivery route created successfully!',
     'succesful_update' => 'Delivery route updated successfully!',

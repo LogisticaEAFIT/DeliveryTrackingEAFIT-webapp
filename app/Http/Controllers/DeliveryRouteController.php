@@ -3,7 +3,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\DeliveryRoutesExport;
 use App\Http\Controllers\Controller;
+use App\Imports\DeliveryRoutesImport;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use App\Models\Warehouse;
 use App\Models\DeliveryRoute;
@@ -11,6 +13,7 @@ use App\Models\User;
 use App\Models\Vehicle;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 use Exception;
 
 class DeliveryRouteController extends Controller
@@ -186,5 +189,26 @@ class DeliveryRouteController extends Controller
         $delivery_route->setState('finished');
         $delivery_route->save();
         return redirect()->route('delivery_route.list');
+    }
+
+    public function importExport()
+    {
+        $breadlist = array();
+        $breadlist[0] = array(__('pagination.home'), "home.index", null, "0");
+        $breadlist[1] = array(__('delivery_route.title_import_export'), "", null, "1");
+        $data['breadlist'] = $breadlist;
+
+        return view('delivery_route.import_export')->with("data", $data);
+    }
+
+    public function importFile(Request $request)
+    {
+        Excel::import(new DeliveryRoutesImport, $request->file('file')->store('temp'));
+        return back();
+    }
+
+    public function exportFile()
+    {
+        return Excel::download(new DeliveryRoutesExport, 'delivery-routes-list.xlsx');
     }
 }

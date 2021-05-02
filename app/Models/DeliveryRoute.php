@@ -10,7 +10,7 @@ class DeliveryRoute extends Model
 {
     //attributes id, date, completed_deliveries, number_of_deliveries, state,
     //warehouse_id, courier_id, vehicle_id, created_at, updated_at
-    protected $fillable = ['date', 'completed_deliveries', 'number_of_deliveries', 'state',
+    protected $fillable = ['date', 'completed_deliveries', 'number_of_deliveries',
                             'warehouse_id', 'courier_id', 'vehicle_id'];
 
     public function getId()

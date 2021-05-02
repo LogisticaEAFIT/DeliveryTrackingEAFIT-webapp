@@ -3,13 +3,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\VehicleTypesExport;
 use App\Http\Controllers\Controller;
+use App\Imports\VehicleTypesImport;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use App\Models\Warehouse;
 use App\Models\Vehicle;
 use App\Models\VehicleType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 use Exception;
 
 class VehicleTypeController extends Controller
@@ -131,5 +134,26 @@ class VehicleTypeController extends Controller
         $vehicle_type->setIsActive('0');
         $vehicle_type->save();
         return redirect()->route('vehicle_type.list');
+    }
+
+    public function importExport()
+    {
+        $breadlist = array();
+        $breadlist[0] = array(__('pagination.home'), "home.index", null, "0");
+        $breadlist[1] = array(__('vehicle_type.title_import_export'), "", null, "1");
+        $data['breadlist'] = $breadlist;
+
+        return view('vehicle_type.import_export')->with("data", $data);
+    }
+
+    public function importFile(Request $request)
+    {
+        Excel::import(new VehicleTypesImport, $request->file('file')->store('temp'));
+        return back();
+    }
+
+    public function exportFile()
+    {
+        return Excel::download(new VehicleTypesExport, 'vehicle-types-list.xlsx');
     }
 }
