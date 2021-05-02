@@ -17,6 +17,7 @@ return [
     'title_update' => 'Update company',
     'title_list' => 'Companies',
     'title_list2' => 'List companies',
+    'title_import_export' => 'Import - Export companies',
     'navbar_title' => 'Company',
     'red_info' => 'Companies in red color are disabled',
     'input' => [
@@ -25,6 +26,8 @@ return [
         'create' => 'Create',
         'update' => 'Update',
         'deactivate' => 'Deactivate',
+        'click_import' => 'Click to import',
+        'click_export' => 'Click to export',
     ],
     'label' => [
         'name' => 'Name',
@@ -33,6 +36,7 @@ return [
         'id' => 'ID',
         'about' => 'About',
         'info' => 'More info about ',
+        'browse_file' => 'Browse file',
     ],
     'succesful_create' => 'Company created successfully!',
     'succesful_update' => 'Company updated successfully!',

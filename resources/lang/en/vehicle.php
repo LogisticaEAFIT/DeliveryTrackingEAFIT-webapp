@@ -17,7 +17,7 @@ return [
     'title_update' => 'Update vehicle',
     'title_list' => 'Vehicles',
     'title_list2' => 'List vehicles',
-    'title_import_export' => 'Import/Export vehicles',
+    'title_import_export' => 'Import - Export vehicles',
     'navbar_title' => 'Vehicle',
     'create_vehicle' => 'You must create a vehicle first',
     'red_info' => 'Vehicles in red color are disabled',

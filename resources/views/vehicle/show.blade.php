@@ -2,13 +2,6 @@
 
 @section('content')
 <div class="container-fluid padding-20">
-    <ol class="breadcrumb mb-4">
-        <li class="breadcrumb-item"><a href="{{ route('home.index') }}">{{ __('pagination.home') }}</a></li>
-        @if(Auth::user()->getRole()=="super_admin" || Auth::user()->getRole()=="company_admin" || Auth::user()->getRole()=="warehouse_admin")
-        <li class="breadcrumb-item"><a href="{{ route('vehicle.list') }}">{{ __('vehicle.title_list') }}</a></li>
-        @endif
-        <li class="breadcrumb-item active">{{ $data["vehicle"]->getName() }}</li>
-    </ol>
     <div class="row">
         <div class="col-md-12">
             <div class="card">
@@ -30,7 +23,7 @@
                     </div><hr/>
                     <div class="row center-info">
                         <div class="col-6">
-                            <b>{{ __('vehicle.label.warehouse_id') }}</b><br /> <a href="{{ route('warehouse.show', ['id'=>$data['vehicle']->getWarehouseId()]) }}"><strong>{{ $data["vehicle"]->warehouse->getName() }}</strong></a><br />
+                            <b>{{ __('vehicle.label.warehouse_id') }}</b><br /> <a href="{{ route('warehouse.show', ['id'=>$data['vehicle']->getWarehouseId()]) }}"><strong>{{ $data["vehicle"]->getWarehouseId() }} - {{ $data["vehicle"]->warehouse->getName() }}</strong></a><br />
                         </div>
                         <div class="col-6">
                             <b>{{ __('vehicle.label.type_id') }}</b><br /> <a href="{{ route('vehicle_type.show', ['id'=>$data['vehicle']->getTypeId()]) }}"><strong>{{ $data["vehicle"]->getTypeId() }}</strong></a><br />

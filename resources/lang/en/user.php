@@ -16,6 +16,7 @@ return [
     'title_update' => 'Update user',
     'title_list' => 'Users',
     'title_list2' => 'List users',
+    'title_import_export' => 'Import - Export users',
     'navbar_title' => 'User',
     'red_info' => 'Users in red color are disabled',
     'input' => [
@@ -25,6 +26,8 @@ return [
         'role' => 'Enter role',
         'update' => 'Update',
         'deactivate' => 'Deactivate',
+        'click_import' => 'Click to import',
+        'click_export' => 'Click to export',
     ],
     'label' => [
         'name' => 'Name',
@@ -36,6 +39,7 @@ return [
         'id' => 'ID',
         'about' => 'About',
         'info' => 'More info about ',
+        'browse_file' => 'Browse file',
     ],
     'succesful_update' => 'User updated successfully!',
 ];

@@ -42,6 +42,18 @@ class VehicleController extends Controller
         }
 
         $data["vehicle"] = $vehicle;
+
+        $breadlist = array();
+        $breadlist[0] = array(__('pagination.home'), "home.index", null, "0");
+        if (Auth::user()->getRole()=="super_admin" || Auth::user()->getRole()=="company_admin"
+        || Auth::user()->getRole()=="warehouse_admin") {
+            $breadlist[1] = array(__('vehicle.title_list'), "vehicle.list", null, "0");
+            $breadlist[2] = array($data["vehicle"]->getName(), "", null, "1");
+        } else {
+            $breadlist[1] = array($data["vehicle"]->getName(), "", null, "1");
+        }
+        $data['breadlist'] = $breadlist;
+
         return view('vehicle.show')->with("data", $data);
     }
     
@@ -51,17 +63,23 @@ class VehicleController extends Controller
         $data["title"] = __('vehicle.title');
 
         if (Auth::user()->getRole()=="super_admin") {
-            $data["vehicles"] = Vehicle::orderBy('id')->get();
+            $data["vehicles"] = Vehicle::orderBy('id')->with('warehouse')->with('type')->paginate(5);
         } elseif (Auth::user()->getRole()=="company_admin") {
             $ids = [];
             foreach (Auth::user()->company->warehouses as $warehouse) {
                 array_push($ids, $warehouse->getId());
             }
-            $data["vehicles"] = Vehicle::whereIn('warehouse_id', $ids)->orderBy('id')->get();
+            $data["vehicles"] = Vehicle::whereIn('warehouse_id', $ids)->orderBy('id')
+                                ->with('warehouse')->with('type')->paginate(5);
         } elseif (Auth::user()->getRole()=="warehouse_admin") {
             $data["vehicles"] = Vehicle::where('warehouse_id', Auth::user()->getWarehouseId())
-                                        ->orderBy('id')->get();
+                                        ->orderBy('id')->with('warehouse')->with('type')->paginate(5);
         }
+
+        $breadlist = array();
+        $breadlist[0] = array(__('pagination.home'), "home.index", null, "0");
+        $breadlist[1] = array(__('vehicle.title_list'), "", null, "1");
+        $data['breadlist'] = $breadlist;
 
         return view('vehicle.list')->with("data", $data);
     }
@@ -79,6 +97,12 @@ class VehicleController extends Controller
         if (empty($data["vehicle_types"]->toArray())) {
             return redirect()->route('vehicle_type.create')->withErrors(__('vehicle_type.create_vehicle_type'));
         }
+
+        $breadlist = array();
+        $breadlist[0] = array(__('pagination.home'), "home.index", null, "0");
+        $breadlist[1] = array(__('vehicle.title_create'), "", null, "1");
+        $data['breadlist'] = $breadlist;
+
         return view('vehicle.create')->with("data", $data);
     }
     
@@ -94,6 +118,19 @@ class VehicleController extends Controller
         }
 
         $data["vehicle"] = $vehicle;
+
+        $breadlist = array();
+        $breadlist[0] = array(__('pagination.home'), "home.index", null, "0");
+        if (Auth::user()->getRole()=="super_admin" || Auth::user()->getRole()=="company_admin"
+        || Auth::user()->getRole()=="warehouse_admin") {
+            $breadlist[1] = array(__('vehicle.title_list'), "vehicle.list", null, "0");
+            $breadlist[2] = array($data["vehicle"]->getName(), "vehicle.show", ['id'=>$data['vehicle']->getId()], "0");
+            $breadlist[3] = array(__('vehicle.title_update'), "", null, "1");
+        } else {
+            $breadlist[1] = array($data["vehicle"]->getName(), "vehicle.show", ['id'=>$data['vehicle']->getId()], "0");
+            $breadlist[2] = array(__('vehicle.title_update'), "", null, "1");
+        }
+        $data['breadlist'] = $breadlist;
 
         return view('vehicle.update')->with("data", $data);
     }
@@ -134,7 +171,12 @@ class VehicleController extends Controller
 
     public function importExport()
     {
-        return view('vehicle.import_export');
+        $breadlist = array();
+        $breadlist[0] = array(__('pagination.home'), "home.index", null, "0");
+        $breadlist[1] = array(__('vehicle.title_import_export'), "", null, "1");
+        $data['breadlist'] = $breadlist;
+
+        return view('vehicle.import_export')->with("data", $data);
     }
 
     public function importFile(Request $request)

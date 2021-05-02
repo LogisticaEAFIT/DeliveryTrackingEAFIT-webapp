@@ -3,12 +3,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\CompaniesExport;
 use App\Http\Controllers\Controller;
+use App\Imports\CompaniesImport;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use App\Models\Company;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
+use Maatwebsite\Excel\Facades\Excel;
 use Exception;
 
 class CompanyController extends Controller
@@ -43,6 +46,18 @@ class CompanyController extends Controller
 
         $data["title"] = $company->getName();
         $data["company"] = $company;
+
+        $breadlist = array();
+        $breadlist[0] = array(__('pagination.home'), "home.index", null, "0");
+        if (Auth::user()->getRole()=="super_admin") {
+            $breadlist[1] = array(__('company.title_list'), "company.list", null, "0");
+            $breadlist[2] = array($data["company"]->getName(), "", null, "1");
+        } else {
+            $breadlist[1] = array($data["company"]->getName(), "", null, "1");
+        }
+        $data['breadlist'] = $breadlist;
+
+
         return view('company.show')->with("data", $data);
     }
     
@@ -50,7 +65,12 @@ class CompanyController extends Controller
     {
         $data = []; //to be sent to the view
         $data["title"] = __('company_list.title');
-        $data["companies"] = Company::orderBy('id')->get();
+        $data["companies"] = Company::orderBy('id')->paginate(5);
+
+        $breadlist = array();
+        $breadlist[0] = array(__('pagination.home'), "home.index", null, "0");
+        $breadlist[1] = array(__('company.title_list'), "", null, "1");
+        $data['breadlist'] = $breadlist;
 
         return view('company.list')->with("data", $data);
     }
@@ -59,6 +79,11 @@ class CompanyController extends Controller
     {
         $data = []; //to be sent to the view
         $data["title"] = __('company_create.title');
+
+        $breadlist = array();
+        $breadlist[0] = array(__('pagination.home'), "home.index", null, "0");
+        $breadlist[1] = array(__('company.title_create'), "", null, "1");
+        $data['breadlist'] = $breadlist;
 
         return view('company.create')->with("data", $data);
     }
@@ -75,6 +100,18 @@ class CompanyController extends Controller
         }
 
         $data["company"] = $company;
+
+        $breadlist = array();
+        $breadlist[0] = array(__('pagination.home'), "home.index", null, "0");
+        if (Auth::user()->getRole()=="super_admin") {
+            $breadlist[1] = array(__('company.title_list'), "company.list", null, "0");
+            $breadlist[2] = array($data["company"]->getName(), "company.show", ['id'=>$data['company']->getId()], "0");
+            $breadlist[3] = array(__('company.title_update'), "", null, "1");
+        } else {
+            $breadlist[1] = array($data["company"]->getName(), "company.show", ['id'=>$data['company']->getId()], "0");
+            $breadlist[2] = array(__('company.title_update'), "", null, "1");
+        }
+        $data['breadlist'] = $breadlist;
 
         return view('company.update')->with("data", $data);
     }
@@ -107,5 +144,26 @@ class CompanyController extends Controller
         $company->setIsActive('0');
         $company->save();
         return redirect()->route('company.list');
+    }
+
+    public function importExport()
+    {
+        $breadlist = array();
+        $breadlist[0] = array(__('pagination.home'), "home.index", null, "0");
+        $breadlist[1] = array(__('company.title_import_export'), "", null, "1");
+        $data['breadlist'] = $breadlist;
+
+        return view('company.import_export')->with("data", $data);
+    }
+
+    public function importFile(Request $request)
+    {
+        Excel::import(new CompaniesImport, $request->file('file')->store('temp'));
+        return back();
+    }
+
+    public function exportFile()
+    {
+        return Excel::download(new CompaniesExport, 'companies-list.xlsx');
     }
 }

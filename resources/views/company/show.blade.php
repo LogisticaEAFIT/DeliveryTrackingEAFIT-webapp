@@ -2,13 +2,6 @@
 
 @section('content')
 <div class="container-fluid padding-20">
-    <ol class="breadcrumb mb-4">
-        <li class="breadcrumb-item"><a href="{{ route('home.index') }}">{{ __('pagination.home') }}</a></li>
-        @if(Auth::user()->getRole()=="super_admin")
-        <li class="breadcrumb-item"><a href="{{ route('company.list') }}">{{ __('company.title_list') }}</a></li>
-        @endif
-        <li class="breadcrumb-item active">{{ $data["company"]->getName() }}</li>
-    </ol>
     <div class="row">
         <div class="col-md-12">
             <div class="card">

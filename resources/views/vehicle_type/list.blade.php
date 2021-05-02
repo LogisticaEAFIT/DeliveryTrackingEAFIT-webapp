@@ -2,10 +2,6 @@
 
 @section('content')
 <div class="container-fluid padding-20">
-    <ol class="breadcrumb mb-4">
-        <li class="breadcrumb-item"><a href="{{ route('home.index') }}">{{ __('pagination.home') }}</a></li>
-        <li class="breadcrumb-item active">{{ __('vehicle_type.title_list') }}</li>
-    </ol>
     <div class="row">
         <div class="col-md-12">
         <div class="align-right">
@@ -43,7 +39,10 @@
                         @endforeach
                     </tbody>
                 </table>
-            </div>
+            </div><br/>
+            <nav class="center-info" aria-label="Page navigation example">
+                {{$data["vehicle_types"]->links()}}
+            </nav>
         </div>
     </div>
 </div>
