@@ -2,14 +2,10 @@
 
 @section('content')
 <div class="container-fluid padding-20">
-    <ol class="breadcrumb mb-4">
-        <li class="breadcrumb-item"><a href="{{ route('home.index') }}">{{ __('pagination.home') }}</a></li>
-        <li class="breadcrumb-item active">{{ __('vehicle.title_create') }}</li>
-    </ol>
     <div class="row">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">{{ __('vehicle.title_create') }}</div>
+                <div class="card-header">{{ __('vehicle.title_import_export') }}</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('vehicle.import_file') }}" enctype="multipart/form-data">

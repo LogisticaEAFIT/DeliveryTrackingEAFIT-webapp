@@ -2,13 +2,6 @@
 
 @section('content')
 <div class="container-fluid padding-20">
-    <ol class="breadcrumb mb-4">
-        <li class="breadcrumb-item"><a href="{{ route('home.index') }}">{{ __('pagination.home') }}</a></li>
-        @if(Auth::user()->getRole()=="super_admin" || Auth::user()->getRole()=="company_admin")
-        <li class="breadcrumb-item"><a href="{{ route('user.list') }}">{{ __('user.title_list') }}</a></li>
-        @endif
-        <li class="breadcrumb-item active">{{ $data["user"]->getName() }}</li>
-    </ol>
     <div class="row">
         <div class="col-md-12">
             <div class="card">
@@ -24,7 +17,7 @@
                         </div>
                         <div class="col-3">
                             @if($data["user"]->getCompanyId() != '')
-                            <b>{{ __('user.label.company_id') }}</b><br /> <a href="{{ route('company.show', ['id'=>$data['user']->getCompanyId()]) }}"> <strong>{{ $data["user"]->company->getName() }}</strong></a><br />
+                            <b>{{ __('user.label.company_id') }}</b><br /> <a href="{{ route('company.show', ['id'=>$data['user']->getCompanyId()]) }}"> <strong>{{ $data["user"]->getCompanyId() }} - {{ $data["user"]->company->getName() }}</strong></a><br />
                             @else
                             <b>{{ __('user.label.company_id') }}</b><br /> N/A<br />
                             @endif
@@ -32,7 +25,7 @@
                         <div class="col-3">
                             @if($data["user"]->getWarehouseId() != '')
                             @if($data["user"]->warehouse->getName() != '')
-                            <b>{{ __('user.label.warehouse_id') }}</b><br /> <a href="{{ route('warehouse.show', ['id'=>$data['user']->getWarehouseId()]) }}"> <strong>{{ $data["user"]->warehouse->getName() }}</strong></a><br />
+                            <b>{{ __('user.label.warehouse_id') }}</b><br /> <a href="{{ route('warehouse.show', ['id'=>$data['user']->getWarehouseId()]) }}"> <strong>{{ $data["user"]->getWarehouseId() }} - {{ $data["user"]->warehouse->getName() }}</strong></a><br />
                             @else
                             <b>{{ __('user.label.warehouse_id') }}</b><br /> <a href="{{ route('warehouse.show', ['id'=>$data['user']->getWarehouseId()]) }}"> <strong>{{ $data["user"]->getWarehouseId() }}</strong></a><br />
                             @endif

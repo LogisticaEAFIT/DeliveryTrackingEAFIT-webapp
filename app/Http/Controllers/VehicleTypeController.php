@@ -39,6 +39,13 @@ class VehicleTypeController extends Controller
         }
 
         $data["vehicle_type"] = $vehicle_type;
+
+        $breadlist = array();
+        $breadlist[0] = array(__('pagination.home'), "home.index", null, "0");
+        $breadlist[1] = array(__('vehicle_type.title_list'), "vehicle_type.list", null, "0");
+        $breadlist[2] = array($data["vehicle_type"]->getId(), "", null, "1");
+        $data['breadlist'] = $breadlist;
+
         return view('vehicle_type.show')->with("data", $data);
     }
     
@@ -47,6 +54,11 @@ class VehicleTypeController extends Controller
         $data = []; //to be sent to the view
         $data["title"] = __('vehicle_type.title');
         $data["vehicle_types"] = VehicleType::orderBy('id')->get();
+
+        $breadlist = array();
+        $breadlist[0] = array(__('pagination.home'), "home.index", null, "0");
+        $breadlist[1] = array(__('vehicle_type.title_list'), "", null, "1");
+        $data['breadlist'] = $breadlist;
        
         return view('vehicle_type.list')->with("data", $data);
     }
@@ -75,6 +87,14 @@ class VehicleTypeController extends Controller
         }
 
         $data["vehicle_type"] = $vehicle_type;
+
+        $breadlist = array();
+        $breadlist[0] = array(__('pagination.home'), "home.index", null, "0");
+        $breadlist[1] = array(__('vehicle_type.title_list'), "vehicle_type.list", null, "0");
+        $breadlist[2] = array($data['vehicle_type']->getId(), "vehicle_type.show",
+                        ['id'=>$data['vehicle_type']->getId()], "0");
+        $breadlist[3] = array(__('vehicle_type.title_update'), "", null, "1");
+        $data['breadlist'] = $breadlist;
 
         return view('vehicle_type.update')->with("data", $data);
     }

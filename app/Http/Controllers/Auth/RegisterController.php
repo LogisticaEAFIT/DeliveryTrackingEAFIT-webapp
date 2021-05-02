@@ -72,6 +72,12 @@ class RegisterController extends Controller
         } else {
             $data["warehouses"] = Warehouse::all();
         }
+
+        $breadlist = array();
+        $breadlist[0] = array(__('pagination.home'), "home.index", null, "0");
+        $breadlist[1] = array(__('Register'), "", null, "1");
+        $data['breadlist'] = $breadlist;
+
         return view('auth.register')->with("data", $data);
     }
 

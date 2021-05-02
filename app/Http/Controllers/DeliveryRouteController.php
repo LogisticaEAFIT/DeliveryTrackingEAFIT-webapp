@@ -41,6 +41,18 @@ class DeliveryRouteController extends Controller
         }
 
         $data["delivery_route"] = $delivery_route;
+
+        $breadlist = array();
+        $breadlist[0] = array(__('pagination.home'), "home.index", null, "0");
+        if (Auth::user()->getRole()=="super_admin" || Auth::user()->getRole()=="company_admin"
+        || Auth::user()->getRole()=="warehouse_admin") {
+            $breadlist[1] = array(__('delivery_route.title_list'), "delivery_route.list", null, "0");
+            $breadlist[2] = array($data["delivery_route"]->getId(), "", null, "1");
+        } else {
+            $breadlist[1] = array($data["delivery_route"]->getId(), "", null, "1");
+        }
+        $data['breadlist'] = $breadlist;
+
         return view('delivery_route.show')->with("data", $data);
     }
     
@@ -50,20 +62,27 @@ class DeliveryRouteController extends Controller
         $data["title"] = __('delivery_route.title');
 
         if (Auth::user()->getRole()=="super_admin") {
-            $data["delivery_routes"] = DeliveryRoute::orderBy('id')->get();
+            $data["delivery_routes"] = DeliveryRoute::orderBy('id')->with('warehouse')
+                                        ->with('courier')->with('vehicle')->get();
         } elseif (Auth::user()->getRole()=="company_admin") {
             $ids = [];
             foreach (Auth::user()->company->warehouses as $warehouse) {
                 array_push($ids, $warehouse->getId());
             }
-            $data["delivery_routes"] = DeliveryRoute::whereIn('warehouse_id', $ids)->orderBy('id')->get();
+            $data["delivery_routes"] = DeliveryRoute::whereIn('warehouse_id', $ids)
+                                        ->orderBy('id')->with('warehouse')->with('courier')->with('vehicle')->get();
         } elseif (Auth::user()->getRole()=="warehouse_admin") {
             $data["delivery_routes"] = DeliveryRoute::where('warehouse_id', Auth::user()->getWarehouseId())
-                                        ->orderBy('id')->get();
+                                        ->orderBy('id')->with('warehouse')->with('courier')->with('vehicle')->get();
         } elseif (Auth::user()->getRole()=="courier") {
             $data["delivery_routes"] = DeliveryRoute::where('courier_id', Auth::user()->getId())
-                                        ->orderBy('id')->get();
+                                        ->orderBy('id')->with('warehouse')->with('courier')->with('vehicle')->get();
         }
+
+        $breadlist = array();
+        $breadlist[0] = array(__('pagination.home'), "home.index", null, "0");
+        $breadlist[1] = array(__('delivery_route.title_list'), "", null, "1");
+        $data['breadlist'] = $breadlist;
 
         return view('delivery_route.list')->with("data", $data);
     }
@@ -76,13 +95,17 @@ class DeliveryRouteController extends Controller
         $data["couriers"] = User::where('role', 'courier')->get();
         if (empty($data["couriers"]->toArray())) {
             return redirect()->route('user.create')->withErrors(__('user.create_courier'));
-            ;
         }
         $data["vehicles"] = Vehicle::orderBy('id')->get();
         if (empty($data["vehicles"]->toArray())) {
             return redirect()->route('vehicle.create')->withErrors(__('vehicle.create_vehicle'));
-            ;
         }
+
+        $breadlist = array();
+        $breadlist[0] = array(__('pagination.home'), "home.index", null, "0");
+        $breadlist[1] = array(__('delivery_route.title_create'), "", null, "1");
+        $data['breadlist'] = $breadlist;
+
         return view('delivery_route.create')->with("data", $data);
     }
     
@@ -98,6 +121,21 @@ class DeliveryRouteController extends Controller
         }
 
         $data["delivery_route"] = $delivery_route;
+
+        $breadlist = array();
+        $breadlist[0] = array(__('pagination.home'), "home.index", null, "0");
+        if (Auth::user()->getRole()=="super_admin" || Auth::user()->getRole()=="company_admin"
+        || Auth::user()->getRole()=="warehouse_admin") {
+            $breadlist[1] = array(__('delivery_route.title_list'), "delivery_route.list", null, "0");
+            $breadlist[2] = array($data["delivery_route"]->getId(), "delivery_route.show",
+                            ['id'=>$data['delivery_route']->getId()], "0");
+            $breadlist[3] = array(__('delivery_route.title_update'), "", null, "1");
+        } else {
+            $breadlist[1] = array($data["delivery_route"]->getId(), "delivery_route.show",
+                            ['id'=>$data['delivery_route']->getId()], "0");
+            $breadlist[2] = array(__('delivery_route.title_update'), "", null, "1");
+        }
+        $data['breadlist'] = $breadlist;
 
         return view('delivery_route.update')->with("data", $data);
     }

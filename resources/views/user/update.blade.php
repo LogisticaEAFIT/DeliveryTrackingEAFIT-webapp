@@ -2,14 +2,6 @@
 
 @section('content')
 <div class="container-fluid padding-20">
-    <ol class="breadcrumb mb-4">
-        <li class="breadcrumb-item"><a href="{{ route('home.index') }}">{{ __('pagination.home') }}</a></li>
-        @if(Auth::user()->getRole()=="super_admin" || Auth::user()->getRole()=="company_admin")
-        <li class="breadcrumb-item"><a href="{{ route('user.list') }}">{{ __('user.title_list') }}</a></li>
-        @endif
-        <li class="breadcrumb-item"><a href="{{ route('user.show', ['id'=>$data['user']->getId()]) }}">{{ $data['user']->getName() }}</a></li>
-        <li class="breadcrumb-item active">{{ __('user.title_update') }}</li>
-    </ol>
     <div class="row">
         <div class="col-md-12">
             <div class="card center-info">

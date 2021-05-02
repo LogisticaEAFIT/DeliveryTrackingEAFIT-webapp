@@ -2,10 +2,6 @@
 
 @section('content')
 <div class="container-fluid padding-20">
-    <ol class="breadcrumb mb-4">
-        <li class="breadcrumb-item"><a href="{{ route('home.index') }}">{{ __('pagination.home') }}</a></li>
-        <li class="breadcrumb-item active">{{ __('user.title_list') }}</li>
-    </ol>
     <div class="row">
         <div class="col-md-12">
             <div class="align-right">
@@ -37,13 +33,13 @@
                             <td class="red-option">{{ $user->getIdCardNumber() }}</td>
                             <td class="red-option">{{ $user->getRole() }}</td>
                                 @if($user->getCompanyId() != '')
-                            <td class="red-option"><a href="{{ route('company.show', ['id'=>$user->getCompanyId()]) }}"> <strong>{{ $user->company->getName() }}</strong></a></td>
+                            <td class="red-option"><a href="{{ route('company.show', ['id'=>$user->getCompanyId()]) }}"> <strong>{{ $user->getCompanyId() }} - {{ $user->company->getName() }}</strong></a></td>
                                 @else
                             <td class="red-option">N/A</td>
                                 @endif
                                 @if($user->getWarehouseId() != '')
                                 @if($user->warehouse->getName() != '')
-                            <td class="red-option"><a href="{{ route('warehouse.show', ['id'=>$user->getWarehouseId()]) }}"> <strong>{{ $user->warehouse->getName() }}</strong></a></td>
+                            <td class="red-option"><a href="{{ route('warehouse.show', ['id'=>$user->getWarehouseId()]) }}"> <strong>{{ $user->getWarehouseId() }} - {{ $user->warehouse->getName() }}</strong></a></td>
                                 @else
                             <td class="red-option"><a href="{{ route('warehouse.show', ['id'=>$user->getWarehouseId()]) }}"> <strong>{{ $user->getWarehouseId() }}</strong></a></td>
                                 @endif
@@ -57,13 +53,13 @@
                             <td>{{ $user->getIdCardNumber() }}</td>
                             <td>{{ $user->getRole() }}</td>
                                 @if($user->getCompanyId() != '')
-                            <td><a href="{{ route('company.show', ['id'=>$user->getCompanyId()]) }}"> <strong>{{ $user->company->getName() }}</strong></a></td>
+                            <td><a href="{{ route('company.show', ['id'=>$user->getCompanyId()]) }}"> <strong>{{ $user->getCompanyId() }} - {{ $user->company->getName() }}</strong></a></td>
                                 @else
                             <td>N/A</td>
                                 @endif
                                 @if($user->getWarehouseId() != '')
                                 @if($user->warehouse->getName() != '')
-                            <td><a href="{{ route('warehouse.show', ['id'=>$user->getWarehouseId()]) }}"> <strong>{{ $user->warehouse->getName() }}</strong></a></td>
+                            <td><a href="{{ route('warehouse.show', ['id'=>$user->getWarehouseId()]) }}"> <strong>{{ $user->getWarehouseId() }} - {{ $user->warehouse->getName() }}</strong></a></td>
                                 @else
                             <td><a href="{{ route('warehouse.show', ['id'=>$user->getWarehouseId()]) }}"> <strong>{{ $user->getWarehouseId() }}</strong></a></td>
                                 @endif

@@ -2,13 +2,6 @@
 
 @section('content')
 <div class="container-fluid padding-20">
-    <ol class="breadcrumb mb-4">
-        <li class="breadcrumb-item"><a href="{{ route('home.index') }}">{{ __('pagination.home') }}</a></li>
-        @if(Auth::user()->getRole()=="super_admin" || Auth::user()->getRole()=="company_admin" || Auth::user()->getRole()=="warehouse_admin")
-        <li class="breadcrumb-item"><a href="{{ route('delivery_route.list') }}">{{ __('delivery_route.title_list') }}</a></li>
-        @endif
-        <li class="breadcrumb-item active">{{ $data["delivery_route"]->getId() }}</li>
-    </ol>
     <div class="row">
         <div class="col-md-12">
             <div class="card">
@@ -37,16 +30,16 @@
                     <div class="row center-info">
                         <div class="col-4">
                             @if($data["delivery_route"]->warehouse->getName() != '')
-                            <b>{{ __('delivery_route.label.warehouse_id') }}</b><br /> <a href="{{ route('warehouse.show', ['id'=>$data['delivery_route']->getWarehouseId()]) }}"><strong>{{ $data["delivery_route"]->warehouse->getName() }}</strong></a><br />
+                            <b>{{ __('delivery_route.label.warehouse_id') }}</b><br /> <a href="{{ route('warehouse.show', ['id'=>$data['delivery_route']->getWarehouseId()]) }}"><strong>{{ $data["delivery_route"]->getWarehouseId() }} - {{ $data["delivery_route"]->warehouse->getName() }}</strong></a><br />
                             @else
                             <b>{{ __('delivery_route.label.warehouse_id') }}</b><br /> <a href="{{ route('warehouse.show', ['id'=>$data['delivery_route']->getWarehouseId()]) }}"><strong>{{ $data["delivery_route"]->getWarehouseId() }}</strong></a><br />
                             @endif
                         </div>
                         <div class="col-4">
-                            <b>{{ __('delivery_route.label.courier_id') }}</b><br /> <a href="{{ route('user.show', ['id'=>$data['delivery_route']->getCourierId()]) }}"><strong>{{ $data["delivery_route"]->courier->getName() }}</strong></a><br />
+                            <b>{{ __('delivery_route.label.courier_id') }}</b><br /> <a href="{{ route('user.show', ['id'=>$data['delivery_route']->getCourierId()]) }}"><strong>{{ $data["delivery_route"]->getCourierId() }} - {{ $data["delivery_route"]->courier->getName() }}</strong></a><br />
                         </div>
                         <div class="col-4">
-                            <b>{{ __('delivery_route.label.vehicle_id') }}</b><br /> <a href="{{ route('vehicle.show', ['id'=>$data['delivery_route']->getVehicleId()]) }}"><strong>{{ $data["delivery_route"]->vehicle->getName() }}</strong></a><br />
+                            <b>{{ __('delivery_route.label.vehicle_id') }}</b><br /> <a href="{{ route('vehicle.show', ['id'=>$data['delivery_route']->getVehicleId()]) }}"><strong>{{ $data["delivery_route"]->getVehicleId() }} - {{ $data["delivery_route"]->vehicle->getName() }}</strong></a><br />
                         </div>
                     </div><hr/>
                     <div class="row center-info">

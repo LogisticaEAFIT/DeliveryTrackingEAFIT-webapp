@@ -44,6 +44,17 @@ class UserController extends Controller
 
         $data["title"] = $user->getName();
         $data["user"] = $user;
+
+        $breadlist = array();
+        $breadlist[0] = array(__('pagination.home'), "home.index", null, "0");
+        if (Auth::user()->getRole()=="super_admin" || Auth::user()->getRole()=="company_admin") {
+            $breadlist[1] = array(__('user.title_list'), "user.list", null, "0");
+            $breadlist[2] = array($data["user"]->getName(), "", null, "1");
+        } else {
+            $breadlist[1] = array($data["user"]->getName(), "", null, "1");
+        }
+        $data['breadlist'] = $breadlist;
+
         return view('user.show')->with("data", $data);
     }
     
@@ -52,13 +63,19 @@ class UserController extends Controller
         $data = []; //to be sent to the view
         $data["title"] = __('user.title');
         if (Auth::user()->getRole()=="super_admin") {
-            $data["users"] = User::orderBy('id')->get();
+            $data["users"] = User::orderBy('id')->with('company')->with('warehouse')->get();
         } elseif (Auth::user()->getRole()=="company_admin") {
-            $data["users"] = User::where('company_id', Auth::user()->getCompanyId())->orderBy('id')->get();
+            $data["users"] = User::where('company_id', Auth::user()->getCompanyId())->orderBy('id')
+                                ->with('company')->with('warehouse')->get();
         } elseif (Auth::user()->getRole()=="warehouse_admin") {
-            $data["users"] = User::where('warehouse_id', Auth::user()->getWarehouseId())->orderBy('id')->get();
+            $data["users"] = User::where('warehouse_id', Auth::user()->getWarehouseId())->orderBy('id')
+                                ->with('company')->with('warehouse')->get();
         }
         
+        $breadlist = array();
+        $breadlist[0] = array(__('pagination.home'), "home.index", null, "0");
+        $breadlist[1] = array(__('user.title_list'), "", null, "1");
+        $data['breadlist'] = $breadlist;
 
         return view('user.list')->with("data", $data);
     }
@@ -75,6 +92,18 @@ class UserController extends Controller
         }
 
         $data["user"] = $user;
+
+        $breadlist = array();
+        $breadlist[0] = array(__('pagination.home'), "home.index", null, "0");
+        if (Auth::user()->getRole()=="super_admin" || Auth::user()->getRole()=="company_admin") {
+            $breadlist[1] = array(__('user.title_list'), "user.list", null, "0");
+            $breadlist[2] = array($data["user"]->getName(), "user.show", ['id'=>$data['user']->getId()], "0");
+            $breadlist[3] = array(__('user.title_update'), "", null, "1");
+        } else {
+            $breadlist[1] = array($data["user"]->getName(), "user.show", ['id'=>$data['user']->getId()], "0");
+            $breadlist[2] = array(__('user.title_update'), "", null, "1");
+        }
+        $data['breadlist'] = $breadlist;
 
         return view('user.update')->with("data", $data);
     }

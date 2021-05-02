@@ -2,10 +2,6 @@
 
 @section('content')
 <div class="container-fluid padding-20">
-    <ol class="breadcrumb mb-4">
-        <li class="breadcrumb-item"><a href="{{ route('home.index') }}">{{ __('pagination.home') }}</a></li>
-        <li class="breadcrumb-item active">{{ __('warehouse.title_list') }}</li>
-    </ol>
     <div class="row">
         <div class="col-md-12">
         <div class="align-right">
@@ -37,7 +33,7 @@
                             <td class="red-option">{{ $warehouse->getAddress() }}</td>
                             <td class="red-option">{{ $warehouse->getLatitude() }}</td>
                             <td class="red-option">{{ $warehouse->getLongitude() }}</td>
-                            <td class="red-option"><a href="{{ route('company.show', ['id'=>$warehouse->getCompanyId()]) }}"><strong>{{ $warehouse->company->getName() }}</strong></a></td>
+                            <td class="red-option"><a href="{{ route('company.show', ['id'=>$warehouse->getCompanyId()]) }}"><strong>{{ $warehouse->getCompanyId() }} - {{ $warehouse->company->getName() }}</strong></a></td>
                             @else
                             <td>{{ $warehouse->getId() }}</td>
                             <td>{{ $warehouse->getName() }}</td>
@@ -45,7 +41,7 @@
                             <td>{{ $warehouse->getAddress() }}</td>
                             <td>{{ $warehouse->getLatitude() }}</td>
                             <td>{{ $warehouse->getLongitude() }}</td>
-                            <td><a href="{{ route('company.show', ['id'=>$warehouse->getCompanyId()]) }}"><strong>{{ $warehouse->company->getName() }}</strong></a></td>
+                            <td><a href="{{ route('company.show', ['id'=>$warehouse->getCompanyId()]) }}"><strong>{{ $warehouse->getCompanyId() }} - {{ $warehouse->company->getName() }}</strong></a></td>
                             @endif
                             <td><a href="{{ route('warehouse.show', ['id'=>$warehouse->getId()]) }}"> {{ __('warehouse.label.info') }} <strong>{{ $warehouse->getId() }}</strong></a></td>
                         </tr>
