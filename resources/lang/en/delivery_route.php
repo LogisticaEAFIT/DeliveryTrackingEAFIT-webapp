@@ -44,6 +44,9 @@ return [
         'info' => 'More info about ',
         'browse_file' => 'Browse file',
     ],
+    'error' => [
+        'wrong_format' => 'The format of the file you input is wrong.'
+    ],
     'succesful_create' => 'Delivery route created successfully!',
     'succesful_update' => 'Delivery route updated successfully!',
 ];

@@ -158,8 +158,13 @@ class CompanyController extends Controller
 
     public function importFile(Request $request)
     {
-        Excel::import(new CompaniesImport, $request->file('file')->store('temp'));
-        return back();
+        try {
+            Excel::import(new CompaniesImport, $request->file('file')->store('temp'));
+        } catch (Exception $e) {
+            return redirect()->route('company.import_export')->withErrors(__('company.error.wrong_format'));
+        }
+        
+        return redirect()->route('company.list');
     }
 
     public function exportFile()

@@ -40,6 +40,10 @@ return [
         'info' => 'More info about ',
         'browse_file' => 'Browse file',
     ],
+    'error' => [
+        'wrong_format' => 'The format of the file you input is wrong.'
+    ],
     'succesful_create' => 'Vehicle type created successfully!',
     'succesful_update' => 'Vehicle type updated successfully!',
+    
 ];

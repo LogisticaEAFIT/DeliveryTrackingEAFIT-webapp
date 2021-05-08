@@ -144,8 +144,13 @@ class UserController extends Controller
 
     public function importFile(Request $request)
     {
-        Excel::import(new UsersImport, $request->file('file')->store('temp'));
-        return back();
+        try {
+            Excel::import(new UsersImport, $request->file('file')->store('temp'));
+        } catch (Exception $e) {
+            return redirect()->route('user.import_export')->withErrors(__('user.error.wrong_format'));
+        }
+        
+        return redirect()->route('user.list');
     }
 
     public function exportFile()
