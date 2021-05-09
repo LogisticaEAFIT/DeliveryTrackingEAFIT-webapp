@@ -32,6 +32,7 @@ return [
         'deactivate' => 'Deactivate',
         'click_import' => 'Click to import',
         'click_export' => 'Click to export',
+        'click_format' => 'Click to download format',
     ],
     'label' => [
         'name' => 'Name',
@@ -44,6 +45,9 @@ return [
         'about' => 'About',
         'info' => 'More info about ',
         'browse_file' => 'Browse file',
+    ],
+    'error' => [
+        'wrong_format' => 'The format of the file you input is wrong.'
     ],
     'succesful_create' => 'Warehouse created successfully!',
     'succesful_update' => 'Warehouse updated successfully!',

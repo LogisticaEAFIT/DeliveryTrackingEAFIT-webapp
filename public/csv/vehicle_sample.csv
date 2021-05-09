@@ -1,0 +1,2 @@
+name(string), observations(string), warehouse_id(int), type_id(int)
+Toyota, toyota brand, 1, 1

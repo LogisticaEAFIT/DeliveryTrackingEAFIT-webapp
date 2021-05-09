@@ -30,6 +30,7 @@ return [
         'finish_it' => 'Finish it',
         'click_import' => 'Click to import',
         'click_export' => 'Click to export',
+        'click_format' => 'Click to download format',
     ],
     'label' => [
         'date' => 'Date',
@@ -43,6 +44,9 @@ return [
         'about' => 'About',
         'info' => 'More info about ',
         'browse_file' => 'Browse file',
+    ],
+    'error' => [
+        'wrong_format' => 'The format of the file you input is wrong.'
     ],
     'succesful_create' => 'Delivery route created successfully!',
     'succesful_update' => 'Delivery route updated successfully!',

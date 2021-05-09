@@ -1,0 +1,2 @@
+name(string), email(string), password(string), id_card_number(int), role(super_admin; company_admin; warehouse_admin; courier), company_id(int), warehouse_id(int)
+Juan Perez, jsperezs@eafit.edu.co,123456789, 7645123, warehouse_admin, 1, 1 

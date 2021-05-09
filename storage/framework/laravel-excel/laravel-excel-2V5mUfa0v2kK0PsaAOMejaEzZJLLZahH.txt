@@ -1,0 +1,2 @@
+BMW, a new vehicle, 5, 2
+Mazda 4, small vehicle, 5, 3

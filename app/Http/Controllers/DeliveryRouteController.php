@@ -203,12 +203,29 @@ class DeliveryRouteController extends Controller
 
     public function importFile(Request $request)
     {
-        Excel::import(new DeliveryRoutesImport, $request->file('file')->store('temp'));
-        return back();
+        try {
+            Excel::import(new DeliveryRoutesImport, $request->file('file')->store('temp'));
+        } catch (Exception $e) {
+            return redirect()->route('delivery_route.import_export')->withErrors(__('delivery_route.error.wrong_format'));
+        }
+        
+        return redirect()->route('delivery_route.list');
     }
 
     public function exportFile()
     {
         return Excel::download(new DeliveryRoutesExport, 'delivery-routes-list.xlsx');
+    }
+
+    public function downloadFormat()
+    {
+        $filename = "/csv/delivery_route_sample.csv";
+        $file=public_path().$filename;
+        
+        $headers = [
+            'Content-Type' => 'application/csv',
+        ];
+
+        return response()->download($file, 'delivery_route_sample.csv', $headers);
     }
 }

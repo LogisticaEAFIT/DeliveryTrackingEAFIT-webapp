@@ -27,6 +27,7 @@ Route::post('/user/delete', 'App\Http\Controllers\UserController@delete')->name(
 Route::get('/user/import_export', 'App\Http\Controllers\UserController@importExport')->name('user.import_export');
 Route::post('/user/import_file', 'App\Http\Controllers\UserController@importFile')->name('user.import_file');
 Route::get('/user/export_file', 'App\Http\Controllers\UserController@exportFile')->name('user.export_file');
+Route::get('/user/download_format', 'App\Http\Controllers\UserController@downloadFormat')->name('user.download_format');
 
 // Company routes
 Route::get('/company/show/{id}', 'App\Http\Controllers\CompanyController@show')->name('company.show');
@@ -39,6 +40,7 @@ Route::post('/company/delete', 'App\Http\Controllers\CompanyController@delete')-
 Route::get('/company/import_export', 'App\Http\Controllers\CompanyController@importExport')->name('company.import_export');
 Route::post('/company/import_file', 'App\Http\Controllers\CompanyController@importFile')->name('company.import_file');
 Route::get('/company/export_file', 'App\Http\Controllers\CompanyController@exportFile')->name('company.export_file');
+Route::get('/company/download_format', 'App\Http\Controllers\CompanyController@downloadFormat')->name('company.download_format');
 
 // Warehouse routes
 Route::get('/warehouse/show/{id}', 'App\Http\Controllers\WarehouseController@show')->name('warehouse.show');
@@ -51,6 +53,7 @@ Route::post('/warehouse/delete', 'App\Http\Controllers\WarehouseController@delet
 Route::get('/warehouse/import_export', 'App\Http\Controllers\WarehouseController@importExport')->name('warehouse.import_export');
 Route::post('/warehouse/import_file', 'App\Http\Controllers\WarehouseController@importFile')->name('warehouse.import_file');
 Route::get('/warehouse/export_file', 'App\Http\Controllers\WarehouseController@exportFile')->name('warehouse.export_file');
+Route::get('/warehouse/download_format', 'App\Http\Controllers\WarehouseController@downloadFormat')->name('warehouse.download_format');
 
 // DeliveryRoutes routes
 Route::get('/delivery_route/show/{id}', 'App\Http\Controllers\DeliveryRouteController@show')->name('delivery_route.show');
@@ -63,6 +66,7 @@ Route::post('/delivery_route/delete', 'App\Http\Controllers\DeliveryRouteControl
 Route::get('/delivery_route/import_export', 'App\Http\Controllers\DeliveryRouteController@importExport')->name('delivery_route.import_export');
 Route::post('/delivery_route/import_file', 'App\Http\Controllers\DeliveryRouteController@importFile')->name('delivery_route.import_file');
 Route::get('/delivery_route/export_file', 'App\Http\Controllers\DeliveryRouteController@exportFile')->name('delivery_route.export_file');
+Route::get('/delivery_route/download_format', 'App\Http\Controllers\DeliveryRouteController@downloadFormat')->name('delivery_route.download_format');
 
 // Vehicle routes
 Route::get('/vehicle/show/{id}', 'App\Http\Controllers\VehicleController@show')->name('vehicle.show');
@@ -75,6 +79,7 @@ Route::post('/vehicle/delete', 'App\Http\Controllers\VehicleController@delete')-
 Route::get('/vehicle/import_export', 'App\Http\Controllers\VehicleController@importExport')->name('vehicle.import_export');
 Route::post('/vehicle/import_file', 'App\Http\Controllers\VehicleController@importFile')->name('vehicle.import_file');
 Route::get('/vehicle/export_file', 'App\Http\Controllers\VehicleController@exportFile')->name('vehicle.export_file');
+Route::get('/vehicle/download_format', 'App\Http\Controllers\VehicleController@downloadFormat')->name('vehicle.download_format');
 
 // VehicleType routes
 Route::get('/vehicle_type/show/{id}', 'App\Http\Controllers\VehicleTypeController@show')->name('vehicle_type.show');
@@ -87,3 +92,4 @@ Route::post('/vehicle_type/delete', 'App\Http\Controllers\VehicleTypeController@
 Route::get('/vehicle_type/import_export', 'App\Http\Controllers\VehicleTypeController@importExport')->name('vehicle_type.import_export');
 Route::post('/vehicle_type/import_file', 'App\Http\Controllers\VehicleTypeController@importFile')->name('vehicle_type.import_file');
 Route::get('/vehicle_type/export_file', 'App\Http\Controllers\VehicleTypeController@exportFile')->name('vehicle_type.export_file');
+Route::get('/vehicle_type/download_format', 'App\Http\Controllers\VehicleTypeController@downloadFormat')->name('vehicle_type.download_format');

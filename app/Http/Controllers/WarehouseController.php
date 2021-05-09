@@ -177,12 +177,29 @@ class WarehouseController extends Controller
 
     public function importFile(Request $request)
     {
-        Excel::import(new WarehousesImport, $request->file('file')->store('temp'));
-        return back();
+        try {
+            Excel::import(new WarehousesImport, $request->file('file')->store('temp'));
+        } catch (Exception $e) {
+            return redirect()->route('warehouse.import_export')->withErrors(__('warehouse.error.wrong_format'));
+        }
+        
+        return redirect()->route('warehouse.list');
     }
 
     public function exportFile()
     {
         return Excel::download(new WarehousesExport, 'warehouses-list.xlsx');
+    }
+
+    public function downloadFormat()
+    {
+        $filename = "/csv/warehouse_sample.csv";
+        $file=public_path().$filename;
+        
+        $headers = [
+            'Content-Type' => 'application/csv',
+        ];
+
+        return response()->download($file, 'warehouse_sample.csv', $headers);
     }
 }

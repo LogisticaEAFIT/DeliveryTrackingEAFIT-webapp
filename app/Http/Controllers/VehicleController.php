@@ -181,12 +181,29 @@ class VehicleController extends Controller
 
     public function importFile(Request $request)
     {
-        Excel::import(new VehiclesImport, $request->file('file')->store('temp'));
-        return back();
+        try {
+            Excel::import(new VehiclesImport, $request->file('file')->store('temp'));
+        } catch (Exception $e) {
+            return redirect()->route('vehicle.import_export')->withErrors(__('vehicle.error.wrong_format'));
+        }
+        
+        return redirect()->route('vehicle.list');
     }
 
     public function exportFile()
     {
         return Excel::download(new VehiclesExport, 'vehicles-list.xlsx');
+    }
+
+    public function downloadFormat()
+    {
+        $filename = "/csv/vehicle_sample.csv";
+        $file=public_path().$filename;
+        
+        $headers = [
+            'Content-Type' => 'application/csv',
+        ];
+
+        return response()->download($file, 'vehicle_sample.csv', $headers);
     }
 }

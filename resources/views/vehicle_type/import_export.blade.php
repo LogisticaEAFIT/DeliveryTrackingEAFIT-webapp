@@ -34,7 +34,12 @@
                                 <a class="btn btn-primary" href="{{ route('vehicle_type.export_file') }}"><i class="fa fa-download"></i> {{ __('vehicle_type.input.click_export') }}</a>
                             </div>
                         </div><br/>
-
+                        <div class="form-group row mb-0">
+                            <div class="col-4"></div>
+                            <div class="col-4">
+                                <a class="btn btn-link" href="{{ route('vehicle_type.download_format') }}"><i class="fa fa-download"></i> {{ __('vehicle_type.input.click_format') }}</a>
+                            </div>
+                        </div><br/>
                     </form>
                 </div>
             </div>

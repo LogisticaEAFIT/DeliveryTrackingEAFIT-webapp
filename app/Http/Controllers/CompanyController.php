@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Maatwebsite\Excel\Facades\Excel;
 use Exception;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Storage;
 
 class CompanyController extends Controller
 {
@@ -158,12 +160,29 @@ class CompanyController extends Controller
 
     public function importFile(Request $request)
     {
-        Excel::import(new CompaniesImport, $request->file('file')->store('temp'));
-        return back();
+        try {
+            Excel::import(new CompaniesImport, $request->file('file')->store('temp'));
+        } catch (Exception $e) {
+            return redirect()->route('company.import_export')->withErrors(__('company.error.wrong_format'));
+        }
+        
+        return redirect()->route('company.list');
     }
 
     public function exportFile()
     {
         return Excel::download(new CompaniesExport, 'companies-list.xlsx');
+    }
+
+    public function downloadFormat()
+    {
+        $filename = "/csv/company_sample.csv";
+        $file=public_path().$filename;
+        
+        $headers = [
+            'Content-Type' => 'application/csv',
+        ];
+
+        return response()->download($file, 'company_sample.csv', $headers);
     }
 }
