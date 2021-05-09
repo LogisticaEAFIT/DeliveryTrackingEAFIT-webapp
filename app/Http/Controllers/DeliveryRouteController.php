@@ -206,7 +206,8 @@ class DeliveryRouteController extends Controller
         try {
             Excel::import(new DeliveryRoutesImport, $request->file('file')->store('temp'));
         } catch (Exception $e) {
-            return redirect()->route('delivery_route.import_export')->withErrors(__('delivery_route.error.wrong_format'));
+            return redirect()->route('delivery_route.import_export')
+                ->withErrors(__('delivery_route.error.wrong_format'));
         }
         
         return redirect()->route('delivery_route.list');
