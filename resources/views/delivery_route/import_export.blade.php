@@ -34,7 +34,12 @@
                                 <a class="btn btn-primary" href="{{ route('delivery_route.export_file') }}"><i class="fa fa-download"></i> {{ __('delivery_route.input.click_export') }}</a>
                             </div>
                         </div><br/>
-
+                        <div class="form-group row mb-0">
+                            <div class="col-4"></div>
+                            <div class="col-4">
+                                <a class="btn btn-link" href="{{ route('delivery_route.download_format') }}"><i class="fa fa-download"></i> {{ __('delivery_route.input.click_format') }}</a>
+                            </div>
+                        </div><br/>
                     </form>
                 </div>
             </div>

@@ -157,4 +157,16 @@ class UserController extends Controller
     {
         return Excel::download(new UsersExport, 'users-list.xlsx');
     }
+
+    public function downloadFormat()
+    {
+        $filename = "/csv/user_sample.csv";
+        $file=public_path().$filename;
+        
+        $headers = [
+            'Content-Type' => 'application/csv',
+        ];
+
+        return response()->download($file, 'user_sample.csv', $headers);
+    }
 }

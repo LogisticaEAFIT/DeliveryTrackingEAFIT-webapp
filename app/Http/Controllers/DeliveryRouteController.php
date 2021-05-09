@@ -216,4 +216,16 @@ class DeliveryRouteController extends Controller
     {
         return Excel::download(new DeliveryRoutesExport, 'delivery-routes-list.xlsx');
     }
+
+    public function downloadFormat()
+    {
+        $filename = "/csv/delivery_route_sample.csv";
+        $file=public_path().$filename;
+        
+        $headers = [
+            'Content-Type' => 'application/csv',
+        ];
+
+        return response()->download($file, 'delivery_route_sample.csv', $headers);
+    }
 }

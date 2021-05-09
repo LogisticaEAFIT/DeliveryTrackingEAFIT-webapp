@@ -194,4 +194,16 @@ class VehicleController extends Controller
     {
         return Excel::download(new VehiclesExport, 'vehicles-list.xlsx');
     }
+
+    public function downloadFormat()
+    {
+        $filename = "/csv/vehicle_sample.csv";
+        $file=public_path().$filename;
+        
+        $headers = [
+            'Content-Type' => 'application/csv',
+        ];
+
+        return response()->download($file, 'vehicle_sample.csv', $headers);
+    }
 }

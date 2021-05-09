@@ -1,0 +1,2 @@
+name(string), description(string), address(string), latitude(double), longitude(double), company_id(int)
+Pereira, warehouse located in pereira, Carrera 33 #97 B, 56542.52, -4565.12, 1

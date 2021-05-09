@@ -28,6 +28,7 @@ return [
         'deactivate' => 'Deactivate',
         'click_import' => 'Click to import',
         'click_export' => 'Click to export',
+        'click_format' => 'Click to download format',
     ],
     'label' => [
         'name' => 'Name',

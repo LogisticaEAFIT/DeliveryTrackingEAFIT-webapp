@@ -190,4 +190,16 @@ class WarehouseController extends Controller
     {
         return Excel::download(new WarehousesExport, 'warehouses-list.xlsx');
     }
+
+    public function downloadFormat()
+    {
+        $filename = "/csv/warehouse_sample.csv";
+        $file=public_path().$filename;
+        
+        $headers = [
+            'Content-Type' => 'application/csv',
+        ];
+
+        return response()->download($file, 'warehouse_sample.csv', $headers);
+    }
 }

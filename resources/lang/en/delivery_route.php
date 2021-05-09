@@ -30,6 +30,7 @@ return [
         'finish_it' => 'Finish it',
         'click_import' => 'Click to import',
         'click_export' => 'Click to export',
+        'click_format' => 'Click to download format',
     ],
     'label' => [
         'date' => 'Date',
