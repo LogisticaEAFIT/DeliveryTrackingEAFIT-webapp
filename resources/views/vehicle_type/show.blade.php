@@ -42,10 +42,20 @@
                             <form method="POST" action="{{ route('vehicle_type.delete') }}">
                                 @csrf
                                 <input type="hidden" name="id" value="{{ $data['vehicle_type']->getId() }}" />
-                                <button type="submit" class="btn btn-danger"><i class="fa fa-trash-alt"></i> {{ __('vehicle_type.input.deactivate') }}</button>
+                                <button type="submit" class="btn btn-danger"><i class="fa fa-toggle-off"></i> {{ __('vehicle_type.input.deactivate') }}</button>
                             </form>
                         </div>
-                    </div> 
+                    </div>
+                    @else
+                    <div class="row center-info">
+                        <div class="col-12">
+                            <form method="POST" action="{{ route('vehicle_type.reactivate') }}">
+                                @csrf
+                                <input type="hidden" name="id" value="{{ $data['vehicle_type']->getId() }}" />
+                                <button type="submit" class="btn btn-success"><i class="fa fa-toggle-on"></i> {{ __('vehicle_type.input.reactivate') }}</button>
+                            </form>
+                        </div>
+                    </div>
                     @endif
                 </div>
             </div>

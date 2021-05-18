@@ -17,7 +17,7 @@ return [
     'title_update' => 'Update company',
     'title_list' => 'Companies',
     'title_list2' => 'List companies',
-    'title_import_export' => 'Import - Export companies',
+    'title_import_export' => 'Import-Export companies',
     'navbar_title' => 'Company',
     'red_info' => 'Companies in red color are disabled',
     'input' => [
@@ -26,6 +26,7 @@ return [
         'create' => 'Create',
         'update' => 'Update',
         'deactivate' => 'Deactivate',
+        'reactivate' => 'Reactivate',
         'click_import' => 'Click to import',
         'click_export' => 'Click to export',
         'click_format' => 'Click to download format',

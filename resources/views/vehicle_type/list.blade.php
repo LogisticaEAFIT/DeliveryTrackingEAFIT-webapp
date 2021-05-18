@@ -4,8 +4,19 @@
 <div class="container-fluid padding-20">
     <div class="row">
         <div class="col-md-12">
-        <div class="align-right">
-                <span class="badge rounded-pill bg-danger font-white pad-10">{{ __('vehicle_type.red_info') }}</span>
+            <div class="row">
+                <div class="col-3">
+                    <div class="col-12">
+                        <form method="GET" action="{{ route('vehicle_type.create') }}">
+                            <button type="submit" class="btn btn-success"><i class="fa fa-plus"></i> {{ __('vehicle_type.input.create') }}</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-3"></div>
+                <div class="col-3"></div>                
+                <div class="col-3 align-right">
+                    <span class="badge rounded-pill bg-danger font-white pad-10">{{ __('vehicle_type.red_info') }}</span>
+                </div>
             </div><br/>
             <div class="card center-info">
                 <div class="card-header">{{ __('vehicle_type.title_list') }}</div>

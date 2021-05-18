@@ -65,13 +65,13 @@
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                     <a class="dropdown-item" href="{{ route('register') }}">
-                                        <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i> {{ __('Register') }}</div>
+                                        <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i> {{ __('pagination.title_create') }}</div>
                                     </a> 
                                     <a class="dropdown-item" href="{{ route('user.list') }}">
-                                        <div class="sb-nav-link-icon"><i class="fa fa-list-ul"></i> {{ __('user.title_list2') }}</div>
+                                        <div class="sb-nav-link-icon"><i class="fa fa-list-ul"></i> {{ __('pagination.title_list') }}</div>
                                     </a>
                                     <a class="dropdown-item" href="{{ route('user.import_export') }}">
-                                        <div class="sb-nav-link-icon"><i class="fa fa-cloud"></i> {{ __('user.title_import_export') }}</div>
+                                        <div class="sb-nav-link-icon"><i class="fa fa-cloud"></i> {{ __('pagination.title_import_export') }}</div>
                                     </a>
                                 </div>
                             </li>
@@ -84,14 +84,14 @@
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                     <a class="dropdown-item" href="{{ route('company.create') }}">
-                                        <div class="sb-nav-link-icon"><i class="fa fa-plus"></i> {{ __('company.title_create') }}</div>
+                                        <div class="sb-nav-link-icon"><i class="fa fa-plus"></i> {{ __('pagination.title_create') }}</div>
 
                                     </a>
                                     <a class="dropdown-item" href="{{ route('company.list') }}">
-                                        <div class="sb-nav-link-icon"><i class="fa fa-list-ul"></i> {{ __('company.title_list2') }}</div>
+                                        <div class="sb-nav-link-icon"><i class="fa fa-list-ul"></i> {{ __('pagination.title_list') }}</div>
                                     </a> 
                                     <a class="dropdown-item" href="{{ route('company.import_export') }}">
-                                        <div class="sb-nav-link-icon"><i class="fa fa-cloud"></i> {{ __('company.title_import_export') }}</div>
+                                        <div class="sb-nav-link-icon"><i class="fa fa-cloud"></i> {{ __('pagination.title_import_export') }}</div>
                                     </a>
                                 </div>
                             </li>
@@ -104,13 +104,13 @@
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                     <a class="dropdown-item" href="{{ route('warehouse.create') }}">
-                                        <div class="sb-nav-link-icon"><i class="fa fa-plus"></i> {{ __('warehouse.title_create') }}</div>
+                                        <div class="sb-nav-link-icon"><i class="fa fa-plus"></i> {{ __('pagination.title_create') }}</div>
                                     </a>
                                     <a class="dropdown-item" href="{{ route('warehouse.list') }}">
-                                        <div class="sb-nav-link-icon"><i class="fa fa-list-ul"></i> {{ __('warehouse.title_list2') }}</div>
+                                        <div class="sb-nav-link-icon"><i class="fa fa-list-ul"></i> {{ __('pagination.title_list') }}</div>
                                     </a> 
                                     <a class="dropdown-item" href="{{ route('warehouse.import_export') }}">
-                                        <div class="sb-nav-link-icon"><i class="fa fa-cloud"></i> {{ __('warehouse.title_import_export') }}</div>
+                                        <div class="sb-nav-link-icon"><i class="fa fa-cloud"></i> {{ __('pagination.title_import_export') }}</div>
                                     </a>
                                 </div>
                             </li>
@@ -125,13 +125,13 @@
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                     <a class="dropdown-item" href="{{ route('vehicle.create') }}">
-                                        <div class="sb-nav-link-icon"><i class="fa fa-plus"></i> {{ __('vehicle.title_create') }}</div>
+                                        <div class="sb-nav-link-icon"><i class="fa fa-plus"></i> {{ __('pagination.title_create') }}</div>
                                     </a>
                                     <a class="dropdown-item" href="{{ route('vehicle.list') }}">
-                                        <div class="sb-nav-link-icon"><i class="fa fa-list-ul"></i> {{ __('vehicle.title_list2') }}</div>
+                                        <div class="sb-nav-link-icon"><i class="fa fa-list-ul"></i> {{ __('pagination.title_list') }}</div>
                                     </a> 
                                     <a class="dropdown-item" href="{{ route('vehicle.import_export') }}">
-                                        <div class="sb-nav-link-icon"><i class="fa fa-cloud"></i> {{ __('vehicle.title_import_export') }}</div>
+                                        <div class="sb-nav-link-icon"><i class="fa fa-cloud"></i> {{ __('pagination.title_import_export') }}</div>
                                     </a>
                                 </div>
                             </li>
@@ -146,13 +146,13 @@
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                     <a class="dropdown-item" href="{{ route('vehicle_type.create') }}">
-                                        <div class="sb-nav-link-icon"><i class="fa fa-plus"></i> {{ __('vehicle_type.title_create') }}</div>
+                                        <div class="sb-nav-link-icon"><i class="fa fa-plus"></i> {{ __('pagination.title_create') }}</div>
                                     </a>
                                     <a class="dropdown-item" href="{{ route('vehicle_type.list') }}">
-                                        <div class="sb-nav-link-icon"><i class="fa fa-list-ul"></i> {{ __('vehicle_type.title_list2') }}</div>
+                                        <div class="sb-nav-link-icon"><i class="fa fa-list-ul"></i> {{ __('pagination.title_list') }}</div>
                                     </a> 
                                     <a class="dropdown-item" href="{{ route('vehicle_type.import_export') }}">
-                                        <div class="sb-nav-link-icon"><i class="fa fa-cloud"></i> {{ __('vehicle_type.title_import_export') }}</div>
+                                        <div class="sb-nav-link-icon"><i class="fa fa-cloud"></i> {{ __('pagination.title_import_export') }}</div>
                                     </a>
                                 </div>
                             </li>
@@ -166,14 +166,14 @@
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                 @if(Auth::user()->getRole()=="super_admin" || Auth::user()->getRole()=="company_admin" || Auth::user()->getRole()=="warehouse_admin")
                                     <a class="dropdown-item" href="{{ route('delivery_route.create') }}">
-                                        <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i> {{ __('delivery_route.title_create') }}</div>
+                                        <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i> {{ __('pagination.title_create') }}</div>
                                     </a> 
                                 @endif
                                     <a class="dropdown-item" href="{{ route('delivery_route.list') }}">
-                                        <div class="sb-nav-link-icon"><i class="fa fa-list-ul"></i> {{ __('delivery_route.title_list2') }}</div>
+                                        <div class="sb-nav-link-icon"><i class="fa fa-list-ul"></i> {{ __('pagination.title_list') }}</div>
                                     </a>
                                     <a class="dropdown-item" href="{{ route('delivery_route.import_export') }}">
-                                        <div class="sb-nav-link-icon"><i class="fa fa-cloud"></i> {{ __('delivery_route.title_import_export') }}</div>
+                                        <div class="sb-nav-link-icon"><i class="fa fa-cloud"></i> {{ __('pagination.title_import_export') }}</div>
                                     </a>
                                 </div>
                             </li>

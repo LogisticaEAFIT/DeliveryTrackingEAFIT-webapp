@@ -19,7 +19,7 @@ class UsersImport implements ToModel
         return new User([
             'name' => $row[0],
             'email' => $row[1],
-            'password' => $row[2],
+            'password' => bcrypt($row[2]),
             'id_card_number' => $row[3],
             'role' => $row[4],
             'company_id' => $row[5],

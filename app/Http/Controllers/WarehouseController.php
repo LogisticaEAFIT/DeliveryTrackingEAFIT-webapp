@@ -129,6 +129,7 @@ class WarehouseController extends Controller
 
     public function updateSave(Request $request)
     {
+        Warehouse::validate($request);
 
         Warehouse::where('id', $request->input('id'))->update([
             'name' => $request->input('name'),
@@ -161,6 +162,14 @@ class WarehouseController extends Controller
     {
         $warehouse = Warehouse::find($request['id']);
         $warehouse->setIsActive('0');
+        $warehouse->save();
+        return redirect()->route('warehouse.list');
+    }
+
+    public function reactivate(Request $request)
+    {
+        $warehouse = Warehouse::find($request['id']);
+        $warehouse->setIsActive('1');
         $warehouse->save();
         return redirect()->route('warehouse.list');
     }
