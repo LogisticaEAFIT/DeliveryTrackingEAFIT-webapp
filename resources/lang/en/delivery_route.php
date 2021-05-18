@@ -18,7 +18,7 @@ return [
     'title_list' => 'Delivery routes',
     'title_list2' => 'List delivery routes',
     'navbar_title' => 'Delivery Route',
-    'title_import_export' => 'Import - Export delivery routes',
+    'title_import_export' => 'Import-Export delivery routes',
     'create_courier' => 'You must create a courier first',
     'green_info' => 'Delivery routes in green color are finished',
     'input' => [

@@ -136,6 +136,14 @@ class VehicleTypeController extends Controller
         return redirect()->route('vehicle_type.list');
     }
 
+    public function reactivate(Request $request)
+    {
+        $vehicle_type = VehicleType::find($request['id']);
+        $vehicle_type->setIsActive('1');
+        $vehicle_type->save();
+        return redirect()->route('vehicle_type.list');
+    }
+
     public function importExport()
     {
         $breadlist = array();

@@ -23,5 +23,8 @@ return [
     'logged_in' => 'Logged in as:',
     'privacy_policy' => 'Privacy Policy',
     'terms_conditions' => 'Terms & Conditions',
+    'title_create' => 'Create',
+    'title_list' => 'List',
+    'title_import_export' => 'Import/Export',
 
 ];
