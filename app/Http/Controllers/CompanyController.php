@@ -120,6 +120,8 @@ class CompanyController extends Controller
 
     public function updateSave(Request $request)
     {
+        Company::validate($request);
+
         Company::where('id', $request->input('id'))->update([
             'name' => $request->input('name'),
             'contact_info' => $request->input('contact_info'),
@@ -144,6 +146,14 @@ class CompanyController extends Controller
     {
         $company = Company::find($request['id']);
         $company->setIsActive('0');
+        $company->save();
+        return redirect()->route('company.list');
+    }
+
+    public function reactivate(Request $request)
+    {
+        $company = Company::find($request['id']);
+        $company->setIsActive('1');
         $company->save();
         return redirect()->route('company.list');
     }

@@ -169,6 +169,14 @@ class VehicleController extends Controller
         return redirect()->route('vehicle.list');
     }
 
+    public function reactivate(Request $request)
+    {
+        $vehicle = Vehicle::find($request['id']);
+        $vehicle->setIsActive('1');
+        $vehicle->save();
+        return redirect()->route('vehicle.list');
+    }
+
     public function importExport()
     {
         $breadlist = array();

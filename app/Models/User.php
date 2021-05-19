@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Http\Request;
 use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
@@ -130,5 +131,14 @@ class User extends Authenticatable
     public function warehouse()
     {
         return $this->belongsTo(Warehouse::class);
+    }
+
+    public static function validate(Request $request)
+    {
+        $request->validate([
+            "name" => ['required', 'string', 'min:1', 'max:255'],
+            "email" => ['required', 'string', 'min:1', 'max:255'],
+            "id_card_number" => ['required', 'numeric'],
+        ]);
     }
 }

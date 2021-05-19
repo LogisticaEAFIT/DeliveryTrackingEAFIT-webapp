@@ -60,7 +60,17 @@
                             <form method="POST" action="{{ route('user.delete') }}">
                                 @csrf
                                 <input type="hidden" name="id" value="{{ $data['user']->getId() }}" />
-                                <button type="submit" class="btn btn-danger"><i class="fa fa-trash-alt"></i> {{ __('user.input.deactivate') }}</button>
+                                <button type="submit" class="btn btn-danger"><i class="fa fa-toggle-off"></i> {{ __('user.input.deactivate') }}</button>
+                            </form>
+                        </div>
+                    </div>
+                    @else
+                    <div class="row center-info">
+                        <div class="col-12">
+                            <form method="POST" action="{{ route('user.reactivate') }}">
+                                @csrf
+                                <input type="hidden" name="id" value="{{ $data['user']->getId() }}" />
+                                <button type="submit" class="btn btn-success"><i class="fa fa-toggle-on"></i> {{ __('user.input.reactivate') }}</button>
                             </form>
                         </div>
                     </div> 

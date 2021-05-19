@@ -113,6 +113,7 @@ class UserController extends Controller
 
     public function updateSave(Request $request)
     {
+        User::validate($request);
 
         User::where('id', $request->input('id'))->update([
             'name' => $request->input('name'),
@@ -128,6 +129,14 @@ class UserController extends Controller
     {
         $user = User::find($request['id']);
         $user->setIsActive('0');
+        $user->save();
+        return redirect()->route('user.list');
+    }
+
+    public function reactivate(Request $request)
+    {
+        $user = User::find($request['id']);
+        $user->setIsActive('1');
         $user->save();
         return redirect()->route('user.list');
     }

@@ -8,14 +8,6 @@
                 <div class="card-header">{{ __('vehicle.title_update') }}</div>
 
                 <div class="card-body">
-                    @if($errors->any())
-                        @foreach($errors->all() as $error)
-                            <div class="alert alert-danger alert-block">
-                                <button type="button" class="close" data-dismiss="alert">x</button>
-                                <strong>{{ $error }}</strong>
-                            </div>
-                        @endforeach
-                    @endif
 
                     <form method="POST" action="{{ route('vehicle.update_save') }}" enctype="multipart/form-data" class="center-info">
                         @csrf

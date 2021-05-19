@@ -13,10 +13,11 @@ return [
     |
     */
 
+    'title_create' => 'Create user',
     'title_update' => 'Update user',
     'title_list' => 'Users',
     'title_list2' => 'List users',
-    'title_import_export' => 'Import - Export users',
+    'title_import_export' => 'Import-Export users',
     'navbar_title' => 'User',
     'red_info' => 'Users in red color are disabled',
     'input' => [
@@ -24,8 +25,10 @@ return [
         'email' => 'Enter email',
         'id_card_number' => 'Enter id card number',
         'role' => 'Enter role',
+        'create' => 'Create',
         'update' => 'Update',
         'deactivate' => 'Deactivate',
+        'reactivate' => 'Reactivate',
         'click_import' => 'Click to import',
         'click_export' => 'Click to export',
         'click_format' => 'Click to download format',

@@ -34,6 +34,10 @@
     text-align: right;
 }
 
+.align-left{
+    text-align: left;
+}
+
 .pad-10{
     padding: 10px;
 }
