@@ -4,20 +4,16 @@
 <div class="container-fluid padding-20">
     <div class="row">
         <div class="col-md-12">
-            <div class="row">
-                <div class="col-3">
-                    <div class="col-12">
-                        <form method="GET" action="{{ route('delivery_route.create') }}">
-                            <button type="submit" class="btn btn-success"><i class="fa fa-plus"></i> {{ __('delivery_route.input.create') }}</button>
-                        </form>
-                    </div>
+            <div class="row padding-bottom-20">
+                <div class="col-6">
+                    <form method="GET" action="{{ route('delivery_route.create') }}">
+                        <button type="submit" class="btn btn-success"><i class="fa fa-plus"></i> {{ __('delivery_route.input.create') }}</button>
+                    </form>
                 </div>
-                <div class="col-3"></div>
-                <div class="col-3"></div>                
-                <div class="col-3 align-right">
-                    <span class="badge rounded-pill bg-danger font-white pad-10">{{ __('delivery_route.red_info') }}</span>
+                <div class="col-6 text-right">
+                    <span class="badge rounded-pill bg-danger font-white pad-10">{{ __('delivery_route.green_info') }}</span>
                 </div>
-            </div><br/>
+            </div>
             <div class="card center-info">
                 <div class="card-header">{{ __('delivery_route.title_list') }}</div>
 

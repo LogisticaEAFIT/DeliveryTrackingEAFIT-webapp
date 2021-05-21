@@ -4,20 +4,16 @@
 <div class="container-fluid padding-20">
     <div class="row">
         <div class="col-md-12">
-            <div class="row">
-                <div class="col-3">
-                    <div class="col-12">
-                        <form method="GET" action="{{ route('register') }}">
-                            <button type="submit" class="btn btn-success"><i class="fa fa-plus"></i> {{ __('user.input.create') }}</button>
-                        </form>
-                    </div>
+            <div class="row padding-bottom-20">
+                <div class="col-6">
+                    <form method="GET" action="{{ route('user.create') }}">
+                        <button type="submit" class="btn btn-success"><i class="fa fa-plus"></i> {{ __('user.input.create') }}</button>
+                    </form>
                 </div>
-                <div class="col-3"></div>
-                <div class="col-3"></div>                
-                <div class="col-3 align-right">
+                <div class="col-6 text-right">
                     <span class="badge rounded-pill bg-danger font-white pad-10">{{ __('user.red_info') }}</span>
                 </div>
-            </div><br/>
+            </div>
             <div class="card center-info">
                 <div class="card-header">{{ __('user.title_list') }}</div>
 
