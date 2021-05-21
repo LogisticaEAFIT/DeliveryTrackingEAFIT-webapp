@@ -8,8 +8,8 @@ use Illuminate\Http\Request;
 
 class Customer extends Model
 {
-    //attributes id, name, phone_number, address, latitude, longitude, 
-    //observations, company_id, state, created_at, updated_at
+    //attributes id, name, phone_number, address, latitude, longitude,
+    //observations, company_id, is_active, created_at, updated_at
     protected $fillable = ['name', 'phone_number', 'address',
                             'latitude', 'longitude', 'observations', 'company_id'];
 
@@ -53,14 +53,14 @@ class Customer extends Model
         $this->attributes['address'] = $address;
     }
 
-    public function getState()
+    public function getIsActive()
     {
-        return $this->attributes['state'];
+        return $this->attributes['is_active'];
     }
 
-    public function setState($state)
+    public function setIsActive($is_active)
     {
-        $this->attributes['state'] = $state;
+        $this->attributes['is_active'] = $is_active;
     }
 
     public function getLatitude()

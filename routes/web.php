@@ -99,3 +99,17 @@ Route::get('/vehicle_type/import_export', 'App\Http\Controllers\VehicleTypeContr
 Route::post('/vehicle_type/import_file', 'App\Http\Controllers\VehicleTypeController@importFile')->name('vehicle_type.import_file');
 Route::get('/vehicle_type/export_file', 'App\Http\Controllers\VehicleTypeController@exportFile')->name('vehicle_type.export_file');
 Route::get('/vehicle_type/download_format', 'App\Http\Controllers\VehicleTypeController@downloadFormat')->name('vehicle_type.download_format');
+
+// Customer routes
+Route::get('/customer/show/{id}', 'App\Http\Controllers\CustomerController@show')->name('customer.show');
+Route::get('/customer/list', 'App\http\Controllers\CustomerController@list')->name('customer.list');
+Route::get('/customer/create', 'App\Http\Controllers\CustomerController@create')->name('customer.create');
+Route::get('/customer/update', 'App\Http\Controllers\CustomerController@update')->name('customer.update');
+Route::post('/customer/update_save', 'App\Http\Controllers\CustomerController@updateSave')->name('customer.update_save');
+Route::post('/customer/save', 'App\Http\Controllers\CustomerController@save')->name('customer.save');
+Route::post('/customer/delete', 'App\Http\Controllers\CustomerController@delete')->name('customer.delete');
+Route::post('/customer/reactivate', 'App\Http\Controllers\CustomerController@reactivate')->name('customer.reactivate');
+Route::get('/customer/import_export', 'App\Http\Controllers\CustomerController@importExport')->name('customer.import_export');
+Route::post('/customer/import_file', 'App\Http\Controllers\CustomerController@importFile')->name('customer.import_file');
+Route::get('/customer/export_file', 'App\Http\Controllers\CustomerController@exportFile')->name('customer.export_file');
+Route::get('/customer/download_format', 'App\Http\Controllers\CustomerController@downloadFormat')->name('customer.download_format');
