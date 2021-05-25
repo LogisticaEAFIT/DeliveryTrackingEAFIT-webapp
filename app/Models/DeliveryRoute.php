@@ -108,6 +108,11 @@ class DeliveryRoute extends Model
         return $this->belongsTo(Vehicle::class);
     }
 
+    public function routeSegments()
+    {
+        return $this->hasMany(RouteSegment::class);
+    }
+
     public static function validate(Request $request)
     {
         $request->validate([
