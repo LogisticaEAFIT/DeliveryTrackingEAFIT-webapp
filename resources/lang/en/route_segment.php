@@ -42,6 +42,7 @@ return [
         'latitude' => 'Latitude',
         'longitude' => 'Longitude',
         'delivery_route_id' => 'Delivery Route Id',
+        'status' => 'Status',
         'id' => 'ID',
         'about' => 'About',
         'info' => 'More info about ',

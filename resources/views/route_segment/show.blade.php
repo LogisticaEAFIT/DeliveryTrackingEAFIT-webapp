@@ -44,6 +44,7 @@
                             </form>
                         </div>
                     </div><br/>
+
                     @if($data["route_segment"]->getStatus() == 'uncompleted')
                     <div class="row center-info">
                         <div class="col-12">

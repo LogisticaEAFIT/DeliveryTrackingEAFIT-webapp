@@ -44,6 +44,50 @@
                     </div><hr/>
                     <div class="row center-info">
                         <div class="col-12">
+                            <h4>{{ __('route_segment.title_list') }}</h2>
+                        </div>
+                    </div>
+                    <table class="table table-striped">
+                        <thead class="center-info">
+                            <tr>
+                                <th scope="col">{{ __('route_segment.label.id') }}</th>
+                                <th scope="col">{{ __('route_segment.label.lower_time_window') }}</th>
+                                <th scope="col">{{ __('route_segment.label.upper_time_window') }}</th>
+                                <th scope="col">{{ __('route_segment.label.route_order') }}</th>
+                                <th scope="col">{{ __('route_segment.label.status') }}</th>
+                                <th scope="col">{{ __('route_segment.label.latitude') }}</th>
+                                <th scope="col">{{ __('route_segment.label.longitude') }}</th>
+                                <th scope="col">{{ __('route_segment.label.about') }} <i class="fa fa-info-circle"></i></th>
+                            </tr>
+                        </thead>
+                        <tbody class="center-info">
+                            @foreach($data["route_segments"] as $route_segment)
+                            <tr>
+                                @if($route_segment->getStatus() == 'completed')
+                                <td class="green-option">{{ $route_segment->getId() }}</td>
+                                <td class="green-option">{{ $route_segment->getLowerTimeWindow() }}</td>
+                                <td class="green-option">{{ $route_segment->getUpperTimeWindow() }}</td>
+                                <td class="green-option">{{ $route_segment->getRouteOrder() }}</td>
+                                <td class="green-option">{{ $route_segment->getStatus() }}</td>
+                                <td class="green-option">{{ $route_segment->getLatitude() }}</td>
+                                <td class="green-option">{{ $route_segment->getLongitude() }}</td>
+                                @else
+                                <td>{{ $route_segment->getId() }}</td>
+                                <td>{{ $route_segment->getLowerTimeWindow() }}</td>
+                                <td>{{ $route_segment->getUpperTimeWindow() }}</td>
+                                <td>{{ $route_segment->getRouteOrder() }}</td>
+                                <td>{{ $route_segment->getStatus() }}</td>
+                                <td>{{ $route_segment->getLatitude() }}</td>
+                                <td>{{ $route_segment->getLongitude() }}</td>
+                                @endif
+                                <td><a href="{{ route('route_segment.show', ['id'=>$route_segment->getId()]) }}"> {{ __('route_segment.label.info') }} <strong>{{ $route_segment->getId() }}</strong></a></td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+
+                    <div class="row center-info">
+                        <div class="col-12">
                             <form method="GET" action="{{ route('delivery_route.update') }}">
                                 @csrf
                                 <input type="hidden" name="id" value="{{ $data['delivery_route']->getId() }}" />

@@ -53,7 +53,7 @@ class RouteSegmentController extends Controller
 
         $breadlist = array();
         $breadlist[0] = array(__('pagination.home'), "home.index", null, "0");
-        $breadlist[1] = array(__('delivery_route.navbar_title'), 
+        $breadlist[1] = array(__('delivery_route.navbar_title'),
                         "delivery_route.show", ['id'=>$route_segment->getDeliveryRouteId()], "0");
         $breadlist[2] = array($data["route_segment"]->getId(), "", null, "1");
         $data['breadlist'] = $breadlist;
@@ -104,7 +104,7 @@ class RouteSegmentController extends Controller
 
         $breadlist = array();
         $breadlist[0] = array(__('pagination.home'), "home.index", null, "0");
-        $breadlist[1] = array(__('delivery_route.navbar_title') + " " + $route_segment->getDeliveryRouteId(), 
+        $breadlist[1] = array(__('delivery_route.navbar_title') + " " + $route_segment->getDeliveryRouteId(),
                         "delivery_route.show", ['id'=>$route_segment->getDeliveryRouteId()], "0");
         $breadlist[2] = array($data["route_segment"]->getId(), "route_segment.show",
                         ['id'=>$data['route_segment']->getId()], "0");
