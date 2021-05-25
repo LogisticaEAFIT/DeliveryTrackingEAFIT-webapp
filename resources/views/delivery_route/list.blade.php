@@ -11,7 +11,7 @@
                     </form>
                 </div>
                 <div class="col-6 text-right">
-                    <span class="badge rounded-pill bg-danger font-white pad-10">{{ __('delivery_route.green_info') }}</span>
+                    <span class="badge rounded-pill bg-success font-white pad-10">{{ __('delivery_route.green_info') }}</span>
                 </div>
             </div>
             <div class="card center-info">

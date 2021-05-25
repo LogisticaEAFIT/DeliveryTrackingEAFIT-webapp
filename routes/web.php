@@ -113,3 +113,17 @@ Route::get('/customer/import_export', 'App\Http\Controllers\CustomerController@i
 Route::post('/customer/import_file', 'App\Http\Controllers\CustomerController@importFile')->name('customer.import_file');
 Route::get('/customer/export_file', 'App\Http\Controllers\CustomerController@exportFile')->name('customer.export_file');
 Route::get('/customer/download_format', 'App\Http\Controllers\CustomerController@downloadFormat')->name('customer.download_format');
+
+// Route segments routes
+Route::get('/route_segment/show/{id}', 'App\Http\Controllers\RouteSegmentController@show')->name('route_segment.show');
+Route::get('/route_segment/list', 'App\http\Controllers\RouteSegmentController@list')->name('route_segment.list');
+Route::get('/route_segment/create', 'App\Http\Controllers\RouteSegmentController@create')->name('route_segment.create');
+Route::get('/route_segment/update', 'App\Http\Controllers\RouteSegmentController@update')->name('route_segment.update');
+Route::post('/route_segment/update_save', 'App\Http\Controllers\RouteSegmentController@updateSave')->name('route_segment.update_save');
+Route::post('/route_segment/save', 'App\Http\Controllers\RouteSegmentController@save')->name('route_segment.save');
+Route::post('/route_segment/delete', 'App\Http\Controllers\RouteSegmentController@delete')->name('route_segment.delete');
+Route::post('/route_segment/reactivate', 'App\Http\Controllers\RouteSegmentController@reactivate')->name('route_segment.reactivate');
+Route::get('/route_segment/import_export', 'App\Http\Controllers\RouteSegmentController@importExport')->name('route_segment.import_export');
+Route::post('/route_segment/import_file', 'App\Http\Controllers\RouteSegmentController@importFile')->name('route_segment.import_file');
+Route::get('/route_segment/export_file', 'App\Http\Controllers\RouteSegmentController@exportFile')->name('route_segment.export_file');
+Route::get('/route_segment/download_format', 'App\Http\Controllers\RouteSegmentController@downloadFormat')->name('route_segment.download_format');
