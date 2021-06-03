@@ -46,7 +46,7 @@ Route::get('/company/download_format', 'App\Http\Controllers\CompanyController@d
 
 // Warehouse routes
 Route::get('/warehouse/show/{id}', 'App\Http\Controllers\WarehouseController@show')->name('warehouse.show');
-Route::get('/warehouse/list', 'App\http\Controllers\WarehouseController@list')->name('warehouse.list');
+Route::get('/warehouse/list', 'App\Http\Controllers\WarehouseController@list')->name('warehouse.list');
 Route::get('/warehouse/create', 'App\Http\Controllers\WarehouseController@create')->name('warehouse.create');
 Route::get('/warehouse/update', 'App\Http\Controllers\WarehouseController@update')->name('warehouse.update');
 Route::post('/warehouse/update_save', 'App\Http\Controllers\WarehouseController@updateSave')->name('warehouse.update_save');
@@ -60,7 +60,7 @@ Route::get('/warehouse/download_format', 'App\Http\Controllers\WarehouseControll
 
 // DeliveryRoutes routes
 Route::get('/delivery_route/show/{id}', 'App\Http\Controllers\DeliveryRouteController@show')->name('delivery_route.show');
-Route::get('/delivery_route/list', 'App\http\Controllers\DeliveryRouteController@list')->name('delivery_route.list');
+Route::get('/delivery_route/list', 'App\Http\Controllers\DeliveryRouteController@list')->name('delivery_route.list');
 Route::get('/delivery_route/create', 'App\Http\Controllers\DeliveryRouteController@create')->name('delivery_route.create');
 Route::get('/delivery_route/update', 'App\Http\Controllers\DeliveryRouteController@update')->name('delivery_route.update');
 Route::post('/delivery_route/update_save', 'App\Http\Controllers\DeliveryRouteController@updateSave')->name('delivery_route.update_save');
@@ -74,7 +74,7 @@ Route::get('/delivery_route/download_format', 'App\Http\Controllers\DeliveryRout
 
 // Vehicle routes
 Route::get('/vehicle/show/{id}', 'App\Http\Controllers\VehicleController@show')->name('vehicle.show');
-Route::get('/vehicle/list', 'App\http\Controllers\VehicleController@list')->name('vehicle.list');
+Route::get('/vehicle/list', 'App\Http\Controllers\VehicleController@list')->name('vehicle.list');
 Route::get('/vehicle/create', 'App\Http\Controllers\VehicleController@create')->name('vehicle.create');
 Route::get('/vehicle/update', 'App\Http\Controllers\VehicleController@update')->name('vehicle.update');
 Route::post('/vehicle/update_save', 'App\Http\Controllers\VehicleController@updateSave')->name('vehicle.update_save');
@@ -88,7 +88,7 @@ Route::get('/vehicle/download_format', 'App\Http\Controllers\VehicleController@d
 
 // VehicleType routes
 Route::get('/vehicle_type/show/{id}', 'App\Http\Controllers\VehicleTypeController@show')->name('vehicle_type.show');
-Route::get('/vehicle_type/list', 'App\http\Controllers\VehicleTypeController@list')->name('vehicle_type.list');
+Route::get('/vehicle_type/list', 'App\Http\Controllers\VehicleTypeController@list')->name('vehicle_type.list');
 Route::get('/vehicle_type/create', 'App\Http\Controllers\VehicleTypeController@create')->name('vehicle_type.create');
 Route::get('/vehicle_type/update', 'App\Http\Controllers\VehicleTypeController@update')->name('vehicle_type.update');
 Route::post('/vehicle_type/update_save', 'App\Http\Controllers\VehicleTypeController@updateSave')->name('vehicle_type.update_save');
@@ -102,7 +102,7 @@ Route::get('/vehicle_type/download_format', 'App\Http\Controllers\VehicleTypeCon
 
 // Customer routes
 Route::get('/customer/show/{id}', 'App\Http\Controllers\CustomerController@show')->name('customer.show');
-Route::get('/customer/list', 'App\http\Controllers\CustomerController@list')->name('customer.list');
+Route::get('/customer/list', 'App\Http\Controllers\CustomerController@list')->name('customer.list');
 Route::get('/customer/create', 'App\Http\Controllers\CustomerController@create')->name('customer.create');
 Route::get('/customer/update', 'App\Http\Controllers\CustomerController@update')->name('customer.update');
 Route::post('/customer/update_save', 'App\Http\Controllers\CustomerController@updateSave')->name('customer.update_save');
@@ -116,7 +116,7 @@ Route::get('/customer/download_format', 'App\Http\Controllers\CustomerController
 
 // Route segments routes
 Route::get('/route_segment/show/{id}', 'App\Http\Controllers\RouteSegmentController@show')->name('route_segment.show');
-Route::get('/route_segment/list', 'App\http\Controllers\RouteSegmentController@list')->name('route_segment.list');
+Route::get('/route_segment/list', 'App\Http\Controllers\RouteSegmentController@list')->name('route_segment.list');
 Route::get('/route_segment/create', 'App\Http\Controllers\RouteSegmentController@create')->name('route_segment.create');
 Route::get('/route_segment/update', 'App\Http\Controllers\RouteSegmentController@update')->name('route_segment.update');
 Route::post('/route_segment/update_save', 'App\Http\Controllers\RouteSegmentController@updateSave')->name('route_segment.update_save');
