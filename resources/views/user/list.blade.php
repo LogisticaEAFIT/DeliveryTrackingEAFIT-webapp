@@ -6,7 +6,7 @@
         <div class="col-md-12">
             <div class="row padding-bottom-20">
                 <div class="col-6">
-                    <form method="GET" action="{{ route('user.create') }}">
+                    <form method="GET" action="{{ route('register') }}">
                         <button type="submit" class="btn btn-success"><i class="fa fa-plus"></i> {{ __('user.input.create') }}</button>
                     </form>
                 </div>
