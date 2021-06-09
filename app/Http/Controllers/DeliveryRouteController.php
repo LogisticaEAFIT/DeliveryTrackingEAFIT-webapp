@@ -44,8 +44,8 @@ class DeliveryRouteController extends Controller
         }
 
         $data["delivery_route"] = $delivery_route;
-        $data["route_segments"] = $delivery_route->routeSegments;
-        //dd($data["route_segments"]);
+        $data["services"] = $delivery_route->services;
+        //dd($data["services"]);
 
         $breadlist = array();
         $breadlist[0] = array(__('pagination.home'), "home.index", null, "0");

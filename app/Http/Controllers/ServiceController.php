@@ -4,16 +4,16 @@
 namespace App\Http\Controllers;
 
 use App\Exports\CustomersExport;
-use App\Exports\RouteSegmentsExport;
+use App\Exports\ServicesExport;
 use App\Exports\VehiclesExport;
 use App\Http\Controllers\Controller;
 use App\Imports\CustomersImport;
-use App\Imports\RouteSegmentsImport;
+use App\Imports\ServicesImport;
 use App\Imports\VehiclesImport;
 use App\Models\Company;
 use App\Models\Customer;
 use App\Models\DeliveryRoute;
-use App\Models\RouteSegment;
+use App\Models\Service;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use App\Models\Warehouse;
 use App\Models\Vehicle;
@@ -23,7 +23,7 @@ use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 use Exception;
 
-class RouteSegmentController extends Controller
+class ServiceController extends Controller
 {
 
     public function __construct()
@@ -44,27 +44,27 @@ class RouteSegmentController extends Controller
         $data = []; //to be sent to the view
         
         try {
-            $route_segment = RouteSegment::findOrFail($id);
+            $service = Service::findOrFail($id);
         } catch (Exception $e) {
             return redirect()->route('home.index');
         }
 
-        $data["route_segment"] = $route_segment;
+        $data["service"] = $service;
 
         $breadlist = array();
         $breadlist[0] = array(__('pagination.home'), "home.index", null, "0");
         $breadlist[1] = array(__('delivery_route.navbar_title'),
-                        "delivery_route.show", ['id'=>$route_segment->getDeliveryRouteId()], "0");
-        $breadlist[2] = array($data["route_segment"]->getId(), "", null, "1");
+                        "delivery_route.show", ['id'=>$service->getDeliveryRouteId()], "0");
+        $breadlist[2] = array($data["service"]->getId(), "", null, "1");
         $data['breadlist'] = $breadlist;
 
-        return view('route_segment.show')->with("data", $data);
+        return view('service.show')->with("data", $data);
     }
 
     public function create()
     {
         $data = []; //to be sent to the view
-        $data["title"] = __('route_segment.title');
+        $data["title"] = __('service.title');
         $data["delivery_routes"] = DeliveryRoute::orderBy('id')->get();
 
         if (Auth::user()->getRole()=="company_admin") {
@@ -82,43 +82,43 @@ class RouteSegmentController extends Controller
 
         $breadlist = array();
         $breadlist[0] = array(__('pagination.home'), "home.index", null, "0");
-        $breadlist[1] = array(__('route_segment.title_create'), "", null, "1");
+        $breadlist[1] = array(__('service.title_create'), "", null, "1");
         $data['breadlist'] = $breadlist;
 
-        return view('route_segment.create')->with("data", $data);
+        return view('service.create')->with("data", $data);
     }
     
     public function update(Request $request)
     {
         $data = [];
-        $data["title"] = __('route_segment.title');
+        $data["title"] = __('service.title');
 
         try {
-            $route_segment = RouteSegment::findOrFail($request->input('id'));
+            $service = Service::findOrFail($request->input('id'));
         } catch (Exception $e) {
             return redirect()->route('delivery_route.list');
         }
 
-        $data["route_segment"] = $route_segment;
+        $data["service"] = $service;
 
 
         $breadlist = array();
         $breadlist[0] = array(__('pagination.home'), "home.index", null, "0");
-        $breadlist[1] = array(__('delivery_route.navbar_title') + " " + $route_segment->getDeliveryRouteId(),
-                        "delivery_route.show", ['id'=>$route_segment->getDeliveryRouteId()], "0");
-        $breadlist[2] = array($data["route_segment"]->getId(), "route_segment.show",
-                        ['id'=>$data['route_segment']->getId()], "0");
-        $breadlist[3] = array(__('route_segment.title_update'), "", null, "1");
+        $breadlist[1] = array(__('delivery_route.navbar_title') + " " + $service->getDeliveryRouteId(),
+                        "delivery_route.show", ['id'=>$service->getDeliveryRouteId()], "0");
+        $breadlist[2] = array($data["service"]->getId(), "service.show",
+                        ['id'=>$data['service']->getId()], "0");
+        $breadlist[3] = array(__('service.title_update'), "", null, "1");
         $data['breadlist'] = $breadlist;
 
-        return view('route_segment.update')->with("data", $data);
+        return view('service.update')->with("data", $data);
     }
 
     public function updateSave(Request $request)
     {
-        RouteSegment::validate($request);
+        Service::validate($request);
 
-        RouteSegment::where('id', $request->input('id'))->update([
+        Service::where('id', $request->input('id'))->update([
             'lower_time_window' => $request->input('lower_time_window'),
             'upper_time_window' => $request->input('upper_time_window'),
             'route_order' => $request->input('route_order'),
@@ -126,14 +126,14 @@ class RouteSegmentController extends Controller
             'longitude' => $request->input('longitude'),
         ]);
 
-        return redirect()->route('route_segment.show', ['id'=>$request->input('id')]);
+        return redirect()->route('service.show', ['id'=>$request->input('id')]);
     }
     
     public function save(Request $request)
     {
-        RouteSegment::validate($request);
+        Service::validate($request);
 
-        $route_segment = RouteSegment::create([
+        $service = Service::create([
             'lower_time_window' => $request->input('lower_time_window'),
             'upper_time_window' => $request->input('upper_time_window'),
             'route_order' => $request->input('route_order'),
@@ -142,61 +142,61 @@ class RouteSegmentController extends Controller
             'delivery_route_id' => $request->input('delivery_route_id'),
         ]);
 
-        return redirect()->route('route_segment.show', ['id'=>$route_segment->getId()])
-                ->with('success', __('route_segment.succesful'));
+        return redirect()->route('service.show', ['id'=>$service->getId()])
+                ->with('success', __('service.succesful'));
     }
 
     public function delete(Request $request)
     {
-        $route_segment = RouteSegment::find($request['id']);
-        $route_segment->setStatus('completed');
-        $route_segment->save();
-        return redirect()->route('route_segment.show', ['id'=>$route_segment->getId()]);
+        $service = Service::find($request['id']);
+        $service->setStatus('completed');
+        $service->save();
+        return redirect()->route('service.show', ['id'=>$service->getId()]);
     }
 
     public function reactivate(Request $request)
     {
-        $route_segment = RouteSegment::find($request['id']);
-        $route_segment->setStatus('uncompleted');
-        $route_segment->save();
-        return redirect()->route('route_segment.show', ['id'=>$route_segment->getId()]);
+        $service = Service::find($request['id']);
+        $service->setStatus('uncompleted');
+        $service->save();
+        return redirect()->route('service.show', ['id'=>$service->getId()]);
     }
 
     public function importExport()
     {
         $breadlist = array();
         $breadlist[0] = array(__('pagination.home'), "home.index", null, "0");
-        $breadlist[1] = array(__('route_segment.title_import_export'), "", null, "1");
+        $breadlist[1] = array(__('service.title_import_export'), "", null, "1");
         $data['breadlist'] = $breadlist;
 
-        return view('route_segment.import_export')->with("data", $data);
+        return view('service.import_export')->with("data", $data);
     }
 
     public function importFile(Request $request)
     {
         try {
-            Excel::import(new RouteSegmentsImport, $request->file('file')->store('temp'));
+            Excel::import(new ServicesImport, $request->file('file')->store('temp'));
         } catch (Exception $e) {
-            return redirect()->route('route_segment.import_export')->withErrors(__('route_segment.error.wrong_format'));
+            return redirect()->route('service.import_export')->withErrors(__('service.error.wrong_format'));
         }
         
-        return redirect()->route('route_segment.import_export');
+        return redirect()->route('service.import_export');
     }
 
     public function exportFile()
     {
-        return Excel::download(new RouteSegmentsExport, 'route-segments-list.xlsx');
+        return Excel::download(new ServicesExport, 'route-segments-list.xlsx');
     }
 
     public function downloadFormat()
     {
-        $filename = "/csv/route_segment_sample.csv";
+        $filename = "/csv/service_sample.csv";
         $file=public_path().$filename;
         
         $headers = [
             'Content-Type' => 'application/csv',
         ];
 
-        return response()->download($file, 'route_segment_sample.csv', $headers);
+        return response()->download($file, 'service_sample.csv', $headers);
     }
 }

@@ -6,7 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 
-class RouteSegment extends Model
+class Service extends Model
 {
     //attributes id, status, lower_time_window, upper_time_window, latitude, longitude,
     //route_order, delivery_route_id, created_at, updated_at

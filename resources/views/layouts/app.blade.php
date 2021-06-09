@@ -202,13 +202,13 @@
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <div class="sb-nav-link-icon"><i class="fa fa-list-ul"></i></div>
-                                    {{ __('route_segment.title_list') }}
+                                    {{ __('service.title_list') }}
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                    <a class="dropdown-item" href="{{ route('route_segment.create') }}">
+                                    <a class="dropdown-item" href="{{ route('service.create') }}">
                                         <div class="sb-nav-link-icon"><i class="fa fa-plus"></i> {{ __('pagination.title_create') }}</div>
                                     </a>
-                                    <a class="dropdown-item" href="{{ route('route_segment.import_export') }}">
+                                    <a class="dropdown-item" href="{{ route('service.import_export') }}">
                                         <div class="sb-nav-link-icon"><i class="fa fa-cloud"></i> {{ __('pagination.title_import_export') }}</div>
                                     </a>
                                 </div>
