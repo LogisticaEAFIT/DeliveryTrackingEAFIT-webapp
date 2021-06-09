@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Schema;
  * created by: Juan Sebastián Pérez Salazar
  */
 
-class CreateRouteSegmentTable extends Migration
+class CreateServiceTable extends Migration
 {
     /**
      * Run the migrations.
@@ -17,7 +17,7 @@ class CreateRouteSegmentTable extends Migration
      */
     public function up()
     {
-        Schema::create('route_segments', function (Blueprint $table) {
+        Schema::create('services', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->text('lower_time_window');
             $table->text('upper_time_window');
@@ -38,6 +38,6 @@ class CreateRouteSegmentTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('route_segments');
+        Schema::dropIfExists('services');
     }
 }

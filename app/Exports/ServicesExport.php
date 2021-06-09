@@ -2,16 +2,16 @@
 
 namespace App\Exports;
 
-use App\Models\RouteSegment;
+use App\Models\Service;
 use Maatwebsite\Excel\Concerns\FromCollection;
 
-class RouteSegmentsExport implements FromCollection
+class ServicesExport implements FromCollection
 {
     /**
     * @return \Illuminate\Support\Collection
     */
     public function collection()
     {
-        return RouteSegment::all();
+        return Service::all();
     }
 }

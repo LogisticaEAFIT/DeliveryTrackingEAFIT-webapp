@@ -2,11 +2,11 @@
 
 namespace App\Imports;
 
-use App\Models\RouteSegment;
+use App\Models\Service;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
-class RouteSegmentsImport implements ToModel
+class ServicesImport implements ToModel
 {
     /**
     * @param array $row
@@ -15,7 +15,7 @@ class RouteSegmentsImport implements ToModel
     */
     public function model(array $row)
     {
-        return new RouteSegment([
+        return new Service([
             'lower_time_window' => $row[0],
             'upper_time_window' => $row[1],
             'latitude' => $row[2],

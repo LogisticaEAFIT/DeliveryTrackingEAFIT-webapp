@@ -5,14 +5,14 @@
     <div class="row">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">{{ __('route_segment.title_import_export') }}</div>
+                <div class="card-header">{{ __('service.title_import_export') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('route_segment.import_file') }}" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('service.import_file') }}" enctype="multipart/form-data">
                         @csrf
 
                         <div class="form-group row">
-                            <label class="col-md-4 col-form-label text-md-right" for="customFile">{{ __('route_segment.label.browse_file') }}</label>
+                            <label class="col-md-4 col-form-label text-md-right" for="customFile">{{ __('service.label.browse_file') }}</label>
                             <div class="col-md-6">
                                 <input type="file" name="file" class="form-control @error('file') is-invalid @enderror" id="customFile">
                                 @error('file')
@@ -27,17 +27,17 @@
                             <div class="col-3"></div>
                             <div class="col-3">
                                 <button type="submit" class="btn btn-primary">
-                                    <i class="fa fa-upload"></i> {{ __('route_segment.input.click_import') }}
+                                    <i class="fa fa-upload"></i> {{ __('service.input.click_import') }}
                                 </button>
                             </div>
                             <div class="col-3">
-                                <a class="btn btn-primary" href="{{ route('route_segment.export_file') }}"><i class="fa fa-download"></i> {{ __('route_segment.input.click_export') }}</a>
+                                <a class="btn btn-primary" href="{{ route('service.export_file') }}"><i class="fa fa-download"></i> {{ __('service.input.click_export') }}</a>
                             </div>
                         </div><br/>
                         <div class="form-group row mb-0">
                             <div class="col-4"></div>
                             <div class="col-4">
-                                <a class="btn btn-link" href="{{ route('route_segment.download_format') }}"><i class="fa fa-download"></i> {{ __('route_segment.input.click_format') }}</a>
+                                <a class="btn btn-link" href="{{ route('service.download_format') }}"><i class="fa fa-download"></i> {{ __('service.input.click_format') }}</a>
                             </div>
                         </div><br/>
                     </form>

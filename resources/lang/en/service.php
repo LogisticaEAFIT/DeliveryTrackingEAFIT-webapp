@@ -13,14 +13,14 @@ return [
     |
     */
 
-    'title_create' => 'Create route segment',
-    'title_update' => 'Update route segment',
-    'title_list' => 'Route segments',
-    'title_list2' => 'List route segments',
-    'title_import_export' => 'Import-Export route segments',
-    'navbar_title' => 'Route Segment',
-    'create_customer' => 'You must create a route segment first',
-    'green_info' => 'Route segments in green color are completed',
+    'title_create' => 'Create service',
+    'title_update' => 'Update service',
+    'title_list' => 'Services',
+    'title_list2' => 'List services',
+    'title_import_export' => 'Import-Export services',
+    'navbar_title' => 'Service',
+    'create_customer' => 'You must create a service first',
+    'green_info' => 'Services in green color are completed',
     'input' => [
         'lower_time_window' => 'Enter lower time window',
         'upper_time_window' => 'Enter upper time window',
@@ -51,6 +51,6 @@ return [
     'error' => [
         'wrong_format' => 'The format of the file you input is wrong.'
     ],
-    'succesful_create' => 'Route segment created successfully!',
-    'succesful_update' => 'Route segment updated successfully!',
+    'succesful_create' => 'Service created successfully!',
+    'succesful_update' => 'Service updated successfully!',
 ];
