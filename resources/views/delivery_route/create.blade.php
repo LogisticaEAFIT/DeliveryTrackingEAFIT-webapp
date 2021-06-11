@@ -25,7 +25,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
+                        <!--<div class="form-group row">
                             <label for="number_of_deliveries" class="col-md-4 col-form-label text-md-right">{{ __('delivery_route.label.number_of_deliveries') }} <b class="red-asterisk">*</b></label>
 
                             <div class="col-md-6">
@@ -51,7 +51,7 @@
                                     </span>
                                 @enderror
                             </div>
-                        </div>
+                        </div>-->
 
                         <div class="form-group row">
                             <label for="courier_id" class="col-md-4 col-form-label text-md-right">{{ __('delivery_route.label.courier_id') }} <b class="red-asterisk">*</b></label>
