@@ -10,7 +10,7 @@ class Bill extends Model
 {
     //attributes id, status, lower_time_window, upper_time_window, latitude, longitude,
     //route_order, delivery_route_id, created_at, updated_at
-    protected $fillable = ['observations', 'amount_to_be_paid', 'paid_in_advance', 'amount_paid', 
+    protected $fillable = ['observations', 'amount_to_be_paid', 'paid_in_advance', 'amount_paid',
                             'payment_type', 'customer_id', 'service_id', 'vendor_id'];
 
     public function getId()
