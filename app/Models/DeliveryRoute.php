@@ -117,8 +117,8 @@ class DeliveryRoute extends Model
     {
         $request->validate([
             "date" => ['required'],
-            "completed_deliveries" => ['required', 'numeric', 'gte:0'],
-            "number_of_deliveries" => ['required', 'numeric', 'gt:0', 'gte:completed_deliveries'],
+            //"completed_deliveries" => ['required', 'numeric', 'gte:0'],
+            //"number_of_deliveries" => ['required', 'numeric', 'gt:0', 'gte:completed_deliveries'],
         ]);
     }
 }

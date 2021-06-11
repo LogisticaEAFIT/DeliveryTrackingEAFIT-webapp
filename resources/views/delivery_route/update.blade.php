@@ -19,7 +19,7 @@
                                 <input type="text" class="form-control" name="date" value="{{ $data['delivery_route']->getDate() }}" required>
                             </div>
                         </div><br />
-                        <div class="form-row col-12">
+                        <!--<div class="form-row col-12">
                             <div class="col-6">
                                 <label for="number_of_deliveries"><strong>{{ __('delivery_route.label.number_of_deliveries') }}</strong></label><br />
                                 <input type="text" class="form-control" name="number_of_deliveries" value="{{ $data['delivery_route']->getNumberOfDeliveries() }}" required/>
@@ -28,7 +28,7 @@
                                 <label for="completed_deliveries"><strong>{{ __('delivery_route.label.completed_deliveries') }}</strong></label><br />
                                 <input type="text" class="form-control" name="completed_deliveries" value="{{ $data['delivery_route']->getCompletedDeliveries() }}" required/>
                             </div>
-                        </div><br />
+                        </div><br />-->
                         <div class="form-row justify-content-center">
                             <div class="col center-info">
                                 <input type="submit" value="{{ __('delivery_route.input.update') }}" class="btn btn-primary"/>

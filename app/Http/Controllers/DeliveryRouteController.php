@@ -154,11 +154,11 @@ class DeliveryRouteController extends Controller
 
         DeliveryRoute::where('id', $request->input('id'))->update([
             'date' => $request->input('date'),
-            'completed_deliveries' => $request->input('completed_deliveries'),
-            'number_of_deliveries' => $request->input('number_of_deliveries'),
+            //'completed_deliveries' => $request->input('completed_deliveries'),
+            //'number_of_deliveries' => $request->input('number_of_deliveries'),
         ]);
 
-        return redirect()->route('delivery_route.list');
+        return $this->updateDeliveryRouteValues($request->input('id'));
     }
     
     public function save(Request $request)
@@ -175,8 +175,8 @@ class DeliveryRouteController extends Controller
 
         DeliveryRoute::create([
             'date' => $request->input('date'),
-            'completed_deliveries' => $request->input('completed_deliveries'),
-            'number_of_deliveries' => $request->input('number_of_deliveries'),
+            'completed_deliveries' => 0,
+            'number_of_deliveries' => 0,
             'warehouse_id' => $data['warehouse_id'],
             'courier_id' => $data['courier_id'],
             'vehicle_id' => $data['vehicle_id'],
@@ -190,6 +190,32 @@ class DeliveryRouteController extends Controller
         $delivery_route = DeliveryRoute::find($request['id']);
         $delivery_route->setState('finished');
         $delivery_route->save();
+        return redirect()->route('delivery_route.list');
+    }
+
+    public function updateDeliveryRouteValues($id)
+    {
+        try {
+            $delivery_route = DeliveryRoute::findOrFail($id);
+        } catch (Exception $e) {
+            return redirect()->route('delivery_route.list');
+        }
+
+        $services = $delivery_route->services;
+        $counter = 0;
+        $completed_counter = 0;
+
+        foreach ($services as $service) {
+            if ($service->getStatus() == 'completed') {
+                $completed_counter += 1;
+            }
+            $counter += 1;
+        }
+
+        $delivery_route->setCompletedDeliveries($completed_counter);
+        $delivery_route->setNumberOfDeliveries($counter);
+        $delivery_route->save();
+
         return redirect()->route('delivery_route.list');
     }
 

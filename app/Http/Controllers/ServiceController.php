@@ -151,6 +151,7 @@ class ServiceController extends Controller
         $service = Service::find($request['id']);
         $service->setStatus('completed');
         $service->save();
+        $this->updateDeliveryRouteValues($service->deliveryRoute->getId());
         return redirect()->route('service.show', ['id'=>$service->getId()]);
     }
 
@@ -159,7 +160,32 @@ class ServiceController extends Controller
         $service = Service::find($request['id']);
         $service->setStatus('uncompleted');
         $service->save();
+        $this->updateDeliveryRouteValues($service->deliveryRoute->getId());
         return redirect()->route('service.show', ['id'=>$service->getId()]);
+    }
+
+    public function updateDeliveryRouteValues($id)
+    {
+        try {
+            $delivery_route = DeliveryRoute::findOrFail($id);
+        } catch (Exception $e) {
+            return redirect()->route('delivery_route.list');
+        }
+
+        $services = $delivery_route->services;
+        $counter = 0;
+        $completed_counter = 0;
+
+        foreach ($services as $service) {
+            if ($service->getStatus() == 'completed') {
+                $completed_counter += 1;
+            }
+            $counter += 1;
+        }
+
+        $delivery_route->setCompletedDeliveries($completed_counter);
+        $delivery_route->setNumberOfDeliveries($counter);
+        $delivery_route->save();
     }
 
     public function importExport()
