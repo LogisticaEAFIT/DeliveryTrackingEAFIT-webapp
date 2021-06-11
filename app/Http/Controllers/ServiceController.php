@@ -211,7 +211,7 @@ class ServiceController extends Controller
 
     public function exportFile()
     {
-        return Excel::download(new ServicesExport, 'route-segments-list.xlsx');
+        return Excel::download(new ServicesExport, 'services-list.xlsx');
     }
 
     public function downloadFormat()

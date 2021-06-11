@@ -141,3 +141,17 @@ Route::get('/vendor/import_export', 'App\Http\Controllers\VendorController@impor
 Route::post('/vendor/import_file', 'App\Http\Controllers\VendorController@importFile')->name('vendor.import_file');
 Route::get('/vendor/export_file', 'App\Http\Controllers\VendorController@exportFile')->name('vendor.export_file');
 Route::get('/vendor/download_format', 'App\Http\Controllers\VendorController@downloadFormat')->name('vendor.download_format');
+
+// Bill routes
+Route::get('/bill/show/{id}', 'App\Http\Controllers\BillController@show')->name('bill.show');
+Route::get('/bill/list', 'App\Http\Controllers\BillController@list')->name('bill.list');
+Route::get('/bill/create', 'App\Http\Controllers\BillController@create')->name('bill.create');
+Route::get('/bill/update', 'App\Http\Controllers\BillController@update')->name('bill.update');
+Route::post('/bill/update_save', 'App\Http\Controllers\BillController@updateSave')->name('bill.update_save');
+Route::post('/bill/save', 'App\Http\Controllers\BillController@save')->name('bill.save');
+Route::post('/bill/delete', 'App\Http\Controllers\BillController@delete')->name('bill.delete');
+Route::post('/bill/reactivate', 'App\Http\Controllers\BillController@reactivate')->name('bill.reactivate');
+Route::get('/bill/import_export', 'App\Http\Controllers\BillController@importExport')->name('bill.import_export');
+Route::post('/bill/import_file', 'App\Http\Controllers\BillController@importFile')->name('bill.import_file');
+Route::get('/bill/export_file', 'App\Http\Controllers\BillController@exportFile')->name('bill.export_file');
+Route::get('/bill/download_format', 'App\Http\Controllers\BillController@downloadFormat')->name('bill.download_format');
