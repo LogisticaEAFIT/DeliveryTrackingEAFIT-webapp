@@ -127,3 +127,17 @@ Route::get('/service/import_export', 'App\Http\Controllers\ServiceController@imp
 Route::post('/service/import_file', 'App\Http\Controllers\ServiceController@importFile')->name('service.import_file');
 Route::get('/service/export_file', 'App\Http\Controllers\ServiceController@exportFile')->name('service.export_file');
 Route::get('/service/download_format', 'App\Http\Controllers\ServiceController@downloadFormat')->name('service.download_format');
+
+// Vendor routes
+Route::get('/vendor/show/{id}', 'App\Http\Controllers\VendorController@show')->name('vendor.show');
+Route::get('/vendor/list', 'App\Http\Controllers\VendorController@list')->name('vendor.list');
+Route::get('/vendor/create', 'App\Http\Controllers\VendorController@create')->name('vendor.create');
+Route::get('/vendor/update', 'App\Http\Controllers\VendorController@update')->name('vendor.update');
+Route::post('/vendor/update_save', 'App\Http\Controllers\VendorController@updateSave')->name('vendor.update_save');
+Route::post('/vendor/save', 'App\Http\Controllers\VendorController@save')->name('vendor.save');
+Route::post('/vendor/delete', 'App\Http\Controllers\VendorController@delete')->name('vendor.delete');
+Route::post('/vendor/reactivate', 'App\Http\Controllers\VendorController@reactivate')->name('vendor.reactivate');
+Route::get('/vendor/import_export', 'App\Http\Controllers\VendorController@importExport')->name('vendor.import_export');
+Route::post('/vendor/import_file', 'App\Http\Controllers\VendorController@importFile')->name('vendor.import_file');
+Route::get('/vendor/export_file', 'App\Http\Controllers\VendorController@exportFile')->name('vendor.export_file');
+Route::get('/vendor/download_format', 'App\Http\Controllers\VendorController@downloadFormat')->name('vendor.download_format');
