@@ -1,2 +1,2 @@
 name(string), phone_number(string), address(string), latitude(double), longitude(double), observations(string), company_id(int)
-Carlos, 3158264578, Carreara 64 #99 C 21, 543245, -65423, Cliente fiel, 1
+Carlos,3158264578,Carreara 64 #99 C 21,543245,-65423,Cliente fiel,1
