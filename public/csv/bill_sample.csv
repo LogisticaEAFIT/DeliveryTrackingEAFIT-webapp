@@ -1,2 +1,2 @@
 observations(string), amount_to_be_paid(double), paid_in_advance(bool), amount_paid(double), payment_type('cash'; 'card'), customer_id(int), service_id(int), vendor_id(int)
-Estricto, 12500.00, 0, 13000.00, cash, 1, 2, 1
+Estricto,12500.00,0,13000.00,cash,1,2,1

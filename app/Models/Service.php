@@ -98,6 +98,11 @@ class Service extends Model
         return $this->belongsTo(DeliveryRoute::class);
     }
 
+    public function bills()
+    {
+        return $this->hasMany(Bill::class);
+    }
+
     public static function validate(Request $request)
     {
         $request->validate([

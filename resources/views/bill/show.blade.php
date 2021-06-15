@@ -34,13 +34,13 @@
                     </div><hr/>
                     <div class="row center-info">
                         <div class="col-4">
-                            <b>{{ __('bill.label.customer_id') }}</b><br /> {{ $data["bill"]->getCustomerId() }}<br />
+                        <b>{{ __('bill.label.customer_id') }}</b><br /> <a href="{{ route('customer.show', ['id'=>$data['bill']->getCustomerId()]) }}"><strong>{{ $data["bill"]->getCustomerId() }} - {{ $data["bill"]->customer->getName() }}</strong></a><br />
                         </div>
                         <div class="col-4">
-                            <b>{{ __('bill.label.service_id') }}</b><br /> {{ $data["bill"]->getServiceId() }}<br />
+                            <b>{{ __('bill.label.service_id') }}</b><br /> <a href="{{ route('service.show', ['id'=>$data['bill']->getServiceId()]) }}"><strong>{{ $data["bill"]->getServiceId() }}</strong></a><br />
                         </div>
                         <div class="col-4">
-                            <b>{{ __('bill.label.vendor_id') }}</b><br /> {{ $data["bill"]->getVendorId() }}<br />
+                            <b>{{ __('bill.label.vendor_id') }}</b><br /> <a href="{{ route('vendor.show', ['id'=>$data['bill']->getVendorId()]) }}"><strong>{{ $data["bill"]->getVendorId() }} - {{ $data["bill"]->vendor->getName() }}</strong></a><br />
                         </div>
                     </div><hr/>
                     <div class="row center-info">

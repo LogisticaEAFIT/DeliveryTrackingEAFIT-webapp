@@ -35,6 +35,47 @@
                             <b>{{ __('service.label.longitude') }}</b><br /> {{ $data["service"]->getLongitude() }}<br />
                         </div>
                     </div><hr/>
+
+                    <div class="row center-info">
+                        <div class="col-12">
+                            <h4>{{ __('bill.title_list') }}</h2>
+                        </div>
+                    </div>
+                    <table class="table table-striped">
+                        <thead class="center-info">
+                            <tr>
+                                <th scope="col">{{ __('bill.label.id') }}</th>
+                                <th scope="col">{{ __('bill.label.observations') }}</th>
+                                <th scope="col">{{ __('bill.label.amount_to_be_paid') }}</th>
+                                <th scope="col">{{ __('bill.label.paid_in_advance') }}</th>
+                                <th scope="col">{{ __('bill.label.amount_paid') }}</th>
+                                <th scope="col">{{ __('bill.label.payment_type') }}</th>
+                                <th scope="col">{{ __('bill.label.customer_id') }}</th>
+                                <th scope="col">{{ __('bill.label.vendor_id') }}</th>
+                                <th scope="col">{{ __('bill.label.about') }} <i class="fa fa-info-circle"></i></th>
+                            </tr>
+                        </thead>
+                        <tbody class="center-info">
+                            @foreach($data["bills"] as $bill)
+                            <tr>
+                                <td>{{ $bill->getId() }}</td>
+                                <td>{{ $bill->getObservations() }}</td>
+                                <td>{{ $bill->getAmountToBePaid() }}</td>
+                                @if($bill->getPaidInAdvance() == "1")
+                                <td>{{ __('bill.label.paid_in_advance_option_1') }}</td>
+                                @else
+                                <td>{{ __('bill.label.paid_in_advance_option_2') }}</td>
+                                @endif
+                                <td>{{ $bill->getAmountPaid() }}</td>
+                                <td>{{ $bill->getPaymentType() }}</td>
+                                <td><a href="{{ route('customer.show', ['id'=>$bill->getCustomerId()]) }}"><strong>{{ $bill->getCustomerId() }} - {{ $bill->customer->getName() }}</strong></a></td></td>
+                                <td><a href="{{ route('vendor.show', ['id'=>$bill->getVendorId()]) }}"><strong>{{ $bill->getVendorId() }} - {{ $bill->vendor->getName() }}</strong></a></td></td>
+                                <td><a href="{{ route('bill.show', ['id'=>$bill->getId()]) }}"> {{ __('bill.label.info') }} <strong>{{ $bill->getId() }}</strong></a></td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+
                     <div class="row center-info">
                         <div class="col-12">
                             <form method="GET" action="{{ route('service.update') }}">

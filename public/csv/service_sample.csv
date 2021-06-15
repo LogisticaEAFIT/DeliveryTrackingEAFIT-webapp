@@ -1,2 +1,2 @@
 lower_time_window(string), upper_time_window(string), route_order(int), latitude(double), longitude(double), delivery_route_id(int)
-10:00, 14:00, 1, 543245, -65423, 1
+10:00,14:00,1,543245,-65423,1

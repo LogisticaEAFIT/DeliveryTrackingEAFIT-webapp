@@ -50,6 +50,7 @@ class ServiceController extends Controller
         }
 
         $data["service"] = $service;
+        $data["bills"] = $service->bills;
 
         $breadlist = array();
         $breadlist[0] = array(__('pagination.home'), "home.index", null, "0");

@@ -235,6 +235,20 @@
                             </li>
                             @endif
 
+                            @if(Auth::user()->getRole()=="super_admin" || Auth::user()->getRole()=="company_admin" || Auth::user()->getRole()=="warehouse_admin")
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <div class="sb-nav-link-icon"><i class="fa fa-list-ul"></i></div>
+                                    {{ __('bill.title_list') }}
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <a class="dropdown-item" href="{{ route('bill.import_export') }}">
+                                        <div class="sb-nav-link-icon"><i class="fa fa-cloud"></i> {{ __('pagination.title_import_export') }}</div>
+                                    </a>
+                                </div>
+                            </li>
+                            @endif
+
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                 @csrf
                             </form>

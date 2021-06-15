@@ -1,2 +1,2 @@
 date(string), completed_deliveries(int), number_of_deliveries(int), warehouse_id(int), courier_id(int), vehicle_id(int)
-2021-04-30, 6, 2, 5, 21, 1
+2021-04-30,6,2,5,21,1
