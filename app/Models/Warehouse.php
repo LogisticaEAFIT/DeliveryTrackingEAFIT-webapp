@@ -100,7 +100,7 @@ class Warehouse extends Model
     {
         $request->validate([
             "name" => ['required', 'string', 'min:1', 'max:255'],
-            "description" => ['required', 'string', 'min:1', 'max:255'],
+            "description" => ['min:0', 'max:255'],
             "address" => ['required', 'string', 'min:1', 'max:255'],
             "latitude" => ['required', 'numeric'],
             "longitude" => ['required', 'numeric'],
