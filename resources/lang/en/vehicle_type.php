@@ -22,9 +22,9 @@ return [
     'create_vehicle_type' => 'You must create a vehicle type first',
     'red_info' => 'Vehicle types in red color are disabled',
     'input' => [
-        'capacity' => 'Enter capacity',
+        'capacity' => 'Enter capacity in kilogrammes',
         'description' => 'Enter description',
-        'volume' => 'Enter volume',
+        'volume' => 'Enter volume in cubic meters (m3)',
         'create' => 'Create',
         'update' => 'Update',
         'deactivate' => 'Deactivate',

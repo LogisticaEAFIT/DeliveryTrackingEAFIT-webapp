@@ -38,10 +38,10 @@
                         @csrf
 
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('user.label.name') }} <b class="red-asterisk">*</b></label>
+                            <label for="name" class="col-md-4 col-form-label text-md-right" title="{{ __('user.input.name') }}">{{ __('user.label.name') }} <b class="red-asterisk">*</b></label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" title="{{ __('user.input.name') }}" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
 
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
@@ -52,10 +52,10 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('user.label.email') }} <b class="red-asterisk">*</b></label>
+                            <label for="email" class="col-md-4 col-form-label text-md-right" title="{{ __('user.input.email') }}">{{ __('user.label.email') }} <b class="red-asterisk">*</b></label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" title="{{ __('user.input.email') }}" name="email" value="{{ old('email') }}" required autocomplete="email">
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
@@ -66,10 +66,10 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="id_card_number" class="col-md-4 col-form-label text-md-right">{{ __('user.label.id_card_number') }} <b class="red-asterisk">*</b></label>
+                            <label for="id_card_number" class="col-md-4 col-form-label text-md-right" title="{{ __('user.input.id_card_number') }}">{{ __('user.label.id_card_number') }} <b class="red-asterisk">*</b></label>
 
                             <div class="col-md-6">
-                                <input id="id_card_number" type="text" class="form-control @error('id_card_number') is-invalid @enderror" name="id_card_number" value="{{ old('id_card_number') }}" required autocomplete="id_card_number">
+                                <input id="id_card_number" type="text" class="form-control @error('id_card_number') is-invalid @enderror" title="{{ __('user.input.id_card_number') }}" name="id_card_number" value="{{ old('id_card_number') }}" required autocomplete="id_card_number">
 
                                 @error('id_card_number')
                                     <span class="invalid-feedback" role="alert">
@@ -80,10 +80,10 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="role" class="col-md-4 col-form-label text-md-right">{{ __('Role') }} <b class="red-asterisk">*</b></label>
+                            <label for="role" class="col-md-4 col-form-label text-md-right" title="{{ __('user.input.role') }}">{{ __('Role') }} <b class="red-asterisk">*</b></label>
 
                             <div class="col-md-6">
-                                <select id="role" name="role" class="form-control @error('role') is-invalid @enderror" required autocomplete="role" onchange="roleSelected()">
+                                <select id="role" name="role" class="form-control @error('role') is-invalid @enderror" title="{{ __('user.input.role') }}" required autocomplete="role" onchange="roleSelected()">
                                     @if(Auth::user()->getRole()=="super_admin")
                                     <option value="super_admin" selected>{{ __('Super Admin') }}</option>
                                     @endif
@@ -103,10 +103,10 @@
                         </div>
                         @if(Auth::user()->getRole()=="super_admin")
                         <div class="form-group row display-block-none" id="company_id_block">
-                            <label for="company_id" class="col-md-4 col-form-label text-md-right">{{ __('user.label.company_id') }} <b class="red-asterisk">*</b></label>
+                            <label for="company_id" class="col-md-4 col-form-label text-md-right" title="{{ __('user.input.company_id') }}">{{ __('user.label.company_id') }} <b class="red-asterisk">*</b></label>
                             
                             <div class="col-md-6">
-                                <select class="form-control @error('company_id') is-invalid @enderror" name="company_id" id="company_id" required>
+                                <select class="form-control @error('company_id') is-invalid @enderror" title="{{ __('user.input.company_id') }}" name="company_id" id="company_id" required>
                                     <option value="null">N/A</option>
                                     @foreach($data["companies"] as $company)
                                         @if($company->getIsActive() == '1')
@@ -126,7 +126,7 @@
                         </div>
                         @else
                         <div class="form-group row" id="company_id_block">
-                            <label for="company_id" class="col-md-4 col-form-label text-md-right">{{ __('user.label.company_id') }} <b class="red-asterisk">*</b></label>
+                            <label for="company_id" class="col-md-4 col-form-label text-md-right" title="{{ __('user.input.company_id') }}">{{ __('user.label.company_id') }} <b class="red-asterisk">*</b></label>
 
                             <div class="col-md-6">
                                 <input type="text" class="form-control @error('company_id') is-invalid @enderror" value="{{ Auth::user()->getCompanyId() }}" disabled/>
@@ -143,10 +143,10 @@
                         @endif
                         @if(Auth::user()->getRole()=="company_admin")
                         <div class="form-group row display-block-none" id="warehouse_id_block">
-                            <label for="warehouse_id" class="col-md-4 col-form-label text-md-right">{{ __('user.label.warehouse_id') }} <b class="red-asterisk">*</b></label>
+                            <label for="warehouse_id" class="col-md-4 col-form-label text-md-right" title="{{ __('user.input.warehouse_id') }}">{{ __('user.label.warehouse_id') }} <b class="red-asterisk">*</b></label>
                             
                             <div class="col-md-6">
-                                <select class="form-control @error('warehouse_id') is-invalid @enderror" name="warehouse_id" id="warehouse_id" required>
+                                <select class="form-control @error('warehouse_id') is-invalid @enderror" title="{{ __('user.input.warehouse_id') }}" name="warehouse_id" id="warehouse_id" required>
                                     <option value="null" selected>N/A</option>
                                     @foreach($data["warehouses"] as $warehouse)
                                         @if($warehouse->getIsActive() == '1')
@@ -166,7 +166,7 @@
                         </div>
                         @elseif(Auth::user()->getRole()=="super_admin")
                         <div class="form-group row display-block-none" id="warehouse_id_block">
-                            <label for="warehouse_id" class="col-md-4 col-form-label text-md-right">{{ __('user.label.warehouse_id') }} <b class="red-asterisk">*</b></label>
+                            <label for="warehouse_id" class="col-md-4 col-form-label text-md-right" title="{{ __('user.input.warehouse_id') }}">{{ __('user.label.warehouse_id') }} <b class="red-asterisk">*</b></label>
                             
                             <div class="col-md-6">
                                 <select class="form-control @error('warehouse_id') is-invalid @enderror" name="warehouse_id" id="warehouse_id" required>
@@ -189,7 +189,7 @@
                         </div>
                         @else
                         <div class="form-group row" id="warehouse_id_block">
-                            <label for="warehouse_id" class="col-md-4 col-form-label text-md-right">{{ __('user.label.warehouse_id') }} <b class="red-asterisk">*</b></label>
+                            <label for="warehouse_id" class="col-md-4 col-form-label text-md-right" title="{{ __('user.input.warehouse_id') }}">{{ __('user.label.warehouse_id') }} <b class="red-asterisk">*</b></label>
 
                             <div class="col-md-6">
                                 <input type="text" class="form-control @error('warehouse_id') is-invalid @enderror" value="{{ Auth::user()->getCompanyId() }} - {{ Auth::user()->company->getName() }} - {{ Auth::user()->getWarehouseId() }} - {{ Auth::user()->warehouse->getName() }}" disabled/>
@@ -204,10 +204,10 @@
                         </div>
                         @endif
                         <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }} <b class="red-asterisk">*</b></label>
+                            <label for="password" class="col-md-4 col-form-label text-md-right" title="{{ __('user.input.password') }}">{{ __('Password') }} <b class="red-asterisk">*</b></label>
 
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" title="{{ __('user.input.password') }}" name="password" required autocomplete="new-password">
 
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
@@ -218,10 +218,10 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }} <b class="red-asterisk">*</b></label>
+                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right" title="{{ __('user.input.password') }}">{{ __('Confirm Password') }} <b class="red-asterisk">*</b></label>
 
                             <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" title="{{ __('user.input.password') }}" required autocomplete="new-password">
                             </div>
                         </div>
 

@@ -140,9 +140,11 @@ class CustomerController extends Controller
     {
         Customer::validate($request);
 
+        $phone_number = "+" . $request->input('phone_number_prefix') . " " . $request->input('phone_number');
+
         Customer::create([
             'name' => $request->input('name'),
-            'phone_number' => $request->input('phone_number'),
+            'phone_number' => $phone_number,
             'address' => $request->input('address'),
             'latitude' => $request->input('latitude'),
             'longitude' => $request->input('longitude'),
