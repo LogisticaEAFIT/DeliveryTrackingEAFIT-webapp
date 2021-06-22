@@ -102,7 +102,7 @@ class DeliveryRouteController extends Controller
         //$data["warehouses"] = Warehouse::all();
         $data["couriers"] = User::where('role', 'courier')->get();
         if (empty($data["couriers"]->toArray())) {
-            return redirect()->route('user.create')->withErrors(__('user.create_courier'));
+            return redirect()->route('register')->withErrors(__('user.create_courier'));
         }
         $data["vehicles"] = Vehicle::orderBy('id')->get();
         if (empty($data["vehicles"]->toArray())) {
