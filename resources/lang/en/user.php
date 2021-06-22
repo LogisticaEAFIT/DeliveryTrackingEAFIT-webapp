@@ -20,6 +20,7 @@ return [
     'title_import_export' => 'Import-Export users',
     'navbar_title' => 'User',
     'red_info' => 'Users in red color are disabled',
+    'create_courier' => 'You must create a courier first',
     'input' => [
         'name' => 'Enter name',
         'email' => 'Enter email',
