@@ -25,6 +25,7 @@ return [
         'email' => 'Enter email',
         'id_card_number' => 'Enter id card number',
         'role' => 'Enter role',
+        'password' => 'Enter password',
         'create' => 'Create',
         'update' => 'Update',
         'deactivate' => 'Deactivate',

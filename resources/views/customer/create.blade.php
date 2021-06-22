@@ -29,9 +29,18 @@
                             <label for="phone_number" class="col-md-4 col-form-label text-md-right">{{ __('customer.label.phone_number') }} <b class="red-asterisk">*</b></label>
 
                             <div class="col-md-6">
-                                <input id="phone_number" type="text" class="form-control @error('phone_number') is-invalid @enderror" name="phone_number" value="{{ old('phone_number') }}" required autocomplete="phone_number">
+                                <div class="input-group">
+                                    <span class="input-group-text">Prefix</span>
+                                    <input id="phone_number_prefix" type="text" class="form-control @error('phone_number_prefix') is-invalid @enderror col-1" name="phone_number_prefix" value="{{ old('phone_number_prefix') }}" required autocomplete="phone_number_prefix">
+                                    <input id="phone_number" type="text" class="form-control @error('phone_number') is-invalid @enderror col-11" name="phone_number" value="{{ old('phone_number') }}" required autocomplete="phone_number">
+                                </div>
 
                                 @error('phone_number')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                                @error('phone_number_prefix')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>

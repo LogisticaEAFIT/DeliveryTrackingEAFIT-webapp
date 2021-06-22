@@ -120,6 +120,11 @@ class RegisterController extends Controller
             $data['warehouse_id'] = $splited_info[1];
         }
 
+        if ($data['role'] == 'super_admin') {
+            $data['company_id'] = null;
+            $data['warehouse_id'] = null;
+        }
+
         $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
