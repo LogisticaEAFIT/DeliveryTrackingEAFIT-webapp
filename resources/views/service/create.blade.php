@@ -15,8 +15,10 @@
                             <label for="lower_time_window" class="col-md-4 col-form-label text-md-right">{{ __('service.label.lower_time_window') }} <b class="red-asterisk">*</b></label>
 
                             <div class="col-md-6">
-                                <input id="lower_time_window" type="text" class="form-control @error('lower_time_window') is-invalid @enderror" name="lower_time_window" value="{{ old('lower_time_window') }}" required autocomplete="lower_time_window">
-
+                                <input id="lower_time_window" type="text" class="form-control @error('lower_time_window') is-invalid @enderror" name="lower_time_window" value="{{ old('lower_time_window') }}" required autocomplete="lower_time_window" aria-describedby="lowerTimeWindowHelpInline">
+                                <span id="lowerTimeWindowHelpInline" class="form-text">
+                                    {{ __('service.input.lower_time_window') }}
+                                </span>
                                 @error('lower_time_window')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -29,8 +31,10 @@
                             <label for="upper_time_window" class="col-md-4 col-form-label text-md-right">{{ __('service.label.upper_time_window') }} <b class="red-asterisk">*</b></label>
 
                             <div class="col-md-6">
-                                <input id="upper_time_window" type="text" class="form-control @error('upper_time_window') is-invalid @enderror" name="upper_time_window" value="{{ old('upper_time_window') }}" required autocomplete="upper_time_window">
-
+                                <input id="upper_time_window" type="text" class="form-control @error('upper_time_window') is-invalid @enderror" name="upper_time_window" value="{{ old('upper_time_window') }}" required autocomplete="upper_time_window" aria-describedby="upperTimeWindowHelpInline">
+                                <span id="lowerTimeWindowHelpInline" class="form-text">
+                                    {{ __('service.input.upper_time_window') }}
+                                </span>
                                 @error('upper_time_window')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
