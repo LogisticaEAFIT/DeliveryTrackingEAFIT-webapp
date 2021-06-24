@@ -295,6 +295,16 @@
                         </div>
                     @endif
 
+                    <!-- display success messages -->
+                    @if ($message = Session::get('success'))
+                        <div class="container-fluid">
+                            <div class="alert alert-success alert-block margin-0">
+                                <button type="button" class="close" data-dismiss="alert">x</button>
+                                <strong>{{ $message }}</strong>
+                            </div>
+                        </div>
+                    @endif
+
                     <!-- display main content -->
                     @yield('content')
                 </main>

@@ -26,7 +26,7 @@
                             <b>{{ __('vehicle.label.warehouse_id') }}</b><br /> <a href="{{ route('warehouse.show', ['id'=>$data['vehicle']->getWarehouseId()]) }}"><strong>{{ $data["vehicle"]->getWarehouseId() }} - {{ $data["vehicle"]->warehouse->getName() }}</strong></a><br />
                         </div>
                         <div class="col-6">
-                            <b>{{ __('vehicle.label.type_id') }}</b><br /> <a href="{{ route('vehicle_type.show', ['id'=>$data['vehicle']->getTypeId()]) }}"><strong>{{ $data["vehicle"]->getTypeId() }}</strong></a><br />
+                            <b>{{ __('vehicle.label.type_id') }}</b><br /> <a href="{{ route('vehicle_type.show', ['id'=>$data['vehicle']->getTypeId()]) }}"><strong>{{ $data["vehicle"]->getTypeId() }} - {{ $data["vehicle"]->type->getDescription() }}</strong></a><br />
                         </div>
                     </div><hr/>
                     <div class="row center-info">

@@ -106,8 +106,8 @@ class Service extends Model
     public static function validate(Request $request)
     {
         $request->validate([
-            "lower_time_window" => ['required', 'string'],
-            "upper_time_window" => ['required', 'string'],
+            "lower_time_window" => ['required', 'regex:/([01]?[0-9]|2[0-3]):[0-5][0-9]$/'],
+            "upper_time_window" => ['required', 'regex:/([01]?[0-9]|2[0-3]):[0-5][0-9]$/'],
             "route_order" => ['required', 'numeric'],
             "latitude" => ['required', 'numeric'],
             "longitude" => ['required', 'numeric'],
