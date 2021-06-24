@@ -69,7 +69,7 @@ class BillController extends Controller
 
         $breadlist = array();
         $breadlist[0] = array(__('pagination.home'), "home.index", null, "0");
-        $breadlist[1] = array(__('service.navbar_title') + " " + $bill->getServiceId(),
+        $breadlist[1] = array(__('service.navbar_title') . " " . $bill->getServiceId(),
                         "service.show", ['id'=>$bill->getServiceId()], "0");
         $breadlist[2] = array($data["bill"]->getId(), "bill.show",
                         ['id'=>$data['bill']->getId()], "0");

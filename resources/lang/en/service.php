@@ -22,8 +22,8 @@ return [
     'create_customer' => 'You must create a service first',
     'green_info' => 'Services in green color are completed',
     'input' => [
-        'lower_time_window' => 'Enter lower time window',
-        'upper_time_window' => 'Enter upper time window',
+        'lower_time_window' => 'Enter lower time interval in which the order can be delivered in a 24-hour format',
+        'upper_time_window' => 'Enter upper time interval in which the order can be delivered in a 24-hour format',
         'route_order' => 'Enter route address',
         'latitude' => 'Enter latitude',
         'longitude' => 'Enter longitude',

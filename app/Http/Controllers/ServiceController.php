@@ -105,7 +105,7 @@ class ServiceController extends Controller
 
         $breadlist = array();
         $breadlist[0] = array(__('pagination.home'), "home.index", null, "0");
-        $breadlist[1] = array(__('delivery_route.navbar_title') + " " + $service->getDeliveryRouteId(),
+        $breadlist[1] = array(__('delivery_route.navbar_title') . " " . $service->getDeliveryRouteId(),
                         "delivery_route.show", ['id'=>$service->getDeliveryRouteId()], "0");
         $breadlist[2] = array($data["service"]->getId(), "service.show",
                         ['id'=>$data['service']->getId()], "0");

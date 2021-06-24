@@ -51,4 +51,5 @@ return [
         'wrong_format' => 'The format of the file you input is wrong.'
     ],
     'succesful_update' => 'User updated successfully!',
+    'succesful_create' => 'User created successfully!',
 ];
