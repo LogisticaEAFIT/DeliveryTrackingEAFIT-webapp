@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use App\Exports\DeliveryRoutesExport;
 use App\Http\Controllers\Controller;
 use App\Imports\DeliveryRoutesImport;
+use App\Imports\DeliveryServiceBillsImport;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use App\Models\Warehouse;
 use App\Models\DeliveryRoute;
@@ -238,7 +239,21 @@ class DeliveryRouteController extends Controller
                 ->withErrors(__('delivery_route.error.wrong_format'));
         }
         
-        return redirect()->route('delivery_route.list');
+        return redirect()->route('delivery_route.list')->with('success', __('delivery_route.succesful_import'));
+        ;
+    }
+
+    public function importFileDeliveryServiceBill(Request $request)
+    {
+        //try {
+            Excel::import(new DeliveryServiceBillsImport, $request->file('file')->store('temp'));
+        /*} catch (Exception $e) {
+            return redirect()->route('delivery_route.list')
+                ->withErrors(__('delivery_route.error.wrong_format'));
+        }*/
+        
+        return redirect()->route('delivery_route.list')->with('success', __('delivery_route.succesful_import_2'));
+        ;
     }
 
     public function exportFile()

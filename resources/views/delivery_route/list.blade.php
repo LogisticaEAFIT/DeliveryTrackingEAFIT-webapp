@@ -74,6 +74,31 @@
             <nav class="center-info" aria-label="Page navigation example">
                 {{$data["delivery_routes"]->links()}}
             </nav>
+            <div class="row">
+                <div class="col-6 offset-3">
+                    <form method="POST" action="{{ route('delivery_route.import_file_delivery_service_bill') }}" enctype="multipart/form-data">
+                        @csrf
+                        <div class="form-group row">
+                            <label class="col-md-4 col-form-label text-md-right" for="customFile">{{ __('delivery_route.label.browse_file') }}</label>
+                            <div class="col-md-6">
+                                <input type="file" name="file" class="form-control @error('name') is-invalid @enderror" id="customFile">
+                                @error('file')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group row mb-0">
+                            <div class="col-3"></div>
+                            <div class="col-6">
+                            <button type="submit" class="btn btn-info"><i class="fa fa-upload"></i> {{ __('delivery_route.input.import_2') }}</button>
+                            </div>
+                        </div>
+                        
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 </div>

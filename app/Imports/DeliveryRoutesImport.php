@@ -17,11 +17,9 @@ class DeliveryRoutesImport implements ToModel
     {
         return new DeliveryRoute([
             'date' => $row[0],
-            'completed_deliveries' => $row[1],
-            'number_of_deliveries' => $row[2],
-            'warehouse_id' => $row[3],
-            'courier_id' => $row[4],
-            'vehicle_id' => $row[5],
+            'warehouse_id' => $row[1],
+            'courier_id' => $row[2],
+            'vehicle_id' => $row[3],
         ]);
     }
 }
