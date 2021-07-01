@@ -28,6 +28,7 @@ return [
         'create' => 'Create',
         'update' => 'Update',
         'finish_it' => 'Finish it',
+        'import_2' => 'Click to import delivery package',
         'click_import' => 'Click to import',
         'click_export' => 'Click to export',
         'click_format' => 'Click to download format',
@@ -50,4 +51,6 @@ return [
     ],
     'succesful_create' => 'Delivery route created successfully!',
     'succesful_update' => 'Delivery route updated successfully!',
+    'succesful_import' => 'Delivery routes imported successfully!',
+    'succesful_import_2' => 'Delivery routes, services and bills imported successfully!',
 ];

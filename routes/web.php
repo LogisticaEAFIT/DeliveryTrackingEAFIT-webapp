@@ -69,6 +69,7 @@ Route::post('/delivery_route/delete', 'App\Http\Controllers\DeliveryRouteControl
 //Route::post('/delivery_route/reactivate', 'App\Http\Controllers\DeliveryRouteController@reactivate')->name('delivery_route.reactivate');
 Route::get('/delivery_route/import_export', 'App\Http\Controllers\DeliveryRouteController@importExport')->name('delivery_route.import_export');
 Route::post('/delivery_route/import_file', 'App\Http\Controllers\DeliveryRouteController@importFile')->name('delivery_route.import_file');
+Route::post('/delivery_route/import_file_delivery_service_bill', 'App\Http\Controllers\DeliveryRouteController@importFileDeliveryServiceBill')->name('delivery_route.import_file_delivery_service_bill');
 Route::get('/delivery_route/export_file', 'App\Http\Controllers\DeliveryRouteController@exportFile')->name('delivery_route.export_file');
 Route::get('/delivery_route/download_format', 'App\Http\Controllers\DeliveryRouteController@downloadFormat')->name('delivery_route.download_format');
 
