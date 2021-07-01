@@ -5,6 +5,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class DeliveryRoute extends Model
 {
@@ -117,8 +118,16 @@ class DeliveryRoute extends Model
     {
         $request->validate([
             "date" => ['required'],
+            'vehicle_id' => 'exists:vehicles,id',
             //"completed_deliveries" => ['required', 'numeric', 'gte:0'],
             //"number_of_deliveries" => ['required', 'numeric', 'gt:0', 'gte:completed_deliveries'],
         ]);
+    }
+
+    public function validateModel(){
+        $validator = Validator::make($this->toArray(), [
+            "date" => ['required'],
+            'vehicle_id' => 'exists:vehicles,id',
+        ])->validate();
     }
 }

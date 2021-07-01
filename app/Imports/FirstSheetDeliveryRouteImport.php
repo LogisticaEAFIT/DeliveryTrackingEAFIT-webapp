@@ -7,8 +7,9 @@ use App\Models\DeliveryRoute;
 use Maatwebsite\Excel\Concerns\ToCollection;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
+use Maatwebsite\Excel\Concerns\SkipsEmptyRows;
 
-class FirstSheetDeliveryRouteImport implements ToCollection
+class FirstSheetDeliveryRouteImport implements ToCollection, SkipsEmptyRows
 {
     /**
     * @param array $row
@@ -20,13 +21,15 @@ class FirstSheetDeliveryRouteImport implements ToCollection
         $delivery_routes_map = [];
         foreach ($rows as $row) 
         {
-            $delivery_route = DeliveryRoute::create([
-                'date' => $row[1],
-                'warehouse_id' => $row[2],
-                'courier_id' => $row[3],
-                'vehicle_id' => $row[4],
-            ]);
-            $delivery_routes_map[$row[0]] = $delivery_route->getId();   
+            $delivery_route = new DeliveryRoute();
+            $delivery_route->setDate($row[1]);
+            $delivery_route->setWarehouseId($row[2]);
+            $delivery_route->setCourierId($row[3]);
+            $delivery_route->setVehicleId($row[4]);
+            $delivery_route->validateModel();
+
+            $delivery_route->save();
+            $delivery_routes_map[$row[0]] = $delivery_route->getId();
         }
         $GLOBALS["delivery_routes_map"] = $delivery_routes_map;
     }

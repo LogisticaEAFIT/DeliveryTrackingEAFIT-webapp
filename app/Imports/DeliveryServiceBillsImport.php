@@ -13,7 +13,7 @@ class DeliveryServiceBillsImport implements WithMultipleSheets
         return [
             0 => new FirstSheetDeliveryRouteImport(),
             1 => new SecondSheetServiceImport(),
-            2 => new ThirdSheetBillsImport(),
+            //2 => new ThirdSheetBillsImport(),
         ];
     }
 }

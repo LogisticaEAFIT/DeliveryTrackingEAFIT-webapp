@@ -5,6 +5,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class Service extends Model
 {
@@ -112,5 +113,16 @@ class Service extends Model
             "latitude" => ['required', 'numeric'],
             "longitude" => ['required', 'numeric'],
         ]);
+    }
+
+    public function validateModel(){
+        $validator = Validator::make($this->toArray(), [
+            "lower_time_window" => ['required', 'regex:/([01]?[0-9]|2[0-3]):[0-5][0-9]$/'],
+            "upper_time_window" => ['required', 'regex:/([01]?[0-9]|2[0-3]):[0-5][0-9]$/'],
+            "route_order" => ['required', 'numeric'],
+            "latitude" => ['required', 'numeric'],
+            "longitude" => ['required', 'numeric'],
+            'delivery_route_id' => 'exists:delivery_routes,id',
+        ])->validate();
     }
 }

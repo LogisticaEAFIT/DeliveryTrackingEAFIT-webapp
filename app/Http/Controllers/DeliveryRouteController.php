@@ -15,6 +15,7 @@ use App\Models\Vehicle;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\DB;
 use Exception;
 
 class DeliveryRouteController extends Controller
@@ -240,20 +241,20 @@ class DeliveryRouteController extends Controller
         }
         
         return redirect()->route('delivery_route.list')->with('success', __('delivery_route.succesful_import'));
-        ;
     }
 
     public function importFileDeliveryServiceBill(Request $request)
     {
-        //try {
+        DB::beginTransaction();
+        try{
             Excel::import(new DeliveryServiceBillsImport, $request->file('file')->store('temp'));
-        /*} catch (Exception $e) {
-            return redirect()->route('delivery_route.list')
-                ->withErrors(__('delivery_route.error.wrong_format'));
-        }*/
-        
+            DB::commit();
+        }catch (Exception $e) {
+            DB::rollBack();
+            dd($e);
+        }
+
         return redirect()->route('delivery_route.list')->with('success', __('delivery_route.succesful_import_2'));
-        ;
     }
 
     public function exportFile()
