@@ -246,10 +246,10 @@ class DeliveryRouteController extends Controller
     public function importFileDeliveryServiceBill(Request $request)
     {
         DB::beginTransaction();
-        try{
+        try {
             Excel::import(new DeliveryServiceBillsImport, $request->file('file')->store('temp'));
             DB::commit();
-        }catch (Exception $e) {
+        } catch (Exception $e) {
             DB::rollBack();
             dd($e);
         }

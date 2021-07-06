@@ -124,7 +124,8 @@ class DeliveryRoute extends Model
         ]);
     }
 
-    public function validateModel(){
+    public function validateModel()
+    {
         $validator = Validator::make($this->toArray(), [
             "date" => ['required'],
             'vehicle_id' => 'exists:vehicles,id',
