@@ -115,7 +115,8 @@ class Service extends Model
         ]);
     }
 
-    public function validateModel(){
+    public function validateModel()
+    {
         $validator = Validator::make($this->toArray(), [
             "lower_time_window" => ['required', 'regex:/([01]?[0-9]|2[0-3]):[0-5][0-9]$/'],
             "upper_time_window" => ['required', 'regex:/([01]?[0-9]|2[0-3]):[0-5][0-9]$/'],
