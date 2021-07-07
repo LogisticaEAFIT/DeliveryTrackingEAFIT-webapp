@@ -5,6 +5,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class Bill extends Model
 {
@@ -127,5 +128,19 @@ class Bill extends Model
             "amount_paid" => ['required', 'numeric'],
             "payment_type" => ['required'],
         ]);
+    }
+
+    public function validateModel()
+    {
+        $validator = Validator::make($this->toArray(), [
+            "observations" => ['required', 'string'],
+            "amount_to_be_paid" => ['required', 'numeric'],
+            "paid_in_advance" => ['required', 'numeric'],
+            "amount_paid" => ['required', 'numeric'],
+            "payment_type" => ['required'],
+            "customer_id" => 'exists:customers,id',
+            "service_id" => 'exists:services,id', 
+            "vendor_id" => 'exists:vendors,id', 
+        ])->validate();
     }
 }

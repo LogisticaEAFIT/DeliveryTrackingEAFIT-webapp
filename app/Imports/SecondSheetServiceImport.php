@@ -2,6 +2,7 @@
 
 namespace App\Imports;
 
+use App\Http\Controllers\DeliveryRouteController;
 use App\Models\Service;
 use Maatwebsite\Excel\Concerns\ToCollection;
 use Illuminate\Support\Collection;
@@ -26,12 +27,15 @@ class SecondSheetServiceImport implements ToCollection, SkipsEmptyRows
             $service->setRouteOrder($row[3]);
             $service->setLatitude($row[4]);
             $service->setLongitude($row[5]);
-            $service->setDeliveryRouteId($GLOBALS["delivery_routes_map"][$row[6]]);
+            $service->setDeliveryRouteId(DeliveryServiceBillsImport::$delivery_routes_map[$row[6]]);
             $service->validateModel();
 
             $service->save();
+
+            $delivery_route_controller = new DeliveryRouteController;
+            $delivery_route_controller->updateDeliveryRouteValues($service->getDeliveryRouteId());
             $services_map[$row[0]] = $service->getId();
         }
-        $GLOBALS["services_map"] = $services_map;
+        DeliveryServiceBillsImport::$services_map = $services_map;
     }
 }

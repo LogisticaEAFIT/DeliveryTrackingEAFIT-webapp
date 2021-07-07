@@ -18,16 +18,18 @@ class ThirdSheetBillsImport implements ToCollection
     {
         foreach ($rows as $row) 
         {
-            Bill::create([
-                'observations' => $row[0],
-                'amount_to_be_paid' => $row[1],
-                'paid_in_advance' => $row[2],
-                'amount_paid' => $row[3],
-                'payment_type' => $row[4],
-                'customer_id' => $row[5],
-                'service_id' => $GLOBALS["services_map"][$row[6]],
-                'vendor_id' => $row[7],
-            ]);
+            $bill = new Bill();
+            $bill->setObservations($row[0]);
+            $bill->setAmountToBePaid($row[1]);
+            $bill->setPaidInAdvance($row[2]);
+            $bill->setAmountPaid($row[3]);
+            $bill->setPaymentType($row[4]);
+            $bill->setCustomerId($row[5]);
+            $bill->setServiceId(DeliveryServiceBillsImport::$services_map[$row[6]]);
+            $bill->setVendorId($row[7]);
+            $bill->validateModel();
+
+            $bill->save();
         }
     }
 }
