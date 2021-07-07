@@ -139,8 +139,8 @@ class Bill extends Model
             "amount_paid" => ['required', 'numeric'],
             "payment_type" => ['required'],
             "customer_id" => 'exists:customers,id',
-            "service_id" => 'exists:services,id', 
-            "vendor_id" => 'exists:vendors,id', 
+            "service_id" => 'exists:services,id',
+            "vendor_id" => 'exists:vendors,id',
         ])->validate();
     }
 }
