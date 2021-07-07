@@ -31,7 +31,7 @@ class FirstSheetDeliveryRouteImport implements ToCollection, SkipsEmptyRows
             $delivery_route->save();
             $delivery_routes_map[$row[0]] = $delivery_route->getId();
         }
-        $GLOBALS["delivery_routes_map"] = $delivery_routes_map;
+        DeliveryServiceBillsImport::$delivery_routes_map = $delivery_routes_map;
     }
     
 }
